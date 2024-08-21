@@ -1,14 +1,14 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <>
-      <h1>Ihaa</h1>
-      <h2>Ihaa</h2>
-      <h3>Ihaa</h3>
-      <h4>Ihaa</h4>
-      <h5>Ihaa</h5>
-      <h6>Ihaa</h6>
+      <h1 className="bg-project-dark-blue">Ihaa</h1>
+      <h1 className="bg-project-blue">Ihaa</h1>
+      <h1 className="bg-project-green">Ihaa</h1>
+      <h1 className="bg-project-light-green">Ihaa</h1>
+      <h1 className="bg-project-dark-gray">Ihaa</h1>
+      <h1 className="bg-project-gray">Ihaa</h1>
+      <h1 className="bg-project-orange">Ihaa</h1>
+      <h1 className="bg-project-light-gray">Ihaa</h1>
     </>
   );
 }

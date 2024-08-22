@@ -14,12 +14,83 @@ datasource db {
 }
 
 model UserAuthInfo {
-  id          String @id @default(uuid())
-  email       String @unique
-  password    String
-  google_id   String @unique
-  facebook_id String @unique
+  user_id     String  @id @default(uuid())
+  email       String  @unique
+  password    String?
+  google_id   String? @unique
+  facebook_id String? @unique
+
+  profile                 UserProfile?
+  WorkoutProgramStructure WorkoutProgramStructure?
+  NutritionProgram        NutritionProgram?
+
+  @@map("user_auth_info")
 }
 
 model UserProfile {
+  user_id       String   @id
+  full_name     String
+  gender        Gender
+  image_url     String?
+  date_of_birth DateTime
+  height_in_cm  Int
+
+  user UserAuthInfo @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  @@map("user_profile")
+}
+
+model WorkoutProgramStructure {
+  workout_program_id          Int      @id @default(autoincrement())
+  user_id                     String   @unique
+  available_training_days_qty Int
+  workout_program_start       DateTime
+  workout_program_end         DateTime
+
+  user                  UserAuthInfo            @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  WorkoutProgramDetails WorkoutProgramDetails[]
+
+  @@map("workout_program_structure")
+}
+
+model WorkoutProgramDetails {
+  workout_program_id Int
+  day_number         Int
+  day_name           String
+  exercise_number    Int
+  exercise_name      String
+  sets_qty           Int
+
+  workoutProgram WorkoutProgramStructure @relation(fields: [workout_program_id], references: [workout_program_id], onDelete: Cascade)
+
+  @@unique([workout_program_id, day_number, exercise_number])
+  @@map("workout_program_details")
+}
+
+model NutritionProgram {
+  user_id                        String    @id
+  weight_in_kg                   Int
+  current_diet_phase             DietPhase
+  weekly_training_hours          Int
+  basal_metabolic_rate           Int
+  total_daily_energy_expenditure Int
+  daily_kcal                     Int
+  daily_proteins                 Int
+  daily_carbs                    Int
+  daily_fats                     Int
+
+  user UserAuthInfo @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  @@map("nutrition_program")
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum DietPhase {
+  bulk
+  maintain
+  cut
 }

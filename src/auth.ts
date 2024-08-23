@@ -1,42 +1,54 @@
-import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { db } from "@/db/index";
+import { db } from "@/db";
+import bcrypt from "bcrypt";
 
-const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET;
-
-if (!GITHUB_CLIENT_SECRET || !GITHUB_CLIENT_ID) {
-  throw new Error("Missing Github OAuth Credentials");
-}
-
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-
-if (!GOOGLE_CLIENT_SECRET || !GOOGLE_CLIENT_ID) {
-  throw new Error("Missing Google OAuth Credentials");
-}
-
-export const {
-  handlers: { GET, POST },
-  auth,
-  signOut,
-  signIn,
-} = NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   providers: [
-    GithubProvider({
-      clientId: GITHUB_CLIENT_ID,
-      clientSecret: GITHUB_CLIENT_SECRET,
-    }),
     GoogleProvider({
-      clientId: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "your-email@example.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        const user = await db.user.findUnique({
+          where: { email: credentials?.email },
+        });
+
+        if (user && credentials?.password) {
+          // Compare the provided password with the hashed password in the database
+          const isValidPassword = await bcrypt.compare(
+            credentials.password,
+            user.password,
+          );
+          if (isValidPassword) {
+            return user; // Return the user object if authentication is successful
+          }
+        }
+
+        // If authentication fails, return null
+        return null;
+      },
     }),
   ],
   callbacks: {
-    // Not sure if it's needed, but it looks like it prevents a bug in NextAuth
     async session({ session, user }: any) {
       if (session && user) {
         session.user.id = user.id;
@@ -44,4 +56,4 @@ export const {
       return session;
     },
   },
-});
+};

@@ -32,7 +32,7 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("user_auth_info")
+  @@map("user")
 }
 
 model Account {
@@ -54,6 +54,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
+  @@map("account")
 }
 
 model Session {
@@ -64,6 +65,8 @@ model Session {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("session")
 }
 
 model VerificationToken {
@@ -72,6 +75,7 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
+  @@map("verification_token")
 }
 
 // Optional for WebAuthn support
@@ -88,6 +92,7 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+  @@map("authenticator")
 }
 
 model UserProfile {

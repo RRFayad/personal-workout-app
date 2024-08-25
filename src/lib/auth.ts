@@ -7,6 +7,7 @@ import { db } from "@/db";
 
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
+  secret: process.env.AUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -56,6 +57,11 @@ const authOptions: NextAuthOptions = {
         session.user.id = user.id;
       }
       return session;
+    },
+  },
+  events: {
+    async signIn({ user, account, profile }) {
+      console.log(user, "Signed in");
     },
   },
 };

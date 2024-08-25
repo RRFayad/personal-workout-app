@@ -13,18 +13,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserAuthInfo {
-  user_id     String  @id @default(uuid())
-  email       String  @unique
-  password    String?
-  google_id   String? @unique
-  facebook_id String? @unique
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
 
   profile                 UserProfile?
   WorkoutProgramStructure WorkoutProgramStructure?
   NutritionProgram        NutritionProgram?
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("user_auth_info")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
 }
 
 model UserProfile {
@@ -35,7 +98,7 @@ model UserProfile {
   date_of_birth DateTime
   height_in_cm  Int
 
-  user UserAuthInfo @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("user_profile")
 }
@@ -47,7 +110,7 @@ model WorkoutProgramStructure {
   workout_program_start       DateTime
   workout_program_end         DateTime
 
-  user                  UserAuthInfo            @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  user                  User                    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   WorkoutProgramDetails WorkoutProgramDetails[]
 
   @@map("workout_program_structure")
@@ -79,7 +142,7 @@ model NutritionProgram {
   daily_carbs                    Int
   daily_fats                     Int
 
-  user UserAuthInfo @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("nutrition_program")
 }

@@ -69,7 +69,7 @@ const authOptions: NextAuthOptions = {
           // Safely handle optional fields like accessToken and refreshToken
           await db.account.create({
             data: {
-              type: "oauth",
+              type: account!.type,
               userId: existingUser.id,
               provider: account!.provider,
               providerAccountId: account!.providerAccountId,

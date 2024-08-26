@@ -4,6 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { db } from "@/db";
+import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -19,40 +20,69 @@ const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
     // CredentialsProvider({
-    //   // The name to display on the sign in form (e.g. 'Sign in with...')
-    //   name: "Emails",
-    //   // The credentials is used to generate a suitable form on the sign in page.
-    //   // You can specify whatever fields you are expecting to be submitted.
-    //   // e.g. domain, username, password, 2FA token, etc.
-    //   // You can pass any HTML attribute to the <input> tag through the object.
+    //   name: "Email",
     //   credentials: {
-    //     username: { label: "Username", type: "text", placeholder: "jsmith" },
+    //     email: { label: "Email", type: "email" },
     //     password: { label: "Password", type: "password" },
     //   },
-    //   async authorize(credentials, req) {
-    //     // You need to provide your own logic here that takes the credentials
-    //     // submitted and returns either a object representing a user or value
-    //     // that is false/null if the credentials are invalid.
-    //     // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-    //     // You can also use the `req` object to obtain additional parameters
-    //     // (i.e., the request IP address)
-    //     const res = await fetch("/your/endpoint", {
-    //       method: "POST",
-    //       body: JSON.stringify(credentials),
-    //       headers: { "Content-Type": "application/json" },
+    //   async authorize(credentials) {
+    //     const user = await db.user.findUnique({
+    //       where: { email: credentials?.email },
     //     });
-    //     const user = await res.json();
 
-    //     // If no error and we have user data, return it
-    //     if (res.ok && user) {
-    //       return user;
+    //     if (!user) {
+    //       throw new Error("No user found with this email");
     //     }
-    //     // Return null if user data could not be retrieved
-    //     return null;
+
+    //     const isValidPassword = await bcrypt.compare(
+    //       credentials!.password,
+    //       user.password,
+    //     );
+    //     if (!isValidPassword) {
+    //       throw new Error("Invalid password");
+    //     }
+
+    //     return user;
     //   },
     // }),
   ],
   callbacks: {
+    async signIn({ user, account, profile }) {
+      if (!user.email) {
+        return false;
+      }
+
+      const existingUser = await db.user.findUnique({
+        where: { email: user.email },
+      });
+
+      if (existingUser) {
+        // If the user exists, ensure the account is linked
+        const existingAccount = await db.account.findFirst({
+          where: {
+            userId: existingUser.id,
+            provider: account!.provider,
+          },
+        });
+
+        if (!existingAccount) {
+          // Safely handle optional fields like accessToken and refreshToken
+          await db.account.create({
+            data: {
+              type: "oauth",
+              userId: existingUser.id,
+              provider: account!.provider,
+              providerAccountId: account!.providerAccountId,
+              access_token: account!.access_token || null,
+              refresh_token: account!.refresh_token || null,
+              expires_at: account!.expires_at || null,
+            },
+          });
+        }
+      }
+
+      return true;
+    },
     async session({ session, user }: any) {
       if (session && user) {
         session.user.id = user.id;

@@ -19,32 +19,6 @@ const authOptions: NextAuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
-    // CredentialsProvider({
-    //   name: "Email",
-    //   credentials: {
-    //     email: { label: "Email", type: "email" },
-    //     password: { label: "Password", type: "password" },
-    //   },
-    //   async authorize(credentials) {
-    //     const user = await db.user.findUnique({
-    //       where: { email: credentials?.email },
-    //     });
-
-    //     if (!user) {
-    //       throw new Error("No user found with this email");
-    //     }
-
-    //     const isValidPassword = await bcrypt.compare(
-    //       credentials!.password,
-    //       user.password,
-    //     );
-    //     if (!isValidPassword) {
-    //       throw new Error("Invalid password");
-    //     }
-
-    //     return user;
-    //   },
-    // }),
   ],
   callbacks: {
     async signIn({ user, account, profile }) {

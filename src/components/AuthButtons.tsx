@@ -9,7 +9,6 @@ export default function AuthButtons() {
       <div className="w-100 m-auto flex flex-col items-center justify-center space-y-4">
         <Button onClick={() => signIn("google")}>Sign in with Google</Button>
         <Button onClick={() => signIn("github")}>Sign in with GitHub</Button>
-        <Button onClick={() => signOut()}>Sign out</Button>
       </div>
     </>
   );

@@ -17,7 +17,7 @@ function Header() {
 
   return (
     <header className="flex h-16 items-center justify-between bg-project-blue px-[120px]">
-      <h1 className="text-white">Workout Planner</h1>
+      <h1 className="text-white">Primal Trainer</h1>
       <nav className="flex flex-row items-center justify-between gap-10">
         {session.data?.user && (
           <>

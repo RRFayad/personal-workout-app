@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"; // Adjust to your UI setup
 import Image from "next/image";
 import GoogleImage from "../../public/google.png";
 import GithubImage from "../../public/github (1).png";
-import GithubInvertedImage from "../../public/github-inverted.png";
 
 export default function AuthButtons() {
   return (

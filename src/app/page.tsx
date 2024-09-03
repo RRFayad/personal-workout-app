@@ -11,10 +11,9 @@ import {
 export default function Home() {
   return (
     <div className="fixed right-[calc(50%-160px)] top-[calc(50%-180px)]">
-      <Card className="w-[320px]">
+      <Card className="w-[420px]">
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
+          <CardTitle className="flex justify-center">Sign In</CardTitle>
         </CardHeader>
         <CardContent>
           <AuthButtons />

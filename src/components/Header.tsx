@@ -42,8 +42,11 @@ function Header() {
                   </Link>
                 )}
               </PopoverTrigger>
-              <PopoverContent className="p-0" side="bottom">
-                <Button className="h-7 px-1" onClick={() => signOut()}>
+              <PopoverContent className="p-3" side="right">
+                <Button
+                  className="h-7 bg-project-dark-blue px-2 hover:bg-project-dark-blue"
+                  onClick={() => signOut()}
+                >
                   Sign Out
                 </Button>
               </PopoverContent>

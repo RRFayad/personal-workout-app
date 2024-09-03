@@ -23,7 +23,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <Provider session={session}>
-          <div className="min-h-screen bg-red-300">
+          <div className="min-h-screen">
             <Header />
             <main className="px-[120px]">{children}</main>
           </div>

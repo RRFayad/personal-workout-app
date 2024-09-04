@@ -23,9 +23,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <Provider session={session}>
-          <div className="min-h-screen">
+          <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="px-[120px]">{children}</main>
+            <main className="flex flex-grow items-center justify-center px-[120px]">
+              {children}
+            </main>
           </div>
         </Provider>
       </body>

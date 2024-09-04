@@ -11,18 +11,29 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "./ui/button";
+import Image from "next/image";
+import whiteHeadLogo from "../../public/logo__head--white.png";
 
 function Header() {
   const session = useSession();
 
   return (
-    <header className="flex h-16 items-center justify-between bg-project-blue px-[120px]">
-      <h1 className="text-white">Primal Trainer</h1>
+    <header className="flex h-[68px] items-center justify-between bg-project-blue px-[120px]">
+      <div className="-ml-4 flex items-center justify-center">
+        <Image
+          src={whiteHeadLogo}
+          alt="logo"
+          width={80}
+          height={800}
+          className="mr-[6px]"
+        ></Image>
+        <h2 className="align-middle text-white">Primal Trainer</h2>
+      </div>
       <nav className="flex flex-row items-center justify-between gap-10">
         {session.data?.user && (
           <>
             <Link href={"/"}>
-              <h5 className="text-white">WORKOUT</h5>
+              <h5 className="h-full text-white">WORKOUT</h5>
             </Link>
             <Link href={"/"}>
               <h5 className="text-white">PROFILE</h5>

@@ -9,17 +9,15 @@ import {
 } from "@/components/ui/card";
 import Logo from "../../public/logo__v2--black.png";
 import Image from "next/image";
-import { Form } from "@/components/ui/form";
 import CredentialsSignInForm from "@/components/CredentialsSignInForm";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div>
-      <div className="-mt-80">
+      <div className="-mt-40">
         <div className="flex flex-col items-center justify-center">
-          <Image src={Logo} width={100} height={100} alt="logo" />
-          {/* <h2>Primal Trainer</h2>
-          <h4>Unleash your natural strength</h4> */}
+          <Image src={Logo} width={92} height={92} alt="logo" />
         </div>
 
         <Card className="mt-2 w-[420px]">
@@ -36,8 +34,12 @@ export default function Home() {
             <hr className="mt-6" />
             <CredentialsSignInForm />
           </CardContent>
-          <CardFooter>
-            <p>Card Footer</p>
+          <CardFooter className="flex items-center justify-center">
+            <Link href="/">
+              <p className="text-sm text-project-gray">
+                Don't have an account?
+              </p>
+            </Link>
           </CardFooter>
         </Card>
       </div>

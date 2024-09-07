@@ -14,13 +14,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useFormState } from "react-dom";
 
 interface CredentialsSignInFormProps {
   className?: string;
 }
 
-const formSchema = z.object({
+export const formSchema = z.object({
   email: z.string().email(),
   password: z
     .string()
@@ -34,10 +33,6 @@ const formSchema = z.object({
 });
 
 function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
-  const [formState, action] = useFormState(actions.credentialsSignIn, {
-    message: "",
-  });
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,16 +42,14 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    actions.credentialsSignIn(values);
+    console.log("Ihaaa - Im in the client", values);
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        action={action}
         className="mt-2 flex flex-col gap-4"
       >
         <FormField

@@ -38,10 +38,6 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
       if (result.errors.email) {
         form.setError("email", { message: result.errors.email[0] });
       }
-
-      if (result.errors._form) {
-        form.setError("root", { message: result.errors._form[0] });
-      }
     }
   };
 
@@ -73,6 +69,7 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
               <FormControl>
                 <Input placeholder="••••••••" type="password" {...field} />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />

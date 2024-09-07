@@ -1,1 +1,1 @@
-export { credentialsSignIn } from "./credentialsLogin";
+export { credentialsSignIn } from "./credentialsSignIn";

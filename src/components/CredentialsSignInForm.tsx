@@ -22,22 +22,33 @@ interface CredentialsSignInFormProps {
 }
 
 function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
-  const [formState, action] = useFormState(actions.credentialsSignIn, {
-    errors: {},
-  });
-
-  const form = useForm<z.infer<typeof formSchemas.credentialsLogin>>({
-    resolver: zodResolver(formSchemas.credentialsLogin),
+  const form = useForm<z.infer<typeof formSchemas.credentialsSignIn>>({
+    resolver: zodResolver(formSchemas.credentialsSignIn),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
+  const submitHandler = async (
+    data: z.infer<typeof formSchemas.credentialsSignIn>,
+  ) => {
+    const result = await actions.credentialsSignIn(data);
+    if (result.errors) {
+      if (result.errors.email) {
+        form.setError("email", { message: result.errors.email[0] });
+      }
+
+      if (result.errors._form) {
+        form.setError("root", { message: result.errors._form[0] });
+      }
+    }
+  };
+
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(action)}
+        onSubmit={form.handleSubmit(submitHandler)}
         className="mt-2 flex flex-col gap-4"
       >
         <FormField
@@ -62,15 +73,10 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
               <FormControl>
                 <Input placeholder="••••••••" type="password" {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
-        {formState.errors._form && (
-          <div className="mx-auto mt-2 text-green-500">
-            {formState.errors._form[0]}
-          </div>
-        )}
+
         <Button type="submit">Log In With Email</Button>
       </form>
     </Form>

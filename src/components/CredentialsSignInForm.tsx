@@ -34,9 +34,17 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
     data: z.infer<typeof formSchemas.credentialsSignIn>,
   ) => {
     const result = await actions.credentialsSignIn(data);
+
     if (result.errors) {
       if (result.errors.email) {
         form.setError("email", { message: result.errors.email[0] });
+      }
+
+      if (result.errors._form) {
+        form.setError("root", {
+          type: "value",
+          message: result.errors._form[0],
+        });
       }
     }
   };
@@ -73,6 +81,12 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
             </FormItem>
           )}
         />
+
+        {form.formState.errors.root && (
+          <div className="mx-auto text-sm font-medium text-destructive">
+            {form.formState.errors.root.message}
+          </div>
+        )}
 
         <Button type="submit">Log In With Email</Button>
       </form>

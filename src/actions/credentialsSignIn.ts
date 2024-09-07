@@ -13,7 +13,6 @@ export async function credentialsSignIn(
   // formState: CredentialsLoginFormState,
   data: { email: string; password: string },
 ): Promise<CredentialsSignInFormState> {
-  console.log("FORMDATA:", data);
   const email = data.email;
   const password = data.password;
 

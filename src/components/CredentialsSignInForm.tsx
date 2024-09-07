@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import * as actions from "@/actions";
+import * as formSchemas from "@/lib/form-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,42 +15,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useFormState } from "react-dom";
 
 interface CredentialsSignInFormProps {
   className?: string;
 }
 
-export const formSchema = z.object({
-  email: z.string().email(),
-  password: z
-    .string()
-    .min(8, "Your password must contain at least 8 characters")
-    .refine((password) => {
-      const regex =
-        /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
-
-      return regex.test(password);
-    }, "Password must contain at least 1 special character and 1 uppercase letter"),
-});
-
 function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [formState, action] = useFormState(actions.credentialsSignIn, {
+    errors: {},
+  });
+
+  const form = useForm<z.infer<typeof formSchemas.credentialsLogin>>({
+    resolver: zodResolver(formSchemas.credentialsLogin),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    actions.credentialsSignIn(values);
-    console.log("Ihaaa - Im in the client", values);
-  }
-
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(action)}
         className="mt-2 flex flex-col gap-4"
       >
         <FormField
@@ -78,6 +66,11 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
             </FormItem>
           )}
         />
+        {formState.errors._form && (
+          <div className="mx-auto mt-2 text-green-500">
+            {formState.errors._form[0]}
+          </div>
+        )}
         <Button type="submit">Log In With Email</Button>
       </form>
     </Form>

@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   debug: true,
   providers: [
     GoogleProvider({
@@ -30,7 +30,9 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Find user by email
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        console.log(credentials);
+
         const user = await db.user.findUnique({
           where: { email: credentials?.email },
         });
@@ -43,7 +45,7 @@ const authOptions: NextAuthOptions = {
           throw new Error("User signed up with a different method");
         }
 
-        const isValidPassword = bcrypt.compare(
+        const isValidPassword = await bcrypt.compare(
           credentials!.password,
           user.password,
         );
@@ -52,14 +54,13 @@ const authOptions: NextAuthOptions = {
           throw new Error("Invalid password");
         }
 
-        return user; // If valid, return the user object
+        return user;
       },
     }),
   ],
   session: {
     strategy: "jwt",
   },
-
   callbacks: {
     async signIn({ user, account, profile }) {
       if (!user.email) {

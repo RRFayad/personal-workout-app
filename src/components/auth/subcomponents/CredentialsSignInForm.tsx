@@ -35,10 +35,10 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
     },
   });
 
-  const submitHandler = async (data: any) => {
+  const submitHandler = async (data: { email: string; password: string }) => {
     setIsSubmitting(true);
 
-    const result = await actions.credentialsSignUp(data); // Signup action
+    const result = await actions.credentialsSignIn(data);
 
     if (result.errors) {
       if (result.errors.email) {
@@ -54,6 +54,16 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
         });
       }
     }
+
+    const response = await signIn("credentials", { ...data, redirect: false });
+
+    if (response?.error) {
+      form.setError("root", {
+        type: "value",
+        message: response.error,
+      });
+    }
+
     setIsSubmitting(false);
   };
 

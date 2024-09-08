@@ -3,8 +3,8 @@
 import { signIn, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button"; // Adjust to your UI setup
 import Image from "next/image";
-import GoogleImage from "../../public/google.png";
-import GithubImage from "../../public/github (1).png";
+import GoogleImage from "@/../public/google.png";
+import GithubImage from "@/../public/github (1).png";
 
 interface AuthButtonsProps {
   authProcess: "login" | "signup";

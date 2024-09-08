@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import AuthButtons from "@/components/AuthButtons";
+import AuthButtons from "@/components/auth/subcomponents/AuthButtons";
 import {
   Card,
   CardContent,
@@ -10,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import CredentialsSignInForm from "@/components/CredentialsSignInForm";
-import CredentialsSignUpForm from "../CredentialsSignUpForm";
+import CredentialsSignInForm from "@/components/auth/subcomponents/CredentialsSignInForm";
+import CredentialsSignUpForm from "./subcomponents/CredentialsSignUpForm";
 
 function AuthCard() {
   const [authProcess, setAuthProcess] = useState<"login" | "signup">("login");

@@ -1,5 +1,10 @@
 "use server";
 import * as formSchemas from "@/lib/form-schemas";
+import { db } from "@/db";
+import { User } from "@prisma/client";
+import { redirect } from "next/navigation";
+import { signIn } from "next-auth/react";
+import bcrypt from "bcrypt";
 
 interface CredentialsSignUpFormState {
   errors: {
@@ -8,12 +13,14 @@ interface CredentialsSignUpFormState {
     passwordConfirm?: string[];
     _form?: string[]; // used the _ to represent metadata - It's like overallForm
   };
+  user?: User;
 }
 
-export async function credentialsSignUp(
-  // formState: CredentialsLoginFormState,
-  data: { email: string; password: string; passwordConfirm: string },
-): Promise<CredentialsSignUpFormState> {
+export async function credentialsSignUp(data: {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}): Promise<CredentialsSignUpFormState> {
   await new Promise((r) => setTimeout(r, 2500));
 
   const email = data.email;
@@ -26,16 +33,38 @@ export async function credentialsSignUp(
     passwordConfirm,
   });
 
-  console.log(inputValidationResult);
-
   if (!inputValidationResult.success) {
     return { errors: inputValidationResult.error.flatten().fieldErrors };
   }
 
-  return {
-    errors: {
-      // email: ["testing from the server"],
-      // _form: ["Actually, it's alright in the server! :)"],
-    },
-  };
+  let user: User;
+
+  const hashedPassword = await bcrypt.hash(password, 12);
+
+  try {
+    user = await db.user.create({
+      data: {
+        email,
+        password: hashedPassword,
+      },
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return {
+        errors: {
+          _form: [error.message],
+        },
+      };
+    } else {
+      return {
+        errors: {
+          _form: ["Something went wrong | User not created"],
+        },
+      };
+    }
+  }
+
+  return { errors: {}, user };
+
+  // redirect("/");
 }

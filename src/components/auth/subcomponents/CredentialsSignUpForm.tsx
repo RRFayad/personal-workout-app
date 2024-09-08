@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Loader2, Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 interface CredentialsSignInFormProps {
   className?: string;
@@ -34,7 +35,7 @@ function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
 
     const result = await actions.credentialsSignUp(data); // Signup action
 
-    if (result.errors) {
+    if (result?.errors) {
       if (result.errors.email) {
         form.setError("email", { message: result.errors.email[0] });
       }
@@ -53,6 +54,9 @@ function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
         });
       }
     }
+
+    signIn("credentials", result.user);
+
     setIsSubmitting(false);
   };
 

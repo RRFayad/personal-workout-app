@@ -4,6 +4,7 @@ import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { db } from "@/db";
+import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -18,7 +19,47 @@ const authOptions: NextAuthOptions = {
       clientId: process.env.GITHUB_CLIENT_ID!,
       clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "jsmith@example.com",
+        },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials, req) {
+        // Find user by email
+        const user = await db.user.findUnique({
+          where: { email: credentials?.email },
+        });
+
+        if (!user) {
+          throw new Error("No user found with this email");
+        }
+
+        if (!user.password) {
+          throw new Error("User signed up with a different method");
+        }
+
+        const isValidPassword = bcrypt.compare(
+          credentials!.password,
+          user.password,
+        );
+
+        if (!isValidPassword) {
+          throw new Error("Invalid password");
+        }
+
+        return user; // If valid, return the user object
+      },
+    }),
   ],
+  session: {
+    strategy: "jwt",
+  },
+
   callbacks: {
     async signIn({ user, account, profile }) {
       if (!user.email) {

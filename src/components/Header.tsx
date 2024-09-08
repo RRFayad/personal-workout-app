@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound, Loader2 } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -41,17 +41,16 @@ function Header() {
 
             <Popover>
               <PopoverTrigger>
-                {session.data.user.image && (
-                  <Avatar>
-                    <AvatarImage src={session.data.user.image} />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
-                )}
-                {!session.data.user.image && (
-                  <Link href={"/"}>
-                    <CircleUserRound size={36} className="text-white" />
-                  </Link>
-                )}
+                <Avatar>
+                  <AvatarImage
+                    src={
+                      session.data.user.image || "https://github.com/shadcn.png"
+                    }
+                  />
+                  <AvatarFallback>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  </AvatarFallback>
+                </Avatar>
               </PopoverTrigger>
               <PopoverContent className="p-3" side="right">
                 <Button

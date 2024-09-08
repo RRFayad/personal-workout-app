@@ -9,10 +9,10 @@ interface CredentialsSignInFormState {
   };
 }
 
-export async function credentialsSignIn(
-  // formState: CredentialsLoginFormState,
-  data: { email: string; password: string },
-): Promise<CredentialsSignInFormState> {
+export async function credentialsSignIn(data: {
+  email: string;
+  password: string;
+}): Promise<CredentialsSignInFormState> {
   await new Promise((r) => setTimeout(r, 2500));
 
   const email = data.email;
@@ -28,9 +28,6 @@ export async function credentialsSignIn(
   }
 
   return {
-    errors: {
-      email: ["testing from the server"],
-      _form: ["Actually, it's alright in the server! :)"],
-    },
+    errors: {},
   };
 }

@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Loader2, Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 interface CredentialsSignInFormProps {
   className?: string;

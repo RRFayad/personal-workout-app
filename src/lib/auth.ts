@@ -30,15 +30,12 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        console.log(credentials);
-
         const user = await db.user.findUnique({
           where: { email: credentials?.email },
         });
 
         if (!user) {
-          throw new Error("No user found with this email");
+          throw new Error("Email not found");
         }
 
         if (!user.password) {

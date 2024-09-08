@@ -37,10 +37,21 @@ export async function credentialsSignUp(data: {
     return { errors: inputValidationResult.error.flatten().fieldErrors };
   }
 
+  const existingUser = await db.user.findUnique({
+    where: { email },
+  });
+
+  if (existingUser) {
+    return {
+      errors: {
+        _form: ["E-mail already exists"],
+      },
+    };
+  }
+
   let user: User;
 
   const hashedPassword = await bcrypt.hash(password, 12);
-
   try {
     user = await db.user.create({
       data: {

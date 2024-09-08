@@ -18,6 +18,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Loader2, Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
+import paths from "@/lib/paths";
+import { useRouter } from "next/navigation";
 
 interface CredentialsSignInFormProps {
   className?: string;
@@ -25,12 +27,17 @@ interface CredentialsSignInFormProps {
 
 function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchemas.credentialsSignUp>>({
     resolver: zodResolver(formSchemas.credentialsSignUp),
   });
 
-  const submitHandler = async (data: any) => {
+  const submitHandler = async (data: {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+  }) => {
     setIsSubmitting(true);
 
     const result = await actions.credentialsSignUp(data); // Signup action
@@ -55,7 +62,29 @@ function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
       }
     }
 
-    signIn("credentials", result.user);
+    if (
+      !result.errors.email &&
+      !result.errors.password &&
+      !result.errors.passwordConfirm &&
+      !result.errors._form
+    ) {
+      const response = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (response?.error) {
+        form.setError("root", {
+          type: "value",
+          message: response.error,
+        });
+      }
+
+      if (response?.ok) {
+        router.push(paths.createProfile());
+      }
+    }
 
     setIsSubmitting(false);
   };

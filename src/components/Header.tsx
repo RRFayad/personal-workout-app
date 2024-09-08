@@ -13,9 +13,12 @@ import {
 import { Button } from "./ui/button";
 import Image from "next/image";
 import whiteHeadLogo from "../../public/logo__head--white.png";
+import { useRouter } from "next/navigation";
+import paths from "@/lib/paths";
 
 function Header() {
   const session = useSession();
+  const router = useRouter();
 
   return (
     <header className="flex h-[68px] items-center justify-between bg-project-blue px-[120px]">
@@ -55,7 +58,10 @@ function Header() {
               <PopoverContent className="p-3" side="right">
                 <Button
                   className="h-7 bg-project-dark-blue px-2 hover:bg-project-dark-blue"
-                  onClick={() => signOut()}
+                  onClick={() => {
+                    signOut();
+                    router.push(paths.home());
+                  }}
                 >
                   Sign Out
                 </Button>

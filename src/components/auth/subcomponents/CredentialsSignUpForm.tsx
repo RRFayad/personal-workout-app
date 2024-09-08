@@ -42,7 +42,7 @@ function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
         form.setError("password", { message: result.errors.password[0] });
       }
       if (result.errors.passwordConfirm) {
-        form.setError("password", {
+        form.setError("passwordConfirm", {
           message: result.errors.passwordConfirm[0],
         });
       }

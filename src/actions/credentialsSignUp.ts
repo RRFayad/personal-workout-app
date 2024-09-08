@@ -20,11 +20,13 @@ export async function credentialsSignUp(
   const password = data.password;
   const passwordConfirm = data.passwordConfirm;
 
-  const inputValidationResult = formSchemas.credentialsSignIn.safeParse({
+  const inputValidationResult = formSchemas.credentialsSignUp.safeParse({
     email,
     password,
     passwordConfirm,
   });
+
+  console.log(inputValidationResult);
 
   if (!inputValidationResult.success) {
     return { errors: inputValidationResult.error.flatten().fieldErrors };

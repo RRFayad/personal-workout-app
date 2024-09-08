@@ -3,11 +3,11 @@ const paths = {
   home() {
     return "/";
   },
-  credentialsLogin() {
-    return "/credentials";
+  login() {
+    return "/";
   },
-  credentialsSignUp() {
-    return "/credentials/signup";
+  signUp() {
+    return "/auth/sign-up";
   },
   createProfile() {
     // Quiz Form

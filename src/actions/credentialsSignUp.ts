@@ -1,26 +1,29 @@
 "use server";
 import * as formSchemas from "@/lib/form-schemas";
 
-interface CredentialsSignInFormState {
+interface CredentialsSignUpFormState {
   errors: {
     email?: string[];
     password?: string[];
+    passwordConfirm?: string[];
     _form?: string[]; // used the _ to represent metadata - It's like overallForm
   };
 }
 
-export async function credentialsSignIn(
+export async function credentialsSignUp(
   // formState: CredentialsLoginFormState,
-  data: { email: string; password: string },
-): Promise<CredentialsSignInFormState> {
+  data: { email: string; password: string; passwordConfirm: string },
+): Promise<CredentialsSignUpFormState> {
   await new Promise((r) => setTimeout(r, 2500));
 
   const email = data.email;
   const password = data.password;
+  const passwordConfirm = data.passwordConfirm;
 
   const inputValidationResult = formSchemas.credentialsSignIn.safeParse({
     email,
     password,
+    passwordConfirm,
   });
 
   if (!inputValidationResult.success) {
@@ -29,8 +32,8 @@ export async function credentialsSignIn(
 
   return {
     errors: {
-      email: ["testing from the server"],
-      _form: ["Actually, it's alright in the server! :)"],
+      // email: ["testing from the server"],
+      // _form: ["Actually, it's alright in the server! :)"],
     },
   };
 }

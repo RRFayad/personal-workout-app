@@ -6,7 +6,11 @@ import Image from "next/image";
 import GoogleImage from "../../public/google.png";
 import GithubImage from "../../public/github (1).png";
 
-export default function AuthButtons() {
+interface AuthButtonsProps {
+  authProcess: "login" | "signup";
+}
+
+export default function AuthButtons({ authProcess }: AuthButtonsProps) {
   return (
     <>
       <div className="m-auto flex w-full items-center justify-center gap-4">
@@ -21,7 +25,9 @@ export default function AuthButtons() {
             alt="Google"
             className="mr-2"
           />
-          Sign in with Google
+          {authProcess === "signup"
+            ? "Sign up with Google"
+            : "Log in with Google"}
         </Button>
         <Button
           className="h-[36px] w-[240px] bg-black hover:bg-black"
@@ -35,7 +41,9 @@ export default function AuthButtons() {
             alt="Github"
             className="mr-2"
           />
-          Sign in with GitHub
+          {authProcess === "signup"
+            ? "Sign up with Github"
+            : "Log in with Github"}
         </Button>
       </div>
     </>

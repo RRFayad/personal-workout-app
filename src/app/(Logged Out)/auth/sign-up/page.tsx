@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Logo from "../../public/logo__v2--black.png";
+import Logo from "@/../public/logo__v2--black.png";
 import Image from "next/image";
 import CredentialsSignInForm from "@/components/CredentialsSignInForm";
 import Link from "next/link";

@@ -66,9 +66,9 @@ function Header() {
         )}
         {!session.data?.user && (
           <>
-            <Link href={"/"}>
+            {/* <Link href={"/"}>
               <h5 className="text-white">SIGN IN</h5>
-            </Link>
+            </Link> */}
             <Link href={"/"}>
               <CircleUserRound size={36} className="text-white" />
             </Link>

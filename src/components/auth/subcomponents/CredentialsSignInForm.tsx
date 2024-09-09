@@ -51,6 +51,7 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
     }
 
     if (response?.ok) {
+      console.log("RESPONSE OKKKK");
       router.push(paths.createProfile());
     }
 

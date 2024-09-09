@@ -22,16 +22,18 @@ function Header() {
 
   return (
     <header className="flex h-[68px] items-center justify-between bg-project-blue px-[120px]">
-      <div className="-ml-4 flex items-center justify-center">
-        <Image
-          src={whiteHeadLogo}
-          alt="logo"
-          width={80}
-          height={800}
-          className="mr-[6px]"
-        ></Image>
-        <h2 className="align-middle text-white">Primal Trainer</h2>
-      </div>
+      <Link href={"/"}>
+        <div className="-ml-4 flex items-center justify-center">
+          <Image
+            src={whiteHeadLogo}
+            alt="logo"
+            width={80}
+            height={80}
+            className="mr-[6px]"
+          ></Image>
+          <h2 className="align-middle text-white">Primal Trainer</h2>
+        </div>
+      </Link>
       <nav className="flex flex-row items-center justify-between gap-10">
         {session.data?.user && (
           <>
@@ -58,8 +60,8 @@ function Header() {
               <PopoverContent className="p-3" side="right">
                 <Button
                   className="h-7 bg-project-dark-blue px-2 hover:bg-project-dark-blue"
-                  onClick={() => {
-                    signOut();
+                  onClick={async () => {
+                    await signOut({ redirect: false });
                     router.push(paths.home());
                   }}
                 >

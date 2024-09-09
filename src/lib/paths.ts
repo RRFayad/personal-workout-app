@@ -22,12 +22,16 @@ const paths = {
     return "/workout";
   },
   // Workout Plan
-  workoutPlan() {
+  workoutDayPlan() {
     return "/workout/plan";
   },
   // Workout Tracker
   workoutTracker() {
     return "/workout/tracker";
+  },
+  // Valid Exercises List?
+  exercisesList() {
+    return `/exercise`;
   },
   // Exercise Detail
   exerciseDetail(exerciseId: string) {

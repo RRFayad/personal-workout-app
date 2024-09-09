@@ -16,7 +16,9 @@ export default function AuthButtons({ authProcess }: AuthButtonsProps) {
       <div className="m-auto flex w-full items-center justify-center gap-4">
         <Button
           className="h-[36px] w-[240px] bg-black hover:bg-black"
-          onClick={() => signIn("google")}
+          onClick={() => {
+            signIn("google", { redirect: false });
+          }}
         >
           <Image
             src={GoogleImage}
@@ -32,7 +34,9 @@ export default function AuthButtons({ authProcess }: AuthButtonsProps) {
         <Button
           className="h-[36px] w-[240px] bg-black hover:bg-black"
           size={"sm"}
-          onClick={() => signIn("github")}
+          onClick={() => {
+            signIn("github", { redirect: false });
+          }}
         >
           <Image
             src={GithubImage}

@@ -2,8 +2,6 @@
 import * as formSchemas from "@/lib/form-schemas";
 import { db } from "@/db";
 import { User } from "@prisma/client";
-import { redirect } from "next/navigation";
-import { signIn } from "next-auth/react";
 import bcrypt from "bcrypt";
 
 interface CredentialsSignUpFormState {

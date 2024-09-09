@@ -5,7 +5,7 @@ const paths = {
   },
   createProfile() {
     // Quiz Form
-    return "/create-profile";
+    return "profile/create-profile";
   },
   // Profile & Meal Plan
   profile() {
@@ -16,8 +16,8 @@ const paths = {
     return "/workout";
   },
   // Workout Plan
-  workoutDayPlan() {
-    return "/workout/plan";
+  workoutDay(dayId: string) {
+    return `/workout/day/${dayId}`;
   },
   // Workout Tracker
   workoutTracker() {
@@ -25,11 +25,11 @@ const paths = {
   },
   // Valid Exercises List?
   exercisesList() {
-    return `/exercise`;
+    return `/exercises`;
   },
   // Exercise Detail
   exerciseDetail(exerciseId: string) {
-    return `/exercise/${exerciseId}`;
+    return `/exercises/${exerciseId}`;
   },
 };
 

@@ -3,12 +3,6 @@ const paths = {
   home() {
     return "/";
   },
-  login() {
-    return "/";
-  },
-  signUp() {
-    return "/auth/sign-up";
-  },
   createProfile() {
     // Quiz Form
     return "/create-profile";

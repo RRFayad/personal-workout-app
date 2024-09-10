@@ -5,6 +5,7 @@ import Provider from "@/components/auth/Provider";
 import { getServerSession } from "next-auth";
 import Header from "@/components/Header";
 import GridDevTool from "@/components/dev-tools/GridDevTool";
+import LightDarkToggle from "@/components/ui/light-dark-toggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({
       <body className={`${inter.className}`}>
         <Provider session={session}>
           <GridDevTool />
+          <LightDarkToggle className="fixed right-6 top-[calc(50%-12px)]" />
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex flex-grow items-center justify-center px-[120px]">

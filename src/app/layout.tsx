@@ -4,6 +4,7 @@ import "./globals.css";
 import Provider from "@/components/auth/Provider";
 import { getServerSession } from "next-auth";
 import Header from "@/components/Header";
+import GridDevTool from "@/components/dev-tools/GridDevTool";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <Provider session={session}>
+          <GridDevTool />
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex flex-grow items-center justify-center px-[120px]">

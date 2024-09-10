@@ -7,6 +7,7 @@ import { db } from "@/db";
 import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
+  pages: { signIn: "/" },
   adapter: PrismaAdapter(db),
   secret: process.env.NEXTAUTH_SECRET,
   debug: true,

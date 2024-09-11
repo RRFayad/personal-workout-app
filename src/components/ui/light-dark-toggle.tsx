@@ -13,7 +13,7 @@ interface LightDarkToggleProps {
 }
 
 function LightDarkToggle({ className }: LightDarkToggleProps) {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <TooltipProvider>
@@ -25,7 +25,7 @@ function LightDarkToggle({ className }: LightDarkToggleProps) {
             document.body.classList.toggle("dark");
           }}
         >
-          {isDarkMode ? <MoonIcon /> : <SunIcon />}
+          {isDarkMode ? <SunIcon /> : <MoonIcon />}
         </TooltipTrigger>
         <TooltipContent>
           {isDarkMode ? "Enable light mode" : "Enable dark mode"}

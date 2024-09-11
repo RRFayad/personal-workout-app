@@ -4,7 +4,10 @@ import { signIn, signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button"; // Adjust to your UI setup
 import Image from "next/image";
 import GoogleImage from "@/../public/google.png";
-import GithubImage from "@/../public/github (1).png";
+
+import GithubInverted from "@/../public/github-v2.png";
+import GithubImage from "@/../public/github-inverted-v2.png";
+import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
 
 interface AuthButtonsProps {
   authProcess: "login" | "signup";
@@ -15,7 +18,7 @@ export default function AuthButtons({ authProcess }: AuthButtonsProps) {
     <>
       <div className="m-auto flex w-full items-center justify-center gap-4">
         <Button
-          className="h-[36px] w-[240px] bg-black hover:bg-black"
+          className="h-[36px] w-[240px]"
           onClick={() => {
             signIn("google", { redirect: false });
           }}
@@ -32,16 +35,17 @@ export default function AuthButtons({ authProcess }: AuthButtonsProps) {
             : "Log in with Google"}
         </Button>
         <Button
-          className="h-[36px] w-[240px] bg-black hover:bg-black"
+          className="h-[36px] w-[240px]"
           size={"sm"}
           onClick={() => {
             signIn("github", { redirect: false });
           }}
         >
-          <Image
-            src={GithubImage}
-            width={28}
-            height={28}
+          <LogoLightDarkSwitcher
+            DarkModeImage={GithubInverted}
+            LightModeImage={GithubImage}
+            width={26}
+            height={26}
             alt="Github"
             className="mr-2"
           />

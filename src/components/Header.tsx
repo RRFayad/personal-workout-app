@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import whiteHeadLogo from "../../public/logo__head--white.png";
+import whiteHeadLogo from "../../public/Primal Trainer Logos/logo__head--white.png";
 import { useRouter } from "next/navigation";
 import paths from "@/lib/paths";
 

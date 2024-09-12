@@ -28,13 +28,18 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { Calendar } from "../ui/calendar";
+import * as formSchemas from "@/lib/form-schemas";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm();
+  const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
+    resolver: zodResolver(formSchemas.createProfileFormSchema),
+  });
 
   const submitHandler = () => {
     console.log("ihaa");
@@ -48,7 +53,7 @@ function CreateProfileForm() {
       >
         <FormField
           control={form.control}
-          name="full-name"
+          name="fullName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Full Name</FormLabel>
@@ -61,13 +66,13 @@ function CreateProfileForm() {
         />
         <FormField
           control={form.control}
-          name="picture"
+          name="profilePicture"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Select Your Picture (optional)</FormLabel>
               <FormControl>
                 <Input
-                  id="picture"
+                  id="profilePicture"
                   className="dark:file:text-foreground"
                   type="file"
                 />
@@ -161,7 +166,11 @@ function CreateProfileForm() {
         )}
 
         <Button type="submit" disabled={isSubmitting}>
-          Submit
+          {isSubmitting ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            "Submit"
+          )}
         </Button>
       </form>
     </Form>

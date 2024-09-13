@@ -19,7 +19,7 @@ export async function credentialsSignUp(data: {
   password: string;
   passwordConfirm: string;
 }): Promise<CredentialsSignUpFormState> {
-  await new Promise((r) => setTimeout(r, 2500));
+  // await new Promise((r) => setTimeout(r, 2500));  // Used to test the loading process
 
   const email = data.email;
   const password = data.password;

@@ -33,22 +33,62 @@ import { Calendar } from "../ui/calendar";
 import * as formSchemas from "@/lib/form-schemas";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Prisma } from "@prisma/client";
+import * as action from "@/actions/index";
+import { useSession } from "next-auth/react";
 
 function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const session = useSession();
 
   const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
     resolver: zodResolver(formSchemas.createProfileFormSchema),
   });
 
-  const submitHandler = () => {
-    console.log("ihaa");
+  const submitHandler = async (
+    data: {
+      fullName: string;
+      dateOfBirth: Date;
+      profilePicture?: File;
+      gender: Gender;
+    },
+    email: Prisma.UserGetPayload<true>["email"],
+  ) => {
+    setIsSubmitting(true);
+
+    const result = await action.createProfile(data, email);
+
+    if (result?.errors) {
+      if (result.errors.fullName) {
+        form.setError("fullName", { message: result.errors.fullName[0] });
+      }
+      if (result.errors.gender) {
+        form.setError("gender", { message: result.errors.gender[0] });
+      }
+      if (result.errors.dateOfBirth) {
+        form.setError("dateOfBirth", { message: result.errors.dateOfBirth[0] });
+      }
+      if (result.errors.profilePicture) {
+        form.setError("profilePicture", {
+          message: result.errors.profilePicture[0],
+        });
+      }
+      if (result.errors._form) {
+        form.setError("root", {
+          message: result.errors._form[0],
+        });
+      }
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(submitHandler)}
+        onSubmit={form.handleSubmit((formData) =>
+          submitHandler(formData, session.data?.user?.email as string),
+        )}
         className="flex flex-col gap-4"
       >
         <FormField
@@ -59,23 +99,6 @@ function CreateProfileForm() {
               <FormLabel>Full Name</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" type="text" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="profilePicture"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select Your Picture (optional)</FormLabel>
-              <FormControl>
-                <Input
-                  id="profilePicture"
-                  className="dark:file:text-foreground"
-                  type="file"
-                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -120,7 +143,6 @@ function CreateProfileForm() {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="gender"
@@ -145,6 +167,24 @@ function CreateProfileForm() {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="profilePicture"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Select Your Picture (optional)</FormLabel>
+              <FormControl>
+                <Input
+                  id="profilePicture"
+                  className="dark:file:text-foreground"
+                  type="file"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {/* <FormField
           control={form.control}
           name="height"
@@ -159,7 +199,7 @@ function CreateProfileForm() {
           )}
         /> */}
 
-        {form.formState.errors.root && (
+        {form.formState.errors.root?.message && (
           <div className="mx-auto text-sm font-medium text-destructive">
             {form.formState.errors.root.message}
           </div>

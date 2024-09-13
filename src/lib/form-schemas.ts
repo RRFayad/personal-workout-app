@@ -70,8 +70,8 @@ export const createProfileFormSchema = z.object({
   gender: z.enum(genderValues, {
     message: "Gender must be 'Male' of 'Female'",
   }),
-  height: z.coerce
-    .number()
-    .gte(140, { message: "Min height allowed is 140" })
-    .lte(220, { message: "Max height allowed is 220" }),
+  // height: z.coerce
+  //   .number()
+  //   .gte(140, { message: "Min height allowed is 140" })
+  //   .lte(220, { message: "Max height allowed is 220" }),
 });

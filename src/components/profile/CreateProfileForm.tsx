@@ -145,7 +145,7 @@ function CreateProfileForm() {
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="height"
           render={({ field }) => (
@@ -157,7 +157,7 @@ function CreateProfileForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         {form.formState.errors.root && (
           <div className="mx-auto text-sm font-medium text-destructive">

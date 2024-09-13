@@ -21,7 +21,7 @@ function Header() {
   const router = useRouter();
 
   return (
-    <header className="flex h-[68px] items-center justify-between bg-project-blue px-[120px]">
+    <header className="flex h-[68px] items-center justify-between bg-project-blue px-[120px] dark:bg-background">
       <Link href={"/"}>
         <div className="-ml-4 flex items-center justify-center">
           <Image

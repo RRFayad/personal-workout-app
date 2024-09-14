@@ -45,8 +45,10 @@ function CreateProfileForm() {
     resolver: zodResolver(formSchemas.createProfileFormSchema),
   });
 
+  const fileRef = form.register("profilePicture");
+
   const submitHandler = async (
-    data: {
+    formData: {
       fullName: string;
       dateOfBirth: Date;
       profilePicture?: File;
@@ -55,8 +57,17 @@ function CreateProfileForm() {
     email: Prisma.UserGetPayload<true>["email"],
   ) => {
     setIsSubmitting(true);
+    console.log(formData);
 
-    const result = await action.createProfile(data, email);
+    const data = new FormData();
+    data.append("fullName", formData.fullName);
+    data.append("dateOfBirth", formData.dateOfBirth.toISOString());
+    if (formData.profilePicture) {
+      data.append("profilePicture", formData.profilePicture);
+    }
+    data.append("gender", formData.gender);
+
+    const result = await action.createProfile(formData, email);
 
     if (result?.errors) {
       if (result.errors.fullName) {
@@ -175,9 +186,13 @@ function CreateProfileForm() {
               <FormLabel>Select Your Picture (optional)</FormLabel>
               <FormControl>
                 <Input
+                  // {...field}
                   id="profilePicture"
                   className="dark:file:text-foreground"
                   type="file"
+                  onChange={(event) => {
+                    field.onChange(event.target?.files?.[0] ?? undefined);
+                  }}
                 />
               </FormControl>
               <FormMessage />

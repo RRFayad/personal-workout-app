@@ -30,10 +30,6 @@ export async function createProfile(
 ): Promise<CreateProfileFormState> {
   await new Promise((r) => setTimeout(r, 2500));
 
-  console.log("here...", formData, email);
-
-  // return { errors: { _form: ["Just testing..."] } };
-
   const { fullName, profilePicture, dateOfBirth, gender } = formData;
 
   const inputValidationResult = formSchemas.createProfileFormSchema.safeParse({
@@ -56,6 +52,7 @@ export async function createProfile(
   let profilePicturePath: string | null = null;
   let profileUploadErrorMessage: string | null = null;
 
+  console.log("here...", formData);
   if (profilePicture) {
     const fileExtension = path.extname(profilePicture.name);
     const fileName = `${Date.now()}${fileExtension}`;
@@ -103,5 +100,6 @@ export async function createProfile(
   }
 
   revalidatePath(paths.profile());
-  redirect(paths.profile());
+  return { errors: { _form: ["?"] } };
+  // redirect(paths.profile());
 }

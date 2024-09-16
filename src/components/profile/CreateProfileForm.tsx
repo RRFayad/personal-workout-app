@@ -38,6 +38,7 @@ import * as action from "@/actions/index";
 import { useSession } from "next-auth/react";
 
 import UploadThingButton from "../UploadThingButton";
+import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
 
 function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -113,7 +114,7 @@ function CreateProfileForm() {
           onSubmit={form.handleSubmit((formData) =>
             submitHandler(formData, session.data?.user?.email as string),
           )}
-          className="flex flex-col gap-4"
+          className="flex min-w-[320px] flex-col gap-4"
         >
           <FormField
             control={form.control}
@@ -200,7 +201,7 @@ function CreateProfileForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Select Your Picture (optional)</FormLabel>
-                <FormControl>
+                <FormControl className="py-2">
                   {/* <Input
                     // {...field}
                     id="profilePicture"
@@ -210,7 +211,27 @@ function CreateProfileForm() {
                       field.onChange(event.target?.files?.[0] ?? undefined);
                     }}
                   /> */}
-                  <UploadThingButton />
+                  {/* <UploadButton
+                    endpoint="imageUploader"
+                    onClientUploadComplete={(res) => {
+                      // Do something with the response
+                      const [{ url }] = res;
+                    }}
+                    onUploadError={(error: Error) => {
+                      // Do something with the error.
+                      alert(`ERROR! ${error.message}`);
+                    }}
+                  /> */}
+                  <UploadDropzone
+                    appearance={{
+                      uploadIcon: { height: 50, width: 50 },
+                      button: { display: "none" },
+                    }}
+                    endpoint="imageUploader"
+                    onUploadError={(error: Error) => {
+                      alert(`ERROR! ${error.message}`);
+                    }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

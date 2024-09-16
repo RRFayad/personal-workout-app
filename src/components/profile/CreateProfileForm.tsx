@@ -48,7 +48,7 @@ function CreateProfileForm() {
   const fileRef = form.register("profilePicture");
 
   const submitHandler = async (
-    formData: {
+    data: {
       fullName: string;
       dateOfBirth: Date;
       profilePicture?: File;
@@ -57,17 +57,22 @@ function CreateProfileForm() {
     email: Prisma.UserGetPayload<true>["email"],
   ) => {
     setIsSubmitting(true);
-    console.log(formData);
+    console.log(data);
 
-    const data = new FormData();
-    data.append("fullName", formData.fullName);
-    data.append("dateOfBirth", formData.dateOfBirth.toISOString());
-    if (formData.profilePicture) {
-      data.append("profilePicture", formData.profilePicture);
-    }
-    data.append("gender", formData.gender);
+    //Handle image upload
+    let filePath: string | null = null;
 
-    const result = await action.createProfile(formData, email);
+    // Create logic for uploading the image and return the filePath
+
+    const result = await action.createProfile(
+      {
+        fullName: data.fullName,
+        dateOfBirth: data.dateOfBirth,
+        gender: data.gender,
+      },
+      email,
+      filePath,
+    );
 
     if (result?.errors) {
       if (result.errors.fullName) {
@@ -82,6 +87,11 @@ function CreateProfileForm() {
       if (result.errors.profilePicture) {
         form.setError("profilePicture", {
           message: result.errors.profilePicture[0],
+        });
+      }
+      if (result.errors.profilePicturePath) {
+        form.setError("profilePicture", {
+          message: result.errors.profilePicturePath[0],
         });
       }
       if (result.errors._form) {

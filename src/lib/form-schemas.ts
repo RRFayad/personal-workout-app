@@ -58,7 +58,6 @@ export const createProfileFormSchema = z.object({
       message: "File size must be less than 2MB",
     })
     .optional(),
-  profilePath: z.string().optional(),
   dateOfBirth: z.date().refine((date) => {
     const today = new Date();
     const eighteenYrsAgo = new Date(

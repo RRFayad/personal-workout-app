@@ -13,6 +13,7 @@ interface CreateProfileFormState {
   errors: {
     fullName?: string[];
     profilePicture?: string[];
+    profilePicturePath?: string[];
     dateOfBirth?: string[];
     gender?: string[];
     _form?: string[];
@@ -27,6 +28,7 @@ export async function createProfile(
     gender: Gender;
   },
   email: Prisma.UserGetPayload<true>["email"],
+  filePath: string | null,
 ): Promise<CreateProfileFormState> {
   await new Promise((r) => setTimeout(r, 2500));
 
@@ -34,7 +36,6 @@ export async function createProfile(
 
   const inputValidationResult = formSchemas.createProfileFormSchema.safeParse({
     fullName,
-    profilePicture,
     dateOfBirth,
     gender,
   });
@@ -49,46 +50,27 @@ export async function createProfile(
     return { errors: { _form: ["User Not Found!"] } };
   }
 
-  let profilePicturePath: string | null = null;
-  let profileUploadErrorMessage: string | null = null;
-
-  console.log("here...", formData);
-  if (profilePicture) {
-    const fileExtension = path.extname(profilePicture.name);
-    const fileName = `${Date.now()}${fileExtension}`;
-
-    // Define where to save the file (publicly accessible path)
-    const filePath = path.join(process.cwd(), "public/uploads", fileName);
-
-    // Save the file
-    const buffer = Buffer.from(await profilePicture.arrayBuffer());
-
-    await fs.writeFile(filePath, buffer, (err) => {
-      if (err) {
-        profileUploadErrorMessage = "Could not save the file";
-      } else {
-        profilePicturePath = `/uploads/${fileName}`;
-      }
+  try {
+    await db.user.update({
+      where: { email },
+      data: { image: filePath },
     });
-
-    //Handle save file result
-    if (profileUploadErrorMessage) {
-      return { errors: { profilePicture: ["Could not save the file"] } };
-    }
-
-    try {
-      db.user.update({
-        where: { email },
-        data: { image: profilePicturePath },
-      });
-    } catch (error) {
-      return { errors: { _form: ["Failed to update user image."] } };
-    }
+  } catch (error) {
+    return { errors: { _form: ["Failed to update user image."] } };
   }
 
   try {
-    db.userProfile.create({
-      data: {
+    console.log("here...", existingUser);
+    await db.userProfile.upsert({
+      where: {
+        user_id: existingUser.id,
+      },
+      update: {
+        full_name: fullName,
+        gender,
+        date_of_birth: dateOfBirth,
+      },
+      create: {
         user_id: existingUser.id,
         full_name: fullName,
         gender,
@@ -100,6 +82,6 @@ export async function createProfile(
   }
 
   revalidatePath(paths.profile());
-  return { errors: { _form: ["?"] } };
+  return { errors: { _form: ["Actually it was ok :)"] } };
   // redirect(paths.profile());
 }

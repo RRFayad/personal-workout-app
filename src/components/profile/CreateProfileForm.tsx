@@ -37,6 +37,8 @@ import { Prisma } from "@prisma/client";
 import * as action from "@/actions/index";
 import { useSession } from "next-auth/react";
 
+import UploadThingButton from "../UploadThingButton";
+
 function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const session = useSession();
@@ -105,112 +107,117 @@ function CreateProfileForm() {
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit((formData) =>
-          submitHandler(formData, session.data?.user?.email as string),
-        )}
-        className="flex flex-col gap-4"
-      >
-        <FormField
-          control={form.control}
-          name="fullName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Full Name</FormLabel>
-              <FormControl>
-                <Input placeholder="John Doe" type="text" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+    <>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit((formData) =>
+            submitHandler(formData, session.data?.user?.email as string),
           )}
-        />
-        <FormField
-          control={form.control}
-          name="dateOfBirth"
-          render={({ field }) => (
-            <FormItem className="flex flex-col pt-2">
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={`pl-3 pr-1 text-left font-normal ${!field.value && "text - muted - foreground"}`}
-                    >
-                      {field.value ? (
-                        format(field.value, "P")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto mr-2 h-5 w-5 dark:text-white" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    // defaultMonth={field.value}
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    initialFocus
-                    captionLayout="dropdown-buttons"
-                    fromDate={new Date(1940, 0, 1)}
-                    toDate={new Date()}
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="gender"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Gender</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+          className="flex flex-col gap-4"
+        >
+          <FormField
+            control={form.control}
+            name="fullName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select your gender" />
-                  </SelectTrigger>
+                  <Input placeholder="John Doe" type="text" {...field} />
                 </FormControl>
-                <SelectContent>
-                  {Object.values(Gender).map((gender) => (
-                    <SelectItem key={gender} value={gender}>
-                      {gender.charAt(0).toUpperCase() + gender.slice(1)}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="profilePicture"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Select Your Picture (optional)</FormLabel>
-              <FormControl>
-                <Input
-                  // {...field}
-                  id="profilePicture"
-                  className="dark:file:text-foreground"
-                  type="file"
-                  onChange={(event) => {
-                    field.onChange(event.target?.files?.[0] ?? undefined);
-                  }}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="dateOfBirth"
+            render={({ field }) => (
+              <FormItem className="flex flex-col pt-2">
+                <FormLabel>Date of birth</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant={"outline"}
+                        className={`pl-3 pr-1 text-left font-normal ${!field.value && "text - muted - foreground"}`}
+                      >
+                        {field.value ? (
+                          format(field.value, "P")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                        <CalendarIcon className="ml-auto mr-2 h-5 w-5 dark:text-white" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      // defaultMonth={field.value}
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      initialFocus
+                      captionLayout="dropdown-buttons"
+                      fromDate={new Date(1940, 0, 1)}
+                      toDate={new Date()}
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="gender"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Gender</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your gender" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {Object.values(Gender).map((gender) => (
+                      <SelectItem key={gender} value={gender}>
+                        {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="profilePicture"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Select Your Picture (optional)</FormLabel>
+                <FormControl>
+                  {/* <Input
+                    // {...field}
+                    id="profilePicture"
+                    className="dark:file:text-foreground"
+                    type="file"
+                    onChange={(event) => {
+                      field.onChange(event.target?.files?.[0] ?? undefined);
+                    }}
+                  /> */}
+                  <UploadThingButton />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* <FormField
+          {/* <FormField
           control={form.control}
           name="height"
           render={({ field }) => (
@@ -220,25 +227,26 @@ function CreateProfileForm() {
                 <Input placeholder="180" type="number" {...field} />
               </FormControl>
               <FormMessage />
-            </FormItem>
-          )}
+              </FormItem>
+              )}
         /> */}
 
-        {form.formState.errors.root?.message && (
-          <div className="mx-auto text-sm font-medium text-destructive">
-            {form.formState.errors.root.message}
-          </div>
-        )}
-
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? (
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          ) : (
-            "Submit"
+          {form.formState.errors.root?.message && (
+            <div className="mx-auto text-sm font-medium text-destructive">
+              {form.formState.errors.root.message}
+            </div>
           )}
-        </Button>
-      </form>
-    </Form>
+
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              "Submit"
+            )}
+          </Button>
+        </form>
+      </Form>
+    </>
   );
 }
 

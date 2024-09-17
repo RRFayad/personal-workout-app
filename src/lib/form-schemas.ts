@@ -52,12 +52,7 @@ export const createProfileFormSchema = z.object({
 
       return allowedCharacters.test(fullName) && namesQtd.length > 1;
     }, "Please insert your full name"),
-  profilePicture: z
-    .instanceof(File)
-    .refine((file) => file.size <= 2 * 1024 * 1024, {
-      message: "File size must be less than 2MB",
-    })
-    .optional(),
+  profilePictureUrl: z.string().optional(),
   dateOfBirth: z.date().refine((date) => {
     const today = new Date();
     const eighteenYrsAgo = new Date(

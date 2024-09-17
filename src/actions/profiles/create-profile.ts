@@ -12,10 +12,9 @@ import { redirect } from "next/navigation";
 interface CreateProfileFormState {
   errors: {
     fullName?: string[];
-    profilePicture?: string[];
-    profilePicturePath?: string[];
     dateOfBirth?: string[];
     gender?: string[];
+    profilePictureUrl?: string[];
     _form?: string[];
   };
 }
@@ -23,16 +22,18 @@ interface CreateProfileFormState {
 export async function createProfile(
   formData: {
     fullName: string;
-    profilePicture?: File;
     dateOfBirth: Date;
     gender: Gender;
+    profilePictureUrl?: string | undefined;
   },
   email: Prisma.UserGetPayload<true>["email"],
-  filePath: string | null,
 ): Promise<CreateProfileFormState> {
-  await new Promise((r) => setTimeout(r, 2500));
+  await new Promise((r) => setTimeout(r, 1500));
 
-  const { fullName, profilePicture, dateOfBirth, gender } = formData;
+  const { fullName, profilePictureUrl, dateOfBirth, gender } = formData;
+
+  console.log(formData);
+  return { errors: { _form: ["Just testing... :))"] } };
 
   const inputValidationResult = formSchemas.createProfileFormSchema.safeParse({
     fullName,
@@ -50,17 +51,19 @@ export async function createProfile(
     return { errors: { _form: ["User Not Found!"] } };
   }
 
-  try {
-    await db.user.update({
-      where: { email },
-      data: { image: filePath },
-    });
-  } catch (error) {
-    return { errors: { _form: ["Failed to update user image."] } };
+  if (profilePictureUrl) {
+    try {
+      await db.user.update({
+        where: { email },
+        data: { image: profilePictureUrl },
+      });
+    } catch (error) {
+      return { errors: { _form: ["Failed to update user image."] } };
+    }
   }
 
   try {
-    console.log("here...", existingUser);
+    // console.log("here... (action)", existingUser);
     await db.userProfile.upsert({
       where: {
         user_id: existingUser.id,

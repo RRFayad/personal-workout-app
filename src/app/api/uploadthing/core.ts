@@ -7,11 +7,17 @@ const f = createUploadthing();
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({ image: { maxFileSize: "2MB" } })
+    .middleware(async ({ req }) => {
+      // Your authentication logic
+      console.log("Imaaa heeeereee in the MW");
+      return { id: "test" };
+    })
     // Set permissions and file types for this FileRoute
 
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
 
+      console.log("Imaaa heeeereee in the COMPLETE");
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { fileUrl: file.url };
     }),

@@ -48,34 +48,21 @@ function CreateProfileForm() {
     resolver: zodResolver(formSchemas.createProfileFormSchema),
   });
 
-  const fileRef = form.register("profilePicture");
-
   const submitHandler = async (
     data: {
       fullName: string;
       dateOfBirth: Date;
-      profilePicture?: File;
       gender: Gender;
+      profilePictureUrl?: string | undefined;
     },
     email: Prisma.UserGetPayload<true>["email"],
   ) => {
     setIsSubmitting(true);
-    console.log(data);
-
-    //Handle image upload
-    let filePath: string | null = null;
+    console.log(data, email);
 
     // Create logic for uploading the image and return the filePath
 
-    const result = await action.createProfile(
-      {
-        fullName: data.fullName,
-        dateOfBirth: data.dateOfBirth,
-        gender: data.gender,
-      },
-      email,
-      filePath,
-    );
+    const result = await action.createProfile(data, email);
 
     if (result?.errors) {
       if (result.errors.fullName) {
@@ -87,14 +74,9 @@ function CreateProfileForm() {
       if (result.errors.dateOfBirth) {
         form.setError("dateOfBirth", { message: result.errors.dateOfBirth[0] });
       }
-      if (result.errors.profilePicture) {
-        form.setError("profilePicture", {
-          message: result.errors.profilePicture[0],
-        });
-      }
-      if (result.errors.profilePicturePath) {
-        form.setError("profilePicture", {
-          message: result.errors.profilePicturePath[0],
+      if (result.errors.profilePictureUrl) {
+        form.setError("profilePictureUrl", {
+          message: result.errors.profilePictureUrl[0],
         });
       }
       if (result.errors._form) {
@@ -197,20 +179,11 @@ function CreateProfileForm() {
           />
           <FormField
             control={form.control}
-            name="profilePicture"
+            name="profilePictureUrl"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Select Your Picture (optional)</FormLabel>
                 <FormControl className="py-2">
-                  {/* <Input
-                    // {...field}
-                    id="profilePicture"
-                    className="dark:file:text-foreground"
-                    type="file"
-                    onChange={(event) => {
-                      field.onChange(event.target?.files?.[0] ?? undefined);
-                    }}
-                  /> */}
                   {/* <UploadButton
                     endpoint="imageUploader"
                     onClientUploadComplete={(res) => {
@@ -223,15 +196,40 @@ function CreateProfileForm() {
                     }}
                   /> */}
                   <UploadDropzone
-                    appearance={{
-                      uploadIcon: { height: 50, width: 50 },
-                      button: { display: "none" },
-                    }}
                     endpoint="imageUploader"
+                    onUploadBegin={() => console.log("aaa")}
                     onUploadError={(error: Error) => {
                       alert(`ERROR! ${error.message}`);
                     }}
+                    onClientUploadComplete={(res) => {
+                      alert("Upload ok");
+                      console.log(res[0].url);
+                      form.setValue("profilePictureUrl", res[0].url);
+                    }}
+                    appearance={{
+                      uploadIcon: { height: 50, width: 50 },
+                      // button: { display: "none" },
+                    }}
                   />
+                  {/* <UploadDropzone
+                    endpoint="imageUploader"
+                    onClientUploadComplete={(res) => {
+                      // Do something with the response
+                      console.log("Files: ", res);
+                      alert("Upload Completed");
+                    }}
+                    onUploadError={(error: Error) => {
+                      alert(`ERROR! ${error.message}`);
+                    }}
+                    onUploadBegin={(name) => {
+                      // Do something once upload begins
+                      console.log("Uploading: ", name);
+                    }}
+                    onChange={(acceptedFiles) => {
+                      // Do something with the accepted files
+                      console.log("Accepted files: ", acceptedFiles);
+                    }}
+                  /> */}
                 </FormControl>
                 <FormMessage />
               </FormItem>

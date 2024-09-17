@@ -37,8 +37,7 @@ import { Prisma } from "@prisma/client";
 import * as action from "@/actions/index";
 import { useSession } from "next-auth/react";
 
-import UploadThingButton from "../UploadThingButton";
-import { UploadButton, UploadDropzone } from "@/lib/uploadthing";
+import { UploadDropzone } from "@/lib/uploadthing";
 
 function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,6 +85,13 @@ function CreateProfileForm() {
       }
     }
 
+    if (!result.errors) {
+      data.profilePictureUrl &&
+        session.update({
+          ...session,
+          user: { ...session.data?.user, image: data.profilePictureUrl },
+        });
+    }
     setIsSubmitting(false);
   };
 
@@ -182,24 +188,14 @@ function CreateProfileForm() {
             name="profilePictureUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Select Your Picture (optional)</FormLabel>
+                <FormLabel>Update Your Picture (optional)</FormLabel>
                 <FormControl className="py-2">
-                  {/* <UploadButton
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                      // Do something with the response
-                      const [{ url }] = res;
-                    }}
-                    onUploadError={(error: Error) => {
-                      // Do something with the error.
-                      alert(`ERROR! ${error.message}`);
-                    }}
-                  /> */}
                   <UploadDropzone
                     endpoint="imageUploader"
-                    onUploadBegin={() => console.log("aaa")}
                     onUploadError={(error: Error) => {
-                      alert(`ERROR! ${error.message}`);
+                      form.setError("profilePictureUrl", {
+                        message: error.message,
+                      });
                     }}
                     onClientUploadComplete={(res) => {
                       alert("Upload ok");
@@ -208,47 +204,19 @@ function CreateProfileForm() {
                     }}
                     appearance={{
                       uploadIcon: { height: 50, width: 50 },
-                      // button: { display: "none" },
+                      button: {
+                        backgroundColor: "black",
+                        padding: 16,
+                        marginTop: 12,
+                        marginBottom: 8,
+                      },
                     }}
                   />
-                  {/* <UploadDropzone
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                      // Do something with the response
-                      console.log("Files: ", res);
-                      alert("Upload Completed");
-                    }}
-                    onUploadError={(error: Error) => {
-                      alert(`ERROR! ${error.message}`);
-                    }}
-                    onUploadBegin={(name) => {
-                      // Do something once upload begins
-                      console.log("Uploading: ", name);
-                    }}
-                    onChange={(acceptedFiles) => {
-                      // Do something with the accepted files
-                      console.log("Accepted files: ", acceptedFiles);
-                    }}
-                  /> */}
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
-          {/* <FormField
-          control={form.control}
-          name="height"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Height (in cm)</FormLabel>
-              <FormControl>
-                <Input placeholder="180" type="number" {...field} />
-              </FormControl>
-              <FormMessage />
-              </FormItem>
-              )}
-        /> */}
 
           {form.formState.errors.root?.message && (
             <div className="mx-auto text-sm font-medium text-destructive">

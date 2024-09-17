@@ -16,7 +16,7 @@ interface CreateProfileFormState {
     gender?: string[];
     profilePictureUrl?: string[];
     _form?: string[];
-  };
+  } | null;
 }
 
 export async function createProfile(
@@ -33,7 +33,7 @@ export async function createProfile(
   const { fullName, profilePictureUrl, dateOfBirth, gender } = formData;
 
   console.log(formData);
-  return { errors: { _form: ["Just testing... :))"] } };
+  // return { errors: { _form: ["Just testing... :))"] } };
 
   const inputValidationResult = formSchemas.createProfileFormSchema.safeParse({
     fullName,
@@ -63,7 +63,6 @@ export async function createProfile(
   }
 
   try {
-    // console.log("here... (action)", existingUser);
     await db.userProfile.upsert({
       where: {
         user_id: existingUser.id,
@@ -85,6 +84,6 @@ export async function createProfile(
   }
 
   revalidatePath(paths.profile());
-  return { errors: { _form: ["Actually it was ok :)"] } };
+  return { errors: null };
   // redirect(paths.profile());
 }

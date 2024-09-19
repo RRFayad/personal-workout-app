@@ -5,9 +5,6 @@ import paths from "@/lib/paths";
 import { Prisma, User, Gender } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
-import path from "path";
-import fs from "fs";
-import { redirect } from "next/navigation";
 
 interface CreateProfileFormState {
   errors: {

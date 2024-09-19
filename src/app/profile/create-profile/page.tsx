@@ -25,6 +25,7 @@ function CreateProfilePage() {
       <Card>
         <CardHeader className="-mb-2 flex flex-col items-center justify-center">
           <CardTitle>Create Your Profile</CardTitle>
+          <CardDescription className="font-semibold">Step 1/3</CardDescription>
         </CardHeader>
         <CardContent>
           <CreateProfileForm />

@@ -8,6 +8,7 @@ import {
 import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
 import WhiteLogo from "@/../public/Primal Trainer Logos/logo__v2--white-with-light-gray.png";
 import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
+import CreateWorkoutForm from "@/components/workout/CreateWorkoutForm";
 
 function CreateWorkoutPage() {
   return (
@@ -25,7 +26,9 @@ function CreateWorkoutPage() {
           <CardTitle>Create Your Workout</CardTitle>
           <CardDescription className="font-semibold">Step 2/3</CardDescription>
         </CardHeader>
-        <CardContent>Create workout form...</CardContent>
+        <CardContent>
+          <CreateWorkoutForm />
+        </CardContent>
       </Card>
     </div>
   );

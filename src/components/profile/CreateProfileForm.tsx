@@ -38,8 +38,14 @@ import * as action from "@/actions/index";
 import { useSession } from "next-auth/react";
 
 import { UploadDropzone } from "@/lib/uploadthing";
+import useDarkModeObserver from "@/hooks/useDarkModeObserver";
 
 function CreateProfileForm() {
+  const isDarkMode = useDarkModeObserver();
+  const [uploadedFile, setUploadedFile] = useState<{
+    url: string;
+    name: string;
+  } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const session = useSession();
 
@@ -58,8 +64,6 @@ function CreateProfileForm() {
   ) => {
     setIsSubmitting(true);
     console.log(data, email);
-
-    // Create logic for uploading the image and return the filePath
 
     const result = await action.createProfile(data, email);
 
@@ -85,13 +89,6 @@ function CreateProfileForm() {
       }
     }
 
-    if (!result.errors) {
-      data.profilePictureUrl &&
-        session.update({
-          ...session,
-          user: { ...session.data?.user, image: data.profilePictureUrl },
-        });
-    }
     setIsSubmitting(false);
   };
 
@@ -189,29 +186,43 @@ function CreateProfileForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Update Your Picture (optional)</FormLabel>
-                <FormControl className="py-2">
-                  <UploadDropzone
-                    endpoint="imageUploader"
-                    onUploadError={(error: Error) => {
-                      form.setError("profilePictureUrl", {
-                        message: error.message,
-                      });
-                    }}
-                    onClientUploadComplete={(res) => {
-                      alert("Upload ok");
-                      console.log(res[0].url);
-                      form.setValue("profilePictureUrl", res[0].url);
-                    }}
-                    appearance={{
-                      uploadIcon: { height: 50, width: 50 },
-                      button: {
-                        backgroundColor: "black",
-                        padding: 16,
-                        marginTop: 12,
-                        marginBottom: 8,
-                      },
-                    }}
-                  />
+                <FormControl className="py-4">
+                  {uploadedFile ? (
+                    <Input
+                      placeholder={uploadedFile.name}
+                      type="text"
+                      readOnly
+                      // {...field}
+                    />
+                  ) : (
+                    <UploadDropzone
+                      endpoint="imageUploader"
+                      config={{ mode: "auto" }}
+                      onUploadError={(error: Error) => {
+                        form.setError("profilePictureUrl", {
+                          message: error.message,
+                        });
+                      }}
+                      onClientUploadComplete={(res) => {
+                        console.log(res[0].name);
+                        setUploadedFile({
+                          name: res[0].name,
+                          url: res[0].url,
+                        });
+
+                        form.setValue("profilePictureUrl", res[0].url);
+                      }}
+                      appearance={{
+                        uploadIcon: { height: 68, width: 68 },
+                        button: {
+                          backgroundColor: isDarkMode ? "white" : "#18181B",
+                          color: !isDarkMode ? "white" : "black",
+                          padding: 16,
+                          marginTop: 16,
+                        },
+                      }}
+                    />
+                  )}
                 </FormControl>
                 <FormMessage />
               </FormItem>

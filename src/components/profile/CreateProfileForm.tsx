@@ -39,8 +39,11 @@ import { useSession } from "next-auth/react";
 
 import { UploadDropzone } from "@/lib/uploadthing";
 import useDarkModeObserver from "@/hooks/useDarkModeObserver";
+import { useRouter } from "next/navigation";
+import paths from "@/lib/paths";
 
 function CreateProfileForm() {
+  const router = useRouter();
   const isDarkMode = useDarkModeObserver();
   const [uploadedFile, setUploadedFile] = useState<{
     url: string;
@@ -63,7 +66,6 @@ function CreateProfileForm() {
     email: Prisma.UserGetPayload<true>["email"],
   ) => {
     setIsSubmitting(true);
-    console.log(data, email);
 
     const result = await action.createProfile(data, email);
 
@@ -89,7 +91,12 @@ function CreateProfileForm() {
       }
     }
 
+    if (data.profilePictureUrl) {
+      session.update();
+    }
+
     setIsSubmitting(false);
+    router.push(paths.profile());
   };
 
   return (
@@ -204,7 +211,7 @@ function CreateProfileForm() {
                         });
                       }}
                       onClientUploadComplete={(res) => {
-                        console.log(res[0].name);
+                        // console.log(res[0].name);
                         setUploadedFile({
                           name: res[0].name,
                           url: res[0].url,

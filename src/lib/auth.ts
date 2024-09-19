@@ -97,6 +97,12 @@ const authOptions: NextAuthOptions = {
       return true;
     },
     async session({ session, user }: any) {
+      // This is a work around to update user image when the user user updates his profile pic
+      const userData = await db.user.findFirst({
+        where: { email: session.user.email },
+      });
+      session.user.image = userData?.image;
+
       if (session && user) {
         session.user.id = user.id;
       }

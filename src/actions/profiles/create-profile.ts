@@ -84,6 +84,6 @@ export async function createProfile(
   }
 
   revalidatePath(paths.profile());
-  return { errors: null };
   // redirect(paths.profile());
+  return { errors: null };
 }

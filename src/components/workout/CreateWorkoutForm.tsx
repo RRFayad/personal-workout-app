@@ -55,19 +55,19 @@ function CreateWorkoutForm() {
 
     const result = await action.createWorkoutPlan(data);
 
-    // if (result?.errors) {
-    //   if (result.errors.workingOutDays) {
-    //     form.setError("workingOutDays", {
-    //       message: result.errors.workingOutDays[0],
-    //     });
-    //   }
+    if (result?.errors) {
+      if (result.errors.trainingDays) {
+        form.setError("trainingDays", {
+          message: result.errors.trainingDays[0],
+        });
+      }
 
-    //   if (result.errors._form) {
-    //     form.setError("root", {
-    //       message: result.errors._form[0],
-    //     });
-    //   }
-    // }
+      if (result.errors._form) {
+        form.setError("root", {
+          message: result.errors._form[0],
+        });
+      }
+    }
     setIsSubmitting(false);
     // router.push(paths.profile());
   };

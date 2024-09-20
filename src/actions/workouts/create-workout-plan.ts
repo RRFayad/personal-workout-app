@@ -2,7 +2,6 @@
 
 import * as formSchemas from "@/lib/form-schemas";
 import paths from "@/lib/paths";
-import { Prisma, User, Gender } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { getServerSession } from "next-auth/next";
@@ -18,16 +17,33 @@ interface CreateWorkoutPlanFormState {
 export async function createWorkoutPlan(formData: {
   trainingDays: number;
 }): Promise<CreateWorkoutPlanFormState> {
-  await new Promise((r) => setTimeout(r, 1500));
-
   const session = await getServerSession(authOptions);
 
-  console.log(formData, session);
+  // return { errors: { _form: ["Testing..."] } };
 
   if (!session || !session.user) {
     return { errors: { _form: ["Unauthorized!"] } };
   }
+
+  const { trainingDays } = formData;
   const email = session.user.email!;
+
+  const inputValidationResult = formSchemas.createWorkoutFormSchema.safeParse({
+    trainingDays,
+  });
+
+  if (!inputValidationResult.success) {
+    return { errors: inputValidationResult.error.flatten().fieldErrors };
+  }
+
+  const existingUser = await db.user.findUnique({
+    where: { email },
+    include: { profile: { select: { gender: true } } },
+  });
+
+  if (!existingUser) {
+    return { errors: { _form: ["User Not Found!"] } };
+  }
 
   revalidatePath(paths.workoutSplit());
   revalidatePath(paths.workoutTracker());

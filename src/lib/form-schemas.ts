@@ -1,5 +1,6 @@
 import * as z from "zod";
 import { Gender } from "@prisma/client";
+
 const genderValues = Object.values(Gender) as [Gender, ...Gender[]];
 
 export const credentialsSignIn = z.object({
@@ -69,4 +70,11 @@ export const createProfileFormSchema = z.object({
   //   .number()
   //   .gte(140, { message: "Min height allowed is 140" })
   //   .lte(220, { message: "Max height allowed is 220" }),
+});
+
+export const createWorkoutFormSchema = z.object({
+  trainingDays: z
+    .number()
+    .min(3, { message: "Minimum value is 3" })
+    .max(5, { message: "Maximum value is 5" }),
 });

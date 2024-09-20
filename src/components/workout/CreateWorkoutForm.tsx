@@ -46,64 +46,42 @@ function CreateWorkoutForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const session = useSession();
 
-  // const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
-  //   resolver: zodResolver(formSchemas.createProfileFormSchema),
-  // });
-  const form = useForm();
+  const form = useForm<z.infer<typeof formSchemas.createWorkoutFormSchema>>({
+    resolver: zodResolver(formSchemas.createWorkoutFormSchema),
+  });
 
-  const submitHandler = async (
-    data: {
-      fullName: string;
-      dateOfBirth: Date;
-      gender: Gender;
-      profilePictureUrl?: string | undefined;
-    },
-    email: Prisma.UserGetPayload<true>["email"],
-  ) => {
+  const submitHandler = async (data: { trainingDays: number }) => {
     setIsSubmitting(true);
 
-    const result = await action.createProfile(data, email);
+    const result = await action.createWorkoutPlan(data);
 
-    if (result?.errors) {
-      if (result.errors.fullName) {
-        form.setError("fullName", { message: result.errors.fullName[0] });
-      }
-      if (result.errors.gender) {
-        form.setError("gender", { message: result.errors.gender[0] });
-      }
-      if (result.errors.dateOfBirth) {
-        form.setError("dateOfBirth", { message: result.errors.dateOfBirth[0] });
-      }
-      if (result.errors.profilePictureUrl) {
-        form.setError("profilePictureUrl", {
-          message: result.errors.profilePictureUrl[0],
-        });
-      }
-      if (result.errors._form) {
-        form.setError("root", {
-          message: result.errors._form[0],
-        });
-      }
-    }
+    // if (result?.errors) {
+    //   if (result.errors.workingOutDays) {
+    //     form.setError("workingOutDays", {
+    //       message: result.errors.workingOutDays[0],
+    //     });
+    //   }
 
-    if (data.profilePictureUrl) {
-      session.update();
-    }
-
+    //   if (result.errors._form) {
+    //     form.setError("root", {
+    //       message: result.errors._form[0],
+    //     });
+    //   }
+    // }
     setIsSubmitting(false);
-    router.push(paths.profile());
+    // router.push(paths.profile());
   };
 
   return (
     <>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit((formData) => console.log(formData))}
+          onSubmit={form.handleSubmit((formData) => submitHandler(formData))}
           className="flex min-w-[320px] flex-col gap-4"
         >
           <FormField
             control={form.control}
-            name="workingOutDays"
+            name="trainingDays"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
@@ -116,8 +94,7 @@ function CreateWorkoutForm() {
                 </FormDescription>
 
                 <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
+                  onValueChange={(value) => field.onChange(Number(value))}
                 >
                   <FormControl>
                     <SelectTrigger>

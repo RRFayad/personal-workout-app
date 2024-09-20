@@ -30,7 +30,7 @@ export async function createProfile(formData: {
   if (!session || !session.user) {
     return { errors: { _form: ["Unauthorized!"] } };
   }
-  const email = session.user.email!;
+  const userId = session.user.id;
 
   // return { errors: { _form: ["Just testing... :))"] } };
 
@@ -44,7 +44,7 @@ export async function createProfile(formData: {
     return { errors: inputValidationResult.error.flatten().fieldErrors };
   }
 
-  const existingUser = await db.user.findUnique({ where: { email } });
+  const existingUser = await db.user.findUnique({ where: { id: userId } });
 
   if (!existingUser) {
     return { errors: { _form: ["User Not Found!"] } };
@@ -53,7 +53,7 @@ export async function createProfile(formData: {
   if (profilePictureUrl) {
     try {
       await db.user.update({
-        where: { email },
+        where: { id: userId },
         data: { image: profilePictureUrl },
       });
     } catch (error) {
@@ -64,7 +64,7 @@ export async function createProfile(formData: {
   try {
     await db.userProfile.upsert({
       where: {
-        user_id: existingUser.id,
+        user_id: userId,
       },
       update: {
         full_name: fullName,
@@ -72,7 +72,7 @@ export async function createProfile(formData: {
         date_of_birth: dateOfBirth,
       },
       create: {
-        user_id: existingUser.id,
+        user_id: userId,
         full_name: fullName,
         gender,
         date_of_birth: dateOfBirth,

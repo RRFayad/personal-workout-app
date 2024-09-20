@@ -2,9 +2,11 @@
 
 import * as formSchemas from "@/lib/form-schemas";
 import paths from "@/lib/paths";
-import { Prisma, User, Gender } from "@prisma/client";
+import { Gender } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
+import { getServerSession } from "next-auth/next";
+import authOptions from "@/lib/auth";
 
 interface CreateProfileFormState {
   errors: {
@@ -16,20 +18,23 @@ interface CreateProfileFormState {
   } | null;
 }
 
-export async function createProfile(
-  formData: {
-    fullName: string;
-    dateOfBirth: Date;
-    gender: Gender;
-    profilePictureUrl?: string | undefined;
-  },
-  email: Prisma.UserGetPayload<true>["email"],
-): Promise<CreateProfileFormState> {
+export async function createProfile(formData: {
+  fullName: string;
+  dateOfBirth: Date;
+  gender: Gender;
+  profilePictureUrl?: string | undefined;
+}): Promise<CreateProfileFormState> {
   await new Promise((r) => setTimeout(r, 1500));
 
+  const session = await getServerSession(authOptions);
+
+  if (!session || !session.user) {
+    return { errors: { _form: ["Unauthorized!"] } };
+  }
+
+  const email = session.user.email!;
   const { fullName, profilePictureUrl, dateOfBirth, gender } = formData;
 
-  console.log(formData);
   // return { errors: { _form: ["Just testing... :))"] } };
 
   const inputValidationResult = formSchemas.createProfileFormSchema.safeParse({

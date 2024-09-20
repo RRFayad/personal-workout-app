@@ -52,22 +52,21 @@ function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const session = useSession();
 
+  console.log(session);
+
   const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
     resolver: zodResolver(formSchemas.createProfileFormSchema),
   });
 
-  const submitHandler = async (
-    data: {
-      fullName: string;
-      dateOfBirth: Date;
-      gender: Gender;
-      profilePictureUrl?: string | undefined;
-    },
-    email: Prisma.UserGetPayload<true>["email"],
-  ) => {
+  const submitHandler = async (data: {
+    fullName: string;
+    dateOfBirth: Date;
+    gender: Gender;
+    profilePictureUrl?: string | undefined;
+  }) => {
     setIsSubmitting(true);
 
-    const result = await action.createProfile(data, email);
+    const result = await action.createProfile(data);
 
     if (result?.errors) {
       if (result.errors.fullName) {
@@ -103,9 +102,7 @@ function CreateProfileForm() {
     <>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit((formData) =>
-            submitHandler(formData, session.data?.user?.email as string),
-          )}
+          onSubmit={form.handleSubmit((formData) => submitHandler(formData))}
           className="flex min-w-[320px] flex-col gap-4"
         >
           <FormField

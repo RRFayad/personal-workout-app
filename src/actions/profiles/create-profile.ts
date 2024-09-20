@@ -24,16 +24,13 @@ export async function createProfile(formData: {
   gender: Gender;
   profilePictureUrl?: string | undefined;
 }): Promise<CreateProfileFormState> {
-  await new Promise((r) => setTimeout(r, 1500));
-
   const session = await getServerSession(authOptions);
+  const { fullName, profilePictureUrl, dateOfBirth, gender } = formData;
 
   if (!session || !session.user) {
     return { errors: { _form: ["Unauthorized!"] } };
   }
-
   const email = session.user.email!;
-  const { fullName, profilePictureUrl, dateOfBirth, gender } = formData;
 
   // return { errors: { _form: ["Just testing... :))"] } };
 

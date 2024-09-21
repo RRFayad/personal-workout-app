@@ -50,23 +50,22 @@ const movementVariables = {
   },
   triceps: {
     movementType: ["overhead", "pressdown"] as const,
-    movementAngle: [] as const,
   },
   biceps: {
-    movementType: ["supinated", "hammer", "reverseGrip"] as const,
-    movementAngle: [] as const,
+    movementType: ["supinated", "hammer", "pronated"] as const,
+    movementAngle: ["neutral", "inclined"] as const,
   },
   absCore: {
-    movementType: [] as const,
-    movementAngle: [] as const,
+    movementType: ["crunch", "plank", "leg-raises"] as const,
   },
-  legs: {
-    movementType: [] as const,
-    movementAngle: [] as const,
+  quads: {
+    movementType: ["squat/press", "leg-extension"] as const,
+  },
+  hamstrings: {
+    movementType: ["hip-hinge", "curl"] as const,
   },
   glutes: {
-    movementType: [] as const,
-    movementAngle: [] as const,
+    movementType: ["hip-extension", "abduction"] as const,
   },
 } as const;
 
@@ -110,6 +109,7 @@ const measurementTypes = {
 } as const;
 
 type MuscularGroupKey = keyof typeof muscularGroups;
+type MovementVariablesKey = keyof typeof movementVariables;
 type MuscleKey = keyof typeof muscles;
 type Intensity = keyof typeof intensityLevels;
 type Category = keyof typeof categories;
@@ -121,18 +121,15 @@ type MeasurementType = keyof typeof measurementTypes;
 // The main Exercise type
 export type Exercise = {
   exerciseName: { en: string; pt: string };
-  muscularGroup: (typeof muscularGroups)[MuscularGroupKey];
-  mainMuscles: { en: string[]; pt: string[] };
-  auxiliarMuscles: { en: string[]; pt: string[] };
-  category: { en: Category; pt: Category };
-  equipment: { en: Equipment; pt: Equipment };
-  muscularGroupMovementVariables: {
-    movementType: MovementType;
-    movementAngle: MovementAngle;
-  };
+  muscularGroup: MuscularGroupKey;
+  mainMuscles: MuscleKey[];
+  auxiliarMuscles: MuscleKey[];
+  category: Category;
+  equipment: Equipment;
+  muscularGroupMovementVariables: (typeof movementVariables)[MuscularGroupKey];
+  intensity: Intensity;
   execution: { en: string; pt: string };
-  intensity: { en: string; pt: string };
-  alternatives: Exercise[]; // Recursive type for alternatives
-  measurementType: { en: "reps" | "time"; pt: "reps" | "time" };
+  alternatives: Exercise[];
+  measurementType: MeasurementType;
   videoTutorial: string;
 };

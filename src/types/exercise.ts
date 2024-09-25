@@ -111,11 +111,14 @@ export type ExerciseDictionary<T extends MuscularGroupKey> = Record<
   ExerciseForGroup<T>
 >;
 
-type MuscularGroupMovementVariables<T extends MuscularGroupKey> = {
-  movementType: (typeof movementVariables)[T]["movementType"][number];
-} & (typeof movementVariables)[T]["movementAngle"] extends ["non-applicable"]
-  ? {}
-  : { movementAngle: (typeof movementVariables)[T]["movementAngle"][number] };
+// Handle non-applicable movement angle
+type MuscularGroupMovementVariables<T extends MuscularGroupKey> =
+  (typeof movementVariables)[T]["movementAngle"] extends ["non-applicable"]
+    ? { movementType: (typeof movementVariables)[T]["movementType"][number] }
+    : {
+        movementType: (typeof movementVariables)[T]["movementType"][number];
+        movementAngle: (typeof movementVariables)[T]["movementAngle"][number];
+      };
 
 // Base exercise type structure
 interface BaseExercise<T extends MuscularGroupKey> {

@@ -50,7 +50,7 @@ export const movementVariables = {
   },
   triceps: {
     movementType: ["overhead", "pressdown"] as const,
-    movementAngle: [""] as const,
+    movementAngle: ["non-applicable"] as const,
   },
   biceps: {
     movementType: ["supinated", "hammer", "pronated"] as const,
@@ -90,22 +90,8 @@ export const equipmentTypes = {
   barbell: { en: "barbell", pt: "barra" },
   dumbbells: { en: "dumbbells", pt: "halteres" },
   machine: { en: "machine", pt: "máquina" },
+  cables: { en: "cables", pt: "cabos" },
   none: { en: "none", pt: "nenhum" },
-} as const;
-
-export const movementTypes = {
-  press: { en: "press", pt: "empurrar" },
-  fly: { en: "fly", pt: "voo" },
-  pull: { en: "pull", pt: "puxar" },
-  raise: { en: "raise", pt: "elevação" },
-} as const;
-
-export const movementAngles = {
-  flat: { en: "flat", pt: "reto" },
-  inclined: { en: "inclined", pt: "inclinado" },
-  declined: { en: "declined", pt: "declinado" },
-  horizontal: { en: "horizontal", pt: "horizontal" },
-  vertical: { en: "vertical", pt: "vertical" },
 } as const;
 
 export const measurementTypes = {
@@ -115,27 +101,24 @@ export const measurementTypes = {
 
 type MuscularGroupKey = keyof typeof muscularGroups;
 type MuscleKey = keyof typeof muscles;
-type MovementVariableKey = keyof typeof movementVariables;
 type IntensityKey = keyof typeof intensityLevels;
 type CategoryKey = keyof typeof categories;
 type EquipmentKey = keyof typeof equipmentTypes;
-type MovementTypeKey = keyof typeof movementTypes;
-type MovementAngleKey = keyof typeof movementAngles;
 type MeasurementTypeKey = keyof typeof measurementTypes;
 
-export type Exercise =
-  | ExerciseForGroup<"chest">
-  | ExerciseForGroup<"shoulders">
-  | ExerciseForGroup<"back">
-  | ExerciseForGroup<"biceps">
-  | ExerciseForGroup<"triceps">
-  | ExerciseForGroup<"absCore">
-  | ExerciseForGroup<"quads">
-  | ExerciseForGroup<"hamstrings">
-  | ExerciseForGroup<"glutes">;
+export type ExerciseDictionary<T extends MuscularGroupKey> = Record<
+  string,
+  ExerciseForGroup<T>
+>;
+
+type MuscularGroupMovementVariables<T extends MuscularGroupKey> = {
+  movementType: (typeof movementVariables)[T]["movementType"][number];
+} & (typeof movementVariables)[T]["movementAngle"] extends ["non-applicable"]
+  ? {}
+  : { movementAngle: (typeof movementVariables)[T]["movementAngle"][number] };
 
 // Base exercise type structure
-interface BaseExercise {
+interface BaseExercise<T extends MuscularGroupKey> {
   exerciseName: { en: string; pt: string };
   mainMuscles: MuscleKey[];
   auxiliarMuscles: MuscleKey[];
@@ -143,39 +126,14 @@ interface BaseExercise {
   equipment: EquipmentKey;
   intensity: IntensityKey;
   execution: { en: string; pt: string };
-  alternatives: Exercise[];
+  alternatives: (keyof ExerciseDictionary<T>)[];
   measurementType: MeasurementTypeKey;
   videoTutorialUrl: string;
-  gifUrl: string;
+  imageUrl: string;
 }
 
 // Exercise for specific muscular group
-type ExerciseForGroup<T extends MuscularGroupKey> = BaseExercise & {
+export type ExerciseForGroup<T extends MuscularGroupKey> = BaseExercise<T> & {
   muscularGroup: T;
-  muscularGroupMovementVariables: {
-    movementType: (typeof movementVariables)[T]["movementType"][number];
-    movementAngle: (typeof movementVariables)[T]["movementAngle"][number];
-  };
+  muscularGroupMovementVariables: MuscularGroupMovementVariables<T>;
 };
-
-// const barbellBenchPress: Exercise = {
-//   exerciseName: { en: "bench press", pt: "supino reto" },
-//   muscularGroup: "chest",
-//   mainMuscles: ["chest"],
-//   auxiliarMuscles: ["deltoids", "triceps"],
-//   category: "compound",
-//   equipment: "barbell",
-//   muscularGroupMovementVariables: {
-//     movementType: "press",
-//     movementAngle: "flat",
-//   },
-//   execution: {
-//     pt: "Deite-se em um banco segurando uma barra no suporte acima de você com uma pegada mais larga que os ombros, em pronação. Levante a barra do suporte e posicione-a acima do seu peito com os braços totalmente estendidos. Abaixe a barra diretamente para baixo, faça uma pausa e, em seguida, pressione a barra de volta à posição inicial.",
-//     en: "Lie back on a bench holding a barbell in the rack above you with a shoulder-width, overhand grip. Lift the bar off the rack and position it above your chest with arms fully extended. Lower the bar straight down, pause, and then press the bar back to the starting position.",
-//   },
-//   intensity: "high",
-//   alternatives: [],
-//   measurementType: "reps",
-//   videoTutorialUrl: "",
-//   gifUrl: "",
-// };

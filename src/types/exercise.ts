@@ -90,6 +90,7 @@ export const equipmentTypes = {
   barbell: { en: "barbell", pt: "barra" },
   cables: { en: "cables", pt: "cabos" },
   dumbbells: { en: "dumbbells", pt: "halteres" },
+  ezBar: { en: "EZ bar", pt: "barra EZ" },
   pullUpBar: { en: "pull up bar", pt: "barra fixa" },
   machine: { en: "machine", pt: "máquina" },
   none: { en: "none", pt: "nenhum" },

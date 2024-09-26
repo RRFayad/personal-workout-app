@@ -88,9 +88,10 @@ export const categories = {
 
 export const equipmentTypes = {
   barbell: { en: "barbell", pt: "barra" },
-  dumbbells: { en: "dumbbells", pt: "halteres" },
-  machine: { en: "machine", pt: "máquina" },
   cables: { en: "cables", pt: "cabos" },
+  dumbbells: { en: "dumbbells", pt: "halteres" },
+  pullUpBar: { en: "pull up bar", pt: "barra fixa" },
+  machine: { en: "machine", pt: "máquina" },
   none: { en: "none", pt: "nenhum" },
 } as const;
 

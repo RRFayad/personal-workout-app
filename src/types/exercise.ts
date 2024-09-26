@@ -87,8 +87,10 @@ export const categories = {
 } as const;
 
 export const equipmentTypes = {
+  abWheel: { en: "ab wheel", pt: "roda de abdominal" },
   barbell: { en: "barbell", pt: "barra" },
   cables: { en: "cables", pt: "cabos" },
+  captainsChair: { en: "captain's chair", pt: "cadeira de abdominal" },
   dumbbells: { en: "dumbbells", pt: "halteres" },
   ezBar: { en: "EZ bar", pt: "barra EZ" },
   parallelBars: { en: "parallel bars", pt: "barras paralelas" },

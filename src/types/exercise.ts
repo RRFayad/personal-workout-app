@@ -91,6 +91,7 @@ export const equipmentTypes = {
   cables: { en: "cables", pt: "cabos" },
   dumbbells: { en: "dumbbells", pt: "halteres" },
   ezBar: { en: "EZ bar", pt: "barra EZ" },
+  parallelBars: { en: "parallel bars", pt: "barras paralelas" },
   pullUpBar: { en: "pull up bar", pt: "barra fixa" },
   machine: { en: "machine", pt: "máquina" },
   none: { en: "none", pt: "nenhum" },
@@ -110,7 +111,7 @@ type MeasurementTypeKey = keyof typeof measurementTypes;
 
 // Handle non-applicable movement angle
 type MuscularGroupMovementVariables<T extends MuscularGroupKey> =
-  (typeof movementVariables)[T]["movementAngle"] extends ["non-applicable"]
+  (typeof movementVariables)[T]["movementAngle"][number] extends "non-applicable"
     ? { movementType: (typeof movementVariables)[T]["movementType"][number] }
     : {
         movementType: (typeof movementVariables)[T]["movementType"][number];

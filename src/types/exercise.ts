@@ -106,11 +106,6 @@ type CategoryKey = keyof typeof categories;
 type EquipmentKey = keyof typeof equipmentTypes;
 type MeasurementTypeKey = keyof typeof measurementTypes;
 
-export type ExerciseDictionary<T extends MuscularGroupKey> = Record<
-  string,
-  ExerciseForGroup<T>
->;
-
 // Handle non-applicable movement angle
 type MuscularGroupMovementVariables<T extends MuscularGroupKey> =
   (typeof movementVariables)[T]["movementAngle"] extends ["non-applicable"]
@@ -129,7 +124,7 @@ interface BaseExercise<T extends MuscularGroupKey> {
   equipment: EquipmentKey;
   intensity: IntensityKey;
   execution: { en: string; pt: string };
-  alternatives: (keyof ExerciseDictionary<T>)[];
+  alternatives?: (keyof ExerciseDictionary<T>)[];
   measurementType: MeasurementTypeKey;
   videoTutorialUrl: string;
   imageUrl: string;
@@ -137,6 +132,10 @@ interface BaseExercise<T extends MuscularGroupKey> {
 
 // Exercise for specific muscular group
 export type ExerciseForGroup<T extends MuscularGroupKey> = BaseExercise<T> & {
-  muscularGroup: T;
   muscularGroupMovementVariables: MuscularGroupMovementVariables<T>;
 };
+
+export type ExerciseDictionary<T extends MuscularGroupKey> = Record<
+  string,
+  ExerciseForGroup<T>
+>;

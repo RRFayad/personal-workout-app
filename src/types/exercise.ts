@@ -1,13 +1,14 @@
 export const muscularGroups = {
-  chest: { en: "chest", pt: "peito" },
-  shoulders: { en: "shoulders", pt: "ombros" },
+  absCore: { en: "abs/core", pt: "abs/core" },
   back: { en: "back", pt: "costas" },
   biceps: { en: "biceps", pt: "bíceps" },
-  triceps: { en: "triceps", pt: "tríceps" },
-  absCore: { en: "abs/core", pt: "abs/core" },
-  quads: { en: "quads", pt: "quadríceps" },
-  hamstrings: { en: "hamstrings", pt: "isquiotibiais" },
+  calves: { en: "calves", pt: "panturrilhas" },
+  chest: { en: "chest", pt: "peito" },
   glutes: { en: "glutes", pt: "glúteos" },
+  hamstrings: { en: "hamstrings", pt: "isquiotibiais" },
+  quads: { en: "quads", pt: "quadríceps" },
+  shoulders: { en: "shoulders", pt: "ombros" },
+  triceps: { en: "triceps", pt: "tríceps" },
 } as const;
 
 export const muscles = {
@@ -36,40 +37,44 @@ export const muscles = {
 } as const;
 
 export const movementVariables = {
-  chest: {
-    movementType: ["press", "fly"] as const,
-    movementAngle: ["flat", "inclined", "declined"] as const,
-  },
-  shoulders: {
-    movementType: ["press", "raise", "pull"] as const,
-    movementAngle: ["front", "lateral", "rear"] as const,
+  absCore: {
+    movementType: ["crunch", "plank", "leg-raises"] as const,
+    movementAngle: ["non-applicable"] as const,
   },
   back: {
     movementType: ["overhand", "underhand", "neutral"] as const,
     movementAngle: ["horizontal", "vertical"] as const,
   },
-  triceps: {
-    movementType: ["overhead", "pressdown"] as const,
-    movementAngle: ["non-applicable"] as const,
-  },
   biceps: {
     movementType: ["supinated", "hammer", "pronated"] as const,
     movementAngle: ["neutral", "inclined"] as const,
   },
-  absCore: {
-    movementType: ["crunch", "plank", "leg-raises"] as const,
+  calves: {
+    movementType: ["press/raise"] as const,
     movementAngle: ["non-applicable"] as const,
   },
-  quads: {
-    movementType: ["squat/press", "leg-extension"] as const,
+  chest: {
+    movementType: ["press", "fly"] as const,
+    movementAngle: ["flat", "inclined", "declined"] as const,
+  },
+  glutes: {
+    movementType: ["hip-extension", "abduction"] as const,
     movementAngle: ["non-applicable"] as const,
   },
   hamstrings: {
     movementType: ["hip-hinge", "curl"] as const,
     movementAngle: ["non-applicable"] as const,
   },
-  glutes: {
-    movementType: ["hip-extension", "abduction"] as const,
+  quads: {
+    movementType: ["squat/press", "leg-extension"] as const,
+    movementAngle: ["non-applicable"] as const,
+  },
+  shoulders: {
+    movementType: ["press", "raise", "pull"] as const,
+    movementAngle: ["front", "lateral", "rear"] as const,
+  },
+  triceps: {
+    movementType: ["overhead", "pressdown"] as const,
     movementAngle: ["non-applicable"] as const,
   },
 } as const;

@@ -17,7 +17,7 @@ export const calvesExercises: ExerciseDictionary<"calves"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "press/raise",
     },
     videoTutorialUrl: "",
@@ -39,7 +39,7 @@ export const calvesExercises: ExerciseDictionary<"calves"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "press/raise",
     },
     videoTutorialUrl: "",

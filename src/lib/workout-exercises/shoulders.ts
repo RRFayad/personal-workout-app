@@ -12,7 +12,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Stand with a barbell at chest height with a grip slightly wider than shoulder width. Press the bar straight up until arms are fully extended. Lower the bar back to the starting position.",
       pt: "Em pé, segure uma barra na altura do peito com uma pegada um pouco mais larga que a largura dos ombros. Pressione a barra diretamente para cima até que os braços estejam completamente estendidos. Abaixe a barra de volta à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "press",
       movementAngle: "front",
     },
@@ -35,7 +35,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Sitting on a bench with back support, hold a dumbbell in each hand at shoulder level, palms facing forward. Press the dumbbells up until arms are fully extended. Lower the dumbbells back to the starting position.",
       pt: "Sentado em um banco com encosto, segure um haltere em cada mão ao nível dos ombros, palmas das mãos viradas para a frente. Pressione os halteres para cima até que os braços estejam completamente estendidos. Abaixe os halteres de volta à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "press",
       movementAngle: "front",
     },
@@ -55,7 +55,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Sitting on a bench with back support, hold a dumbbell in each hand at shoulder height with palms facing you. As you press the dumbbells up, rotate your hands so that palms are facing forward at the top of the movement. Reverse the movement to return to the starting position.",
       pt: "Sentado em um banco com encosto, segure um haltere em cada mão na altura dos ombros com as palmas das mãos viradas para você. À medida que pressiona os halteres para cima, gire as mãos para que as palmas fiquem viradas para a frente no topo do movimento. Inverta o movimento para voltar à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "press",
       movementAngle: "front",
     },
@@ -75,7 +75,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Stand with a dumbbell in each hand in front of your thighs, palms facing your body. Raise one arm in front of you until it is parallel to the floor, keeping it slightly bent at the elbow. Lower it back down and repeat with the other arm.",
       pt: "Em pé, com um haltere em cada mão na frente das coxas, palmas viradas para o corpo. Eleve um braço à frente até que esteja paralelo ao chão, mantendo-o levemente dobrado no cotovelo. Abaixe-o de volta e repita com o outro braço.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "raise",
       movementAngle: "front",
     },
@@ -95,7 +95,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Stand with a dumbbell in each hand at your side, palms facing each other. Raise your arms to the sides until they are parallel to the floor, keeping them slightly bent at the elbows. Lower them back to the starting position.",
       pt: "Em pé, com um haltere em cada mão ao lado do corpo, palmas viradas uma para a outra. Eleve os braços para os lados até que estejam paralelos ao chão, mantendo-os levemente dobrados nos cotovelos. Abaixe-os de volta à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "raise",
       movementAngle: "lateral",
     },
@@ -115,7 +115,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Stand sideways to the cable machine, holding the handle attached at the lowest level. With a slight bend in your arm, raise the arm until it is parallel to the floor. Maintain your posture and control the movement as you lower back to the starting position.",
       pt: "Em pé, de lado para a máquina de cabo, segure o pegador que está no nível mais baixo. Com o braço levemente dobrado, eleve o braço até que esteja paralelo ao chão. Mantenha a postura e controle o movimento enquanto abaixa de volta à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "raise",
       movementAngle: "lateral",
     },
@@ -135,7 +135,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Facing the cable machine, hold a rope or bar with your hands. Pull the rope or bar towards your face, keeping your elbows high and hands apart. Return to the starting position in a controlled manner.",
       pt: "De frente para a máquina de cabo, segure uma corda ou barra com as mãos. Puxe a corda ou barra em direção ao rosto, mantendo os cotovelos altos e as mãos separadas. Retorne controladamente à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "pull",
       movementAngle: "rear",
     },
@@ -158,7 +158,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
       en: "Bend forward at the waist with a dumbbell in each hand, arms hanging in front. Keeping a slight bend in the elbows, lift the dumbbells out to the sides until your arms are parallel to the floor. Lower them back to the starting position.",
       pt: "Incline-se para a frente na cintura com um haltere em cada mão, braços pendendo na frente. Mantendo uma ligeira dobra nos cotovelos, levante os halteres lateralmente até que seus braços estejam paralelos ao chão. Abaixe-os de volta à posição inicial.",
     },
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "raise",
       movementAngle: "rear",
     },

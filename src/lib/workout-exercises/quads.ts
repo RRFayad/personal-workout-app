@@ -14,7 +14,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "veryHigh",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
@@ -33,7 +33,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "high",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
@@ -52,7 +52,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "high",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
@@ -71,7 +71,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
@@ -90,7 +90,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
@@ -109,7 +109,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
@@ -128,7 +128,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "leg-extension",
     },
     videoTutorialUrl: "",

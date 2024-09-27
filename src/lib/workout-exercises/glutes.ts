@@ -14,7 +14,7 @@ export const glutesExercises: ExerciseDictionary<"glutes"> = {
     intensity: "high",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "hip-extension",
     },
     videoTutorialUrl: "",
@@ -33,7 +33,7 @@ export const glutesExercises: ExerciseDictionary<"glutes"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "hip-extension",
     },
     videoTutorialUrl: "",
@@ -55,7 +55,7 @@ export const glutesExercises: ExerciseDictionary<"glutes"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "abduction",
     },
     videoTutorialUrl: "",

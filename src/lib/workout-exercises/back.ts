@@ -17,7 +17,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "overhand",
       movementAngle: "horizontal",
     },
@@ -40,7 +40,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "underhand",
       movementAngle: "horizontal",
     },
@@ -63,7 +63,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "neutral",
       movementAngle: "horizontal",
     },
@@ -83,7 +83,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "overhand",
       movementAngle: "vertical",
     },
@@ -103,7 +103,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "underhand",
       movementAngle: "vertical",
     },
@@ -123,7 +123,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "neutral",
       movementAngle: "horizontal",
     },
@@ -146,7 +146,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "overhand",
       movementAngle: "vertical",
     },
@@ -169,7 +169,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "underhand",
       movementAngle: "vertical",
     },
@@ -192,7 +192,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "neutral",
       movementAngle: "vertical",
     },
@@ -212,7 +212,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
     },
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "neutral",
       movementAngle: "horizontal",
     },

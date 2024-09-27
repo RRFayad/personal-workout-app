@@ -14,7 +14,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
     intensity: "veryHigh",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "hip-hinge",
     },
     videoTutorialUrl: "",
@@ -33,7 +33,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
     intensity: "high",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "hip-hinge",
     },
     videoTutorialUrl: "",
@@ -52,7 +52,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "curl",
     },
     videoTutorialUrl: "",
@@ -71,7 +71,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "curl",
     },
     videoTutorialUrl: "",

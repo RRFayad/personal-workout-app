@@ -14,7 +14,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "time",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "plank",
     },
     videoTutorialUrl: "",
@@ -36,7 +36,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "leg-raises",
     },
     videoTutorialUrl: "",
@@ -55,7 +55,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
@@ -74,7 +74,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
@@ -93,7 +93,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
@@ -112,7 +112,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "crunch",
     },
     videoTutorialUrl: "",

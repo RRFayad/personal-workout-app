@@ -7,7 +7,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "barbell",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "supinated",
       movementAngle: "neutral",
     },
@@ -27,7 +27,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "ezBar",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "supinated",
       movementAngle: "neutral",
     },
@@ -47,7 +47,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "dumbbells",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "supinated",
       movementAngle: "neutral",
     },
@@ -70,7 +70,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     auxiliarMuscles: ["brachioradialis", "brachialis"],
     category: "isolated",
     equipment: "dumbbells",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "hammer",
       movementAngle: "neutral",
     },
@@ -93,7 +93,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "dumbbells",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "supinated",
       movementAngle: "inclined",
     },

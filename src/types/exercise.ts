@@ -142,7 +142,7 @@ interface BaseExercise<T extends MuscularGroupKey> {
 
 // Exercise for specific muscular group
 export type ExerciseForGroup<T extends MuscularGroupKey> = BaseExercise<T> & {
-  muscularGroupMovementVariables: MuscularGroupMovementVariables<T>;
+  movementVariables: MuscularGroupMovementVariables<T>;
 };
 
 export type ExerciseDictionary<T extends MuscularGroupKey> = Record<

@@ -10,7 +10,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "dumbbells",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "overhead",
     },
     execution: {
@@ -32,7 +32,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     auxiliarMuscles: ["chest", "deltoids"],
     category: "compound",
     equipment: "barbell",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "pressdown", // triceps: overhead || pressdown
     },
     execution: {
@@ -51,7 +51,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     auxiliarMuscles: [],
     category: "compound",
     equipment: "parallelBars",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "pressdown", // triceps: overhead || pressdown
     },
     execution: {
@@ -70,7 +70,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "ezBar",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "overhead", // triceps: overhead || pressdown
     },
     execution: {
@@ -89,7 +89,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "cables",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "pressdown", // triceps: overhead || pressdown
     },
     execution: {
@@ -111,7 +111,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "cables",
-    muscularGroupMovementVariables: {
+    movementVariables: {
       movementType: "overhead", // triceps: overhead || pressdown
     },
     execution: {

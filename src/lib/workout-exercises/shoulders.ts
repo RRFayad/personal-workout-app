@@ -1,6 +1,6 @@
 import { ExerciseDictionary } from "@/types/exercise";
 
-export const shoulderExercises: ExerciseDictionary<"shoulders"> = {
+export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
   overheadPress: {
     exerciseName: { en: "overhead press", pt: "desenvolvimento com barra" },
     mainMuscles: ["deltoids"],

@@ -1,6 +1,6 @@
 import { ExerciseDictionary } from "@/types/exercise";
 
-export const legsExercises: ExerciseDictionary<"quads"> = {
+export const quadsExercises: ExerciseDictionary<"quads"> = {
   squat: {
     exerciseName: { pt: "agachamento", en: "squat" },
     mainMuscles: ["quads", "glutes"],

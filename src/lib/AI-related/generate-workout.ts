@@ -1,4 +1,5 @@
 import { OpenAI } from "openai";
+import { DUMMY_WORKOUT, validateWorkoutExercises } from "../workout/helpers";
 
 const openai = new OpenAI({
   apiKey: process.env.GPT_API_KEY,
@@ -6,19 +7,32 @@ const openai = new OpenAI({
   project: process.env.GPT_PROJECT,
 });
 
-export const generateWorkout = async (prompt: string) => {
+export const generateWorkout = async (prompt: string, maxRetries = 5) => {
   //   console.log(prompt);
-  const response = await openai.chat.completions.create({
-    model: "gpt-4o",
-    messages: [{ role: "assistant", content: prompt }],
-    response_format: { type: "json_object" },
-    temperature: 0,
-  });
+  let retries = 0;
+  let workoutProgram;
+  while (retries < maxRetries) {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [{ role: "assistant", content: prompt }],
+      response_format: { type: "json_object" },
+      temperature: 0,
+    });
 
-  const workoutProgram = JSON.parse(
-    response.choices[0].message.content as string,
-  );
-  // console.log(workoutProgram);
-  console.log(response.usage);
-  return workoutProgram;
+    workoutProgram = JSON.parse(response.choices[0].message.content as string);
+    console.log(response.usage);
+
+    // workoutProgram = DUMMY_WORKOUT;
+
+    const workoutIsValid = validateWorkoutExercises(workoutProgram);
+
+    if (workoutIsValid) {
+      console.log(`Workout created with ${retries + 1}/${maxRetries} attempts`);
+      return workoutProgram;
+    }
+
+    retries += 1;
+  }
+
+  throw new Error(`Failed to generate workout... Please try again later`);
 };

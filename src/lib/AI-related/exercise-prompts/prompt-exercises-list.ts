@@ -1,4 +1,4 @@
-import * as exercises from "@/lib/workout-exercises";
+import * as exercises from "@/lib/workout/exercises";
 
 type ExercisesType = typeof exercises;
 

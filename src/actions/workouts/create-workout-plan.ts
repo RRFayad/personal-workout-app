@@ -51,11 +51,17 @@ export async function createWorkoutPlan(formData: {
     existingUser.profile.gender,
   );
 
-  // console.log(prompt);
+  let workoutProgram;
+  try {
+    workoutProgram = await generateWorkout(prompt);
+  } catch (error) {
+    return {
+      errors: {
+        _form: [`${error}`],
+      },
+    };
+  }
 
-  const workoutProgram = await generateWorkout(prompt);
-  console.log("IHAAAA");
-  console.log(workoutProgram);
   return { errors: { _form: ["Testing..."] } };
 
   revalidatePath(paths.workoutSplit());

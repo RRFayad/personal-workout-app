@@ -7,6 +7,9 @@ import { db } from "@/db";
 import { getServerSession } from "next-auth/next";
 import authOptions from "@/lib/auth";
 
+import { generateTrainingPrompt } from "@/lib/AI-related/exercise-prompts/prompt-generator";
+import { generateWorkout } from "@/lib/AI-related/generate-workout";
+
 interface CreateWorkoutPlanFormState {
   errors: {
     trainingDays?: string[];
@@ -18,8 +21,6 @@ export async function createWorkoutPlan(formData: {
   trainingDays: number;
 }): Promise<CreateWorkoutPlanFormState> {
   const session = await getServerSession(authOptions);
-
-  // return { errors: { _form: ["Testing..."] } };
 
   if (!session || !session.user) {
     return { errors: { _form: ["Unauthorized!"] } };
@@ -41,9 +42,21 @@ export async function createWorkoutPlan(formData: {
     include: { profile: { select: { gender: true } } },
   });
 
-  if (!existingUser) {
+  if (!existingUser || !existingUser.profile?.gender) {
     return { errors: { _form: ["User Not Found!"] } };
   }
+
+  const prompt = generateTrainingPrompt(
+    trainingDays,
+    existingUser.profile.gender,
+  );
+
+  // console.log(prompt);
+
+  const workoutProgram = await generateWorkout(prompt);
+  console.log("IHAAAA");
+  console.log(workoutProgram);
+  return { errors: { _form: ["Testing..."] } };
 
   revalidatePath(paths.workoutSplit());
   revalidatePath(paths.workoutTracker());

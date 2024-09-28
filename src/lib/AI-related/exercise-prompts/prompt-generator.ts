@@ -64,7 +64,7 @@ Example Output:
   },
   ... and so on...
 }
-  Provide the output as a JSON object without any additional text.
+  Provide the output as a JSON object, without any additional text, and with the exercise names mathching the exact names given in the 'Valid Exercises List'
 `;
   // console.log(prompt);
   return prompt;

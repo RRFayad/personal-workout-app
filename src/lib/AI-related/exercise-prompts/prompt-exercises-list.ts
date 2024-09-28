@@ -14,7 +14,7 @@ Object.keys(exercises).forEach((muscleGroup) => {
       muscleGroupExercises[exerciseKey as keyof typeof muscleGroupExercises];
 
     promptExercisesList[muscleGroup][exerciseKey] = {
-      name: exercise.exerciseName.en,
+      // name: exercise.exerciseName.en,
       intensity: exercise.intensity,
       movementVariables: exercise.movementVariables,
     };

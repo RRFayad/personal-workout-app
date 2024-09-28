@@ -52,8 +52,6 @@ function CreateProfileForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const session = useSession();
 
-  console.log(session);
-
   const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
     resolver: zodResolver(formSchemas.createProfileFormSchema),
   });

@@ -9,6 +9,10 @@ import authOptions from "@/lib/auth";
 
 import { generateTrainingPrompt } from "@/lib/AI-related/exercise-prompts/prompt-generator";
 import { generateWorkout } from "@/lib/AI-related/generate-workout";
+import {
+  setWorkoutPlanDates,
+  generateWorkoutProgramDetailsData,
+} from "@/lib/workout/helpers";
 
 interface CreateWorkoutPlanFormState {
   errors: {
@@ -27,7 +31,7 @@ export async function createWorkoutPlan(formData: {
   }
 
   const { trainingDays } = formData;
-  const email = session.user.email!;
+  const userId = session.user.id!;
 
   const inputValidationResult = formSchemas.createWorkoutFormSchema.safeParse({
     trainingDays,
@@ -38,7 +42,7 @@ export async function createWorkoutPlan(formData: {
   }
 
   const existingUser = await db.user.findUnique({
-    where: { email },
+    where: { id: userId },
     include: { profile: { select: { gender: true } } },
   });
 
@@ -60,6 +64,41 @@ export async function createWorkoutPlan(formData: {
         _form: [`${error}`],
       },
     };
+  }
+
+  const { startDate, endDate } = setWorkoutPlanDates();
+
+  try {
+    const transactionResult = await db.$transaction(async (db) => {
+      // Used deleteMany to not throw an error if there's no data to be deleted
+      await db.workoutProgramStructure.deleteMany({
+        where: { user_id: userId },
+      });
+
+      const createWorkoutProgramResult =
+        await db.workoutProgramStructure.create({
+          data: {
+            user_id: userId,
+            available_training_days_qty: trainingDays,
+            workout_program_start: startDate,
+            workout_program_end: endDate,
+          },
+        });
+
+      const workoutId = createWorkoutProgramResult.workout_program_id;
+
+      const workoutDetailsData = generateWorkoutProgramDetailsData(
+        workoutId,
+        workoutProgram,
+      );
+
+      const createWorkoutDetailsResult =
+        await db.workoutProgramDetails.createMany({
+          data: workoutDetailsData,
+        });
+    });
+  } catch (error) {
+    return { errors: { _form: [`Error: ${error}`] } };
   }
 
   return { errors: { _form: ["Testing..."] } };

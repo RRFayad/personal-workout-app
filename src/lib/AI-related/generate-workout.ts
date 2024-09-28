@@ -12,17 +12,18 @@ export const generateWorkout = async (prompt: string, maxRetries = 5) => {
   let retries = 0;
   let workoutProgram;
   while (retries < maxRetries) {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
-      messages: [{ role: "assistant", content: prompt }],
-      response_format: { type: "json_object" },
-      temperature: 0,
-    });
+    // const response = await openai.chat.completions.create({
+    //   model: "gpt-4o",
+    //   messages: [{ role: "assistant", content: prompt }],
+    //   response_format: { type: "json_object" },
+    //   temperature: 0,
+    // });
 
-    workoutProgram = JSON.parse(response.choices[0].message.content as string);
-    console.log(response.usage);
+    // workoutProgram = JSON.parse(response.choices[0].message.content as string);
+    // console.log(response.usage);
 
-    // workoutProgram = DUMMY_WORKOUT;
+    console.log("DUMMY WORKOUT CREATED!");
+    workoutProgram = DUMMY_WORKOUT;
 
     const workoutIsValid = validateWorkoutExercises(workoutProgram);
 

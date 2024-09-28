@@ -1,4 +1,6 @@
 import * as exercises from "@/lib/workout/exercises";
+import { addDays, startOfWeek } from "date-fns";
+import { WorkoutProgramDetails } from "@prisma/client";
 
 // The template you're validating
 export const DUMMY_WORKOUT = {
@@ -54,5 +56,50 @@ export const validateWorkoutExercises = (workoutProgram: any): boolean => {
     return false;
   }
 
-  return true; // Validation succeeded
+  return true;
+};
+
+export const setWorkoutPlanDates = (weeks = 16) => {
+  const today = new Date();
+
+  const nextMonday = startOfWeek(today, { weekStartsOn: 1 });
+
+  const endDate = addDays(nextMonday, weeks * 7 - 1);
+
+  return {
+    startDate: nextMonday.toISOString(),
+    endDate: endDate.toISOString(),
+  };
+};
+
+interface WorkoutProgramInsertData {
+  [muscleGroup: string]: {
+    [exerciseName: string]: number;
+  };
+}
+export const generateWorkoutProgramDetailsData = (
+  workoutId: number,
+  workoutProgram: WorkoutProgramInsertData,
+): WorkoutProgramDetails[] => {
+  const dataToInsert = [];
+  let dayNumber = 1;
+
+  // Collect all exercises to be inserted
+  for (const [dayName, exercises] of Object.entries(workoutProgram)) {
+    let exerciseNumber = 1;
+
+    for (const [exerciseName, sets] of Object.entries(exercises)) {
+      dataToInsert.push({
+        workout_program_id: workoutId,
+        day_number: dayNumber,
+        day_name: dayName,
+        exercise_number: exerciseNumber,
+        exercise_name: exerciseName,
+        sets_qty: sets,
+      });
+      exerciseNumber++;
+    }
+    dayNumber++;
+  }
+  return dataToInsert;
 };

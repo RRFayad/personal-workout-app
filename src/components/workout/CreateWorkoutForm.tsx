@@ -1,7 +1,23 @@
 "use client";
 
+import * as z from "zod";
+import paths from "@/lib/paths";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import * as action from "@/actions/index";
+import { useRouter } from "next/navigation";
+import * as formSchemas from "@/lib/form-schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Button } from "../ui/button";
+import { Loader2 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -11,29 +27,6 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { Input } from "../ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "../ui/button";
-import { Gender } from "@prisma/client";
-
-import { Loader2 } from "lucide-react";
-
-import * as formSchemas from "@/lib/form-schemas";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Prisma } from "@prisma/client";
-import * as action from "@/actions/index";
-import { useSession } from "next-auth/react";
-
-import useDarkModeObserver from "@/hooks/useDarkModeObserver";
-import { useRouter } from "next/navigation";
-import paths from "@/lib/paths";
 
 function CreateWorkoutForm() {
   const router = useRouter();

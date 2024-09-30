@@ -9,8 +9,9 @@ import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
 import WhiteLogo from "@/../public/Primal Trainer Logos/logo__v2--white-with-light-gray.png";
 import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
 import CreateWorkoutForm from "@/components/workout/CreateWorkoutForm";
+import CreateNutritionPlanForm from "@/components/nutrition/create-nutrition-plan-form";
 
-function CreateWorkoutPage() {
+function CreateNutritionPlanPage() {
   return (
     <div className="-mt-8 flex flex-col items-center justify-center">
       <LogoLightDarkSwitcher
@@ -23,13 +24,15 @@ function CreateWorkoutPage() {
       />
       <Card>
         <CardHeader className="-mb-2 flex flex-col items-center justify-center">
-          <CardTitle>Create your Nutrition Plan</CardTitle>
+          <CardTitle>Create Your Nutrition Plan</CardTitle>
           <CardDescription className="font-semibold">Step 3/3</CardDescription>
         </CardHeader>
-        <CardContent>Form to Develop...</CardContent>
+        <CardContent>
+          <CreateNutritionPlanForm />
+        </CardContent>
       </Card>
     </div>
   );
 }
 
-export default CreateWorkoutPage;
+export default CreateNutritionPlanPage;

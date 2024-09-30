@@ -100,7 +100,7 @@ export async function createWorkoutPlan(formData: {
     return { errors: { _form: [`Error: ${error}`] } };
   }
 
-  return { errors: { _form: ["Testing..."] } };
+  // return { errors: { _form: ["Testing..."] } };
 
   revalidatePath(paths.workoutSplit());
   revalidatePath(paths.workoutTracker());

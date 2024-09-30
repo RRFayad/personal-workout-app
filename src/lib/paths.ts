@@ -33,6 +33,9 @@ const paths = {
   workoutTracker() {
     return "/workout/tracker";
   },
+  createNutritionPlan() {
+    return "/nutrition/create-plan";
+  },
   // Valid Exercises List?
   exercisesList() {
     return `/exercises`;

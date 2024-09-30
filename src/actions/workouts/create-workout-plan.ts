@@ -69,7 +69,7 @@ export async function createWorkoutPlan(formData: {
   const { startDate, endDate } = setWorkoutPlanDates();
 
   try {
-    const transactionResult = await db.$transaction(async (db) => {
+    await db.$transaction(async (db) => {
       // Used deleteMany to not throw an error if there's no data to be deleted
       await db.workoutProgramStructure.deleteMany({
         where: { user_id: userId },
@@ -92,10 +92,9 @@ export async function createWorkoutPlan(formData: {
         workoutProgram,
       );
 
-      const createWorkoutDetailsResult =
-        await db.workoutProgramDetails.createMany({
-          data: workoutDetailsData,
-        });
+      await db.workoutProgramDetails.createMany({
+        data: workoutDetailsData,
+      });
     });
   } catch (error) {
     return { errors: { _form: [`Error: ${error}`] } };

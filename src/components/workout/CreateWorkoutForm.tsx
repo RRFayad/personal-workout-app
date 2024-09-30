@@ -34,17 +34,10 @@ import { useSession } from "next-auth/react";
 import useDarkModeObserver from "@/hooks/useDarkModeObserver";
 import { useRouter } from "next/navigation";
 import paths from "@/lib/paths";
-import { Slider } from "../ui/slider";
 
 function CreateWorkoutForm() {
   const router = useRouter();
-  const isDarkMode = useDarkModeObserver();
-  const [uploadedFile, setUploadedFile] = useState<{
-    url: string;
-    name: string;
-  } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const session = useSession();
 
   const form = useForm<z.infer<typeof formSchemas.createWorkoutFormSchema>>({
     resolver: zodResolver(formSchemas.createWorkoutFormSchema),
@@ -69,7 +62,7 @@ function CreateWorkoutForm() {
       }
     }
     setIsSubmitting(false);
-    // router.push(paths.profile());
+    router.push(paths.createNutritionPlan());
   };
 
   return (

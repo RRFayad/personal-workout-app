@@ -62,7 +62,7 @@ export const validateWorkoutExercises = (workoutProgram: any): boolean => {
 export const setWorkoutPlanDates = (weeks = 16) => {
   const today = new Date();
 
-  const nextMonday = startOfWeek(today, { weekStartsOn: 1 });
+  const nextMonday = startOfWeek(addDays(today, 7), { weekStartsOn: 1 });
 
   const endDate = addDays(nextMonday, weeks * 7 - 1);
 

@@ -44,27 +44,55 @@ export async function createNutritionPlan(
     return { errors: inputValidationResult.error.flatten().fieldErrors };
   }
 
-  const existingUser = await db.user.findUnique({
-    where: { id: userId },
-    include: { profile: { select: { gender: true, date_of_birth: true } } },
-  });
+  try {
+    const existingUser = await db.user.findUnique({
+      where: { id: userId },
+      include: { profile: { select: { gender: true, date_of_birth: true } } },
+    });
 
-  if (
-    !existingUser ||
-    !existingUser.profile?.gender ||
-    !existingUser.profile?.date_of_birth
-  ) {
-    return { errors: { _form: ["User Not Found!"] } };
+    if (
+      !existingUser ||
+      !existingUser.profile?.gender ||
+      !existingUser.profile?.date_of_birth
+    ) {
+      return { errors: { _form: ["User Not Found!"] } };
+    }
+
+    const nutrionalData = {
+      ...data,
+      gender: existingUser.profile.gender,
+      dateOfBirth: existingUser.profile.date_of_birth,
+    };
+
+    const {
+      bmr,
+      tdee,
+      dailyMealPlan: { kcal, carbs, proteins, fats },
+    } = calculateMacros(nutrionalData);
+
+    const nutritionPlanResult = await db.nutritionProgram.create({
+      data: {
+        user_id: userId,
+        height_in_cm: height,
+        weight_in_kg: weight,
+        current_diet_phase: dietPhase,
+        weekly_training_hours: weeklyTrainingHours,
+        basal_metabolic_rate: bmr,
+        total_daily_energy_expenditure: tdee,
+        daily_kcal: kcal,
+        daily_proteins: proteins,
+        daily_carbs: carbs,
+        daily_fats: fats,
+      },
+    });
+  } catch {
+    return {
+      errors: {
+        _form: ["Error accessing Database... Please, try again later"],
+      },
+    };
   }
 
-  const nutrionalData = {
-    ...data,
-    gender: existingUser.profile.gender,
-    dateOfBirth: existingUser.profile.date_of_birth,
-  };
-
-  calculateMacros(nutrionalData);
-
-  return { errors: { _form: ["Testin..."] } };
   revalidatePath(paths.profile());
+  return { errors: {} };
 }

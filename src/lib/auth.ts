@@ -110,8 +110,11 @@ const authOptions: NextAuthOptions = {
       // This is a work around to update user image when the user user updates his profile pic
       const userData = await db.user.findFirst({
         where: { email: session.user.email },
+        include: { profile: { select: { gender: true } } },
       });
       session.user.image = userData?.image;
+      // Added the gender to recommend the bf% for different genders
+      session.user.gender = userData?.profile?.gender;
 
       return session;
     },

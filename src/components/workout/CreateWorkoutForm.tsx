@@ -36,7 +36,9 @@ function CreateWorkoutForm() {
     resolver: zodResolver(formSchemas.createWorkoutFormSchema),
   });
 
-  const submitHandler = async (data: { trainingDays: number }) => {
+  const submitHandler = async (
+    data: z.infer<typeof formSchemas.createWorkoutFormSchema>,
+  ) => {
     setIsSubmitting(true);
 
     const result = await action.createWorkoutPlan(data);

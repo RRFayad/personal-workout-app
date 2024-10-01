@@ -1,14 +1,15 @@
 "use server";
 
-import * as formSchemas from "@/lib/form-schemas";
-import paths from "@/lib/paths";
-import { revalidatePath } from "next/cache";
+import * as z from "zod";
 import { db } from "@/db";
-import { getServerSession } from "next-auth/next";
+import paths from "@/lib/paths";
 import authOptions from "@/lib/auth";
+import { revalidatePath } from "next/cache";
+import * as formSchemas from "@/lib/form-schemas";
+import { getServerSession } from "next-auth/next";
 
-import { generateTrainingPrompt } from "@/lib/AI-related/exercise-prompts/prompt-generator";
 import { generateWorkout } from "@/lib/AI-related/generate-workout";
+import { generateTrainingPrompt } from "@/lib/AI-related/exercise-prompts/prompt-generator";
 import {
   setWorkoutPlanDates,
   generateWorkoutProgramDetailsData,
@@ -21,9 +22,9 @@ interface CreateWorkoutPlanFormState {
   } | null;
 }
 
-export async function createWorkoutPlan(formData: {
-  trainingDays: number;
-}): Promise<CreateWorkoutPlanFormState> {
+export async function createWorkoutPlan(
+  formData: z.infer<typeof formSchemas.createWorkoutFormSchema>,
+): Promise<CreateWorkoutPlanFormState> {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {

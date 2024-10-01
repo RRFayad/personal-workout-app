@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import * as action from "@/actions/index";
 import { DietPhase } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import * as formSchemas from "@/lib/form-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -32,6 +33,7 @@ import {
 
 function CreateNutritionPlanForm() {
   const router = useRouter();
+  const session = useSession();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<
@@ -40,24 +42,41 @@ function CreateNutritionPlanForm() {
     resolver: zodResolver(formSchemas.createNutritionPlanFormSchema),
   });
 
-  const submitHandler = async (data: any) => {
+  const submitHandler = async (
+    data: z.infer<typeof formSchemas.createNutritionPlanFormSchema>,
+  ) => {
     setIsSubmitting(true);
 
     const result = await action.createNutritionPlan(data);
 
-    // if (result?.errors) {
-    //   if (result.errors.trainingDays) {
-    //     form.setError("trainingDays", {
-    //       message: result.errors.trainingDays[0],
-    //     });
-    //   }
+    if (result?.errors) {
+      if (result.errors.height) {
+        form.setError("height", {
+          message: result.errors.height[0],
+        });
+      }
+      if (result.errors.weight) {
+        form.setError("weight", {
+          message: result.errors.weight[0],
+        });
+      }
+      if (result.errors.weeklyTrainingHours) {
+        form.setError("weeklyTrainingHours", {
+          message: result.errors.weeklyTrainingHours[0],
+        });
+      }
+      if (result.errors.dietPhase) {
+        form.setError("dietPhase", {
+          message: result.errors.dietPhase[0],
+        });
+      }
 
-    //   if (result.errors._form) {
-    //     form.setError("root", {
-    //       message: result.errors._form[0],
-    //     });
-    //   }
-    // }
+      if (result.errors._form) {
+        form.setError("root", {
+          message: result.errors._form[0],
+        });
+      }
+    }
     setIsSubmitting(false);
     // router.push(paths.createNutritionPlan());
   };
@@ -146,7 +165,9 @@ function CreateNutritionPlanForm() {
                 <FormLabel>Diet Phase</FormLabel>
                 <FormDescription>
                   <b>Obs:</b> We recommend to start cutting when your body fat
-                  is 15% or higher
+                  is{" "}
+                  <b>{session.data?.user.gender === "male" ? "15%" : "25%"}</b>{" "}
+                  or higher
                 </FormDescription>
                 <Select
                   onValueChange={field.onChange}

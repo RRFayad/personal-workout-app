@@ -1,8 +1,10 @@
 "use server";
-import * as formSchemas from "@/lib/form-schemas";
+
+import * as z from "zod";
 import { db } from "@/db";
-import { User } from "@prisma/client";
 import bcrypt from "bcrypt";
+import { User } from "@prisma/client";
+import * as formSchemas from "@/lib/form-schemas";
 
 interface CredentialsSignUpFormState {
   errors: {
@@ -14,11 +16,9 @@ interface CredentialsSignUpFormState {
   user?: User;
 }
 
-export async function credentialsSignUp(data: {
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}): Promise<CredentialsSignUpFormState> {
+export async function credentialsSignUp(
+  data: z.infer<typeof formSchemas.credentialsSignUp>,
+): Promise<CredentialsSignUpFormState> {
   // await new Promise((r) => setTimeout(r, 2500));  // Used to test the loading process
 
   const email = data.email;

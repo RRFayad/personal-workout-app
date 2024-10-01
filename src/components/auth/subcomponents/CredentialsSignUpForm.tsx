@@ -1,10 +1,17 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+
 import * as z from "zod";
+import paths from "@/lib/paths";
+import { useState } from "react";
 import * as actions from "@/actions";
+import { signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import * as formSchemas from "@/lib/form-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Loader2, Mail } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,29 +22,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Loader2, Mail } from "lucide-react";
-import { signIn } from "next-auth/react";
-import paths from "@/lib/paths";
-import { useRouter } from "next/navigation";
 
 interface CredentialsSignInFormProps {
   className?: string;
 }
 
 function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchemas.credentialsSignUp>>({
     resolver: zodResolver(formSchemas.credentialsSignUp),
   });
 
-  const submitHandler = async (data: {
-    email: string;
-    password: string;
-    passwordConfirm: string;
-  }) => {
+  const submitHandler = async (
+    data: z.infer<typeof formSchemas.credentialsSignUp>,
+  ) => {
     setIsSubmitting(true);
 
     const result = await actions.credentialsSignUp(data); // Signup action

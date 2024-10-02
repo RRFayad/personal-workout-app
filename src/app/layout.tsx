@@ -1,10 +1,10 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Provider from "@/components/auth/Provider";
-import { getServerSession } from "next-auth";
+
 import Header from "@/components/Header";
-import GridDevTool from "@/components/dev-tools/GridDevTool";
+import { getServerSession } from "next-auth";
+import Provider from "@/components/auth/Provider";
 import LightDarkToggle from "@/components/ui/light-dark-toggle";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,19 +22,16 @@ export default async function RootLayout({
   const session = await getServerSession();
 
   return (
-    <html lang="en">
-      <body className={`${inter.className}`}>
-        <Provider session={session}>
-          <GridDevTool />
+    <Provider session={session}>
+      <html lang="en">
+        <body className={`${inter.className} `}>
+          <Header />
           <LightDarkToggle className="fixed right-6 top-[calc(50%-12px)]" />
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex flex-grow items-center justify-center px-[120px]">
-              {children}
-            </main>
-          </div>
-        </Provider>
-      </body>
-    </html>
+          <main className="flex min-h-[calc(100vh-68px)] flex-col items-center justify-center px-[120px] py-2">
+            {children}
+          </main>
+        </body>
+      </html>
+    </Provider>
   );
 }

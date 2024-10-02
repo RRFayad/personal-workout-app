@@ -1,4 +1,8 @@
 import CreateProfileForm from "@/components/profile/CreateProfileForm";
+import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
+
+import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
+import WhiteLogo from "@/../public/Primal Trainer Logos/logo__v2--white-with-light-gray.png";
 import {
   Card,
   CardContent,
@@ -7,9 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
-import WhiteLogo from "@/../public/Primal Trainer Logos/logo__v2--white-with-light-gray.png";
-import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
 
 function CreateProfilePage() {
   return (

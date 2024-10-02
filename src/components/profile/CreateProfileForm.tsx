@@ -1,65 +1,62 @@
 "use client";
 
+import * as z from "zod";
+import paths from "@/lib/paths";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "../ui/button";
+import { format } from "date-fns";
 import { Gender } from "@prisma/client";
-import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import * as action from "@/actions/index";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import * as formSchemas from "@/lib/form-schemas";
+import { UploadDropzone } from "@/lib/uploadthing";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useDarkModeObserver from "@/hooks/useDarkModeObserver";
+
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Calendar } from "../ui/calendar";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { format } from "date-fns";
-import { CalendarIcon, Loader2 } from "lucide-react";
-import { Calendar } from "../ui/calendar";
-import * as formSchemas from "@/lib/form-schemas";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Prisma } from "@prisma/client";
-import * as action from "@/actions/index";
-import { useSession } from "next-auth/react";
-
-import { UploadDropzone } from "@/lib/uploadthing";
-import useDarkModeObserver from "@/hooks/useDarkModeObserver";
-import { useRouter } from "next/navigation";
-import paths from "@/lib/paths";
+import {
+  Select,
+  SelectItem,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+} from "@/components/ui/select";
+import {
+  Form,
+  FormItem,
+  FormLabel,
+  FormField,
+  FormControl,
+  FormMessage,
+} from "../ui/form";
 
 function CreateProfileForm() {
   const router = useRouter();
+  const session = useSession();
   const isDarkMode = useDarkModeObserver();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<{
     url: string;
     name: string;
   } | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const session = useSession();
 
   const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
     resolver: zodResolver(formSchemas.createProfileFormSchema),
   });
 
   const submitHandler = async (data: {
+    gender: Gender;
     fullName: string;
     dateOfBirth: Date;
-    gender: Gender;
     profilePictureUrl?: string | undefined;
   }) => {
     setIsSubmitting(true);
@@ -93,7 +90,7 @@ function CreateProfileForm() {
     }
 
     setIsSubmitting(false);
-    router.push(paths.profile());
+    router.push(paths.createWorkout());
   };
 
   return (

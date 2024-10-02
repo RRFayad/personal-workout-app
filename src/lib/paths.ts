@@ -21,6 +21,9 @@ const paths = {
   workoutSplit() {
     return "/workout";
   },
+  createWorkout() {
+    return "/workout/create-workout";
+  },
   // Workout Plan
   // Server Action - Get Daily Workout Plan
   // No Revalidation

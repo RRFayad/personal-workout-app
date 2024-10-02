@@ -1,10 +1,16 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+
 import * as z from "zod";
-import * as actions from "@/actions";
+import paths from "@/lib/paths";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import * as formSchemas from "@/lib/form-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { Loader2, Mail } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -15,11 +21,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Loader2, Mail } from "lucide-react";
-import { signIn } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
-import paths from "@/lib/paths";
 
 interface CredentialsSignInFormProps {
   className?: string;

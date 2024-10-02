@@ -78,7 +78,7 @@ function CreateNutritionPlanForm() {
       }
     }
     setIsSubmitting(false);
-    // router.push(paths.createNutritionPlan());
+    router.push(paths.profile());
   };
 
   return (

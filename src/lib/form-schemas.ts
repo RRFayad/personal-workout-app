@@ -71,27 +71,31 @@ export const createProfileFormSchema = z.object({
 
 export const createWorkoutFormSchema = z.object({
   trainingDays: z
-    .number()
+    .number({
+      message: "Required: Please, insert your how may days you will workout",
+    })
     .min(3, { message: "Minimum value is 3" })
     .max(5, { message: "Maximum value is 5" }),
 });
 
 export const createNutritionPlanFormSchema = z.object({
   height: z.coerce
-    .number()
+    .number({ message: "Required: Please, insert your height" })
     .gte(140, { message: "Your height must be in centimeters - Min: 140" })
     .lte(220, { message: "Your height must be in centimeters - Max: 220" }),
   weight: z.coerce
-    .number()
+    .number({ message: "Required: Please, insert your weight" })
     .gte(45, { message: "Your weight must be in kilograms - Min: 45" })
     .lte(125, { message: "Your weight must be in kilograms - Max: 125" }),
   weeklyTrainingHours: z.coerce
-    .number()
+    .number({
+      message: "Required: Please, insert your total weekly training hours",
+    })
     .gte(3, { message: "Your weekly training hours must be between 3 and 10" })
     .lte(10, {
       message: "Your weekly training hours must be between 3 and 10",
     }),
   dietPhase: z.enum(dietPhaseValues, {
-    message: "Diet Phase must be 'Bulk', 'Maintain' or 'Cut'",
+    message: "Required: Diet Phase must be 'Bulk', 'Maintain' or 'Cut'",
   }),
 });

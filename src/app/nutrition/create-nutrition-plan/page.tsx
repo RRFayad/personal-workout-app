@@ -1,3 +1,7 @@
+import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
+import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
+import CreateNutritionPlanForm from "@/components/nutrition/create-nutrition-plan-form";
+import WhiteLogo from "@/../public/Primal Trainer Logos/logo__v2--white-with-light-gray.png";
 import {
   Card,
   CardContent,
@@ -5,13 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
-import WhiteLogo from "@/../public/Primal Trainer Logos/logo__v2--white-with-light-gray.png";
-import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
-import CreateWorkoutForm from "@/components/workout/CreateWorkoutForm";
-import CreateNutritionPlanForm from "@/components/nutrition/create-nutrition-plan-form";
 
-function CreateNutritionPlanPage() {
+async function CreateNutritionPlanPage() {
   return (
     <div className="-mt-8 flex flex-col items-center justify-center">
       <LogoLightDarkSwitcher

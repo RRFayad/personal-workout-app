@@ -27,7 +27,7 @@ export default async function RootLayout({
         <body className={`${inter.className} `}>
           <Header />
           <LightDarkToggle className="fixed right-6 top-[calc(50%-12px)]" />
-          <main className="flex min-h-[calc(100vh-68px)] flex-col items-center justify-center px-[120px] py-2">
+          <main className="flex min-h-[calc(100vh-68px)] flex-col items-center justify-center px-[120px] py-8">
             {children}
           </main>
         </body>

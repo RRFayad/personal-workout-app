@@ -7,32 +7,30 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
 function CreateProfilePage() {
   return (
-    <div className="-mt-8 flex flex-col items-center justify-center">
-      <LogoLightDarkSwitcher
-        DarkModeImage={WhiteLogo}
-        LightModeImage={BlackLogo}
-        width={92}
-        height={92}
-        alt="logo"
-        className="mb-3"
-      />
-      <Card>
-        <CardHeader className="-mb-2 flex flex-col items-center justify-center">
-          <CardTitle>Create Your Profile</CardTitle>
-          <CardDescription className="font-semibold">Step 1/3</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <CreateProfileForm />
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="w-[600px]">
+      <CardHeader className="flex items-center justify-center pt-3">
+        <LogoLightDarkSwitcher
+          DarkModeImage={WhiteLogo}
+          LightModeImage={BlackLogo}
+          width={92}
+          height={92}
+          alt="logo"
+          className="mb-2"
+        />
+        <CardTitle>Create Your Profile</CardTitle>
+        <CardDescription className="font-semibold">Step 1/3</CardDescription>
+      </CardHeader>
+
+      <CardContent>
+        <CreateProfileForm />
+      </CardContent>
+    </Card>
   );
 }
 

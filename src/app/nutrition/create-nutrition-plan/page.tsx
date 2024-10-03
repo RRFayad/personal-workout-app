@@ -12,25 +12,23 @@ import {
 
 async function CreateNutritionPlanPage() {
   return (
-    <div className="-mt-8 flex flex-col items-center justify-center">
-      <LogoLightDarkSwitcher
-        DarkModeImage={WhiteLogo}
-        LightModeImage={BlackLogo}
-        width={92}
-        height={92}
-        alt="logo"
-        className="mb-3"
-      />
-      <Card>
-        <CardHeader className="-mb-2 flex flex-col items-center justify-center">
-          <CardTitle>Create Your Nutrition Plan</CardTitle>
-          <CardDescription className="font-semibold">Step 3/3</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <CreateNutritionPlanForm />
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="max-w-[600px]">
+      <CardHeader className="flex items-center justify-center pt-3">
+        <LogoLightDarkSwitcher
+          DarkModeImage={WhiteLogo}
+          LightModeImage={BlackLogo}
+          width={92}
+          height={92}
+          alt="logo"
+          className="mb-2"
+        />
+        <CardTitle>Create Your Nutrition Plan</CardTitle>
+        <CardDescription className="font-semibold">Step 3/3</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <CreateNutritionPlanForm />
+      </CardContent>
+    </Card>
   );
 }
 

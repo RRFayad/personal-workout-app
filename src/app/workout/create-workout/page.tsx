@@ -13,25 +13,23 @@ import {
 
 function CreateWorkoutPage() {
   return (
-    <div className="-mt-8 flex flex-col items-center justify-center">
-      <LogoLightDarkSwitcher
-        DarkModeImage={WhiteLogo}
-        LightModeImage={BlackLogo}
-        width={92}
-        height={92}
-        alt="logo"
-        className="mb-3"
-      />
-      <Card>
-        <CardHeader className="-mb-2 flex flex-col items-center justify-center">
-          <CardTitle>Create Your Workout</CardTitle>
-          <CardDescription className="font-semibold">Step 2/3</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <CreateWorkoutForm />
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="max-w-[600px]">
+      <CardHeader className="flex items-center justify-center pt-3">
+        <LogoLightDarkSwitcher
+          DarkModeImage={WhiteLogo}
+          LightModeImage={BlackLogo}
+          width={92}
+          height={92}
+          alt="logo"
+          className="mb-2"
+        />
+        <CardTitle>Create Your Workout</CardTitle>
+        <CardDescription className="font-semibold">Step 2/3</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <CreateWorkoutForm />
+      </CardContent>
+    </Card>
   );
 }
 

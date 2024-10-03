@@ -162,12 +162,21 @@ function CreateNutritionPlanForm() {
             name="dietPhase"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Diet Phase</FormLabel>
+                <FormLabel>Define Your Diet Phase</FormLabel>
                 <FormDescription>
                   <b>Obs:</b> We recommend to start cutting when your body fat
-                  is{" "}
-                  <b>{session.data?.user.gender === "male" ? "15%" : "25%"}</b>{" "}
-                  or higher
+                  is around{" "}
+                  <b>
+                    {session.data?.user.gender === "male"
+                      ? "15% to 17%"
+                      : "25% to 27%"}
+                  </b>{" "}
+                  (or higher) and bulking when your body fat is around{" "}
+                  <b>
+                    {session.data?.user.gender === "male"
+                      ? "8% to 10%"
+                      : "18% to 20%"}
+                  </b>
                 </FormDescription>
                 <Select
                   onValueChange={field.onChange}

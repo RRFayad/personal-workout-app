@@ -1,25 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import paths from "@/lib/paths";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import GridDevTool from "./dev-tools/GridDevTool";
+
+import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import whiteHeadLogo from "../../public/Primal Trainer Logos/logo__head--white.png";
 import { CircleUserRound, Loader2 } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "./ui/button";
-import Image from "next/image";
-import whiteHeadLogo from "../../public/Primal Trainer Logos/logo__head--white.png";
-import { useRouter } from "next/navigation";
-import paths from "@/lib/paths";
-import GridDevTool from "./dev-tools/GridDevTool";
 
 function Header() {
-  const session = useSession();
   const router = useRouter();
+  const session = useSession();
 
   return (
     <>
@@ -40,10 +41,10 @@ function Header() {
         <nav className="flex flex-row items-center justify-between gap-10">
           {session.data?.user && (
             <>
-              <Link href={"/"}>
+              <Link href={paths.workoutSplit()}>
                 <h5 className="h-full text-white">WORKOUT</h5>
               </Link>
-              <Link href={"/"}>
+              <Link href={paths.profile()}>
                 <h5 className="text-white">PROFILE</h5>
               </Link>
 

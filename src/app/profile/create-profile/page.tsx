@@ -13,7 +13,7 @@ import {
 
 function CreateProfilePage() {
   return (
-    <Card className="w-[600px]">
+    <Card className="w-[480px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}
@@ -26,7 +26,6 @@ function CreateProfilePage() {
         <CardTitle>Create Your Profile</CardTitle>
         <CardDescription className="font-semibold">Step 1/3</CardDescription>
       </CardHeader>
-
       <CardContent>
         <CreateProfileForm />
       </CardContent>

@@ -1,29 +1,47 @@
-import { maleSplits } from "./male-splits";
-import { femaleSplits } from "./female-splits";
+import { maleSplits, maleSplitsRestDays } from "./male-splits";
+import { femaleSplits, femaleSplitsRestDays } from "./female-splits";
 import { promptExercisesList } from "./prompt-exercises-list";
 import { Gender } from "@prisma/client";
+import { SplitsByGender } from "@/types/training-splits";
 
-export const generateTrainingPrompt = (days: number, gender: Gender) => {
+export const generateTrainingPromptAndRestDays = (
+  days: number,
+  gender: Gender,
+) => {
   const trainingStructureByGender =
     gender === "male" ? maleSplits : femaleSplits;
 
+  const restDaysByGender =
+    gender === "male" ? maleSplitsRestDays : femaleSplitsRestDays;
+
+  let trainingSplit: keyof SplitsByGender;
+
   let trainingSpecification;
-  days === 3 &&
-    (trainingSpecification = trainingStructureByGender.threeDaysSplit);
-  days === 4 &&
-    (trainingSpecification = trainingStructureByGender.fourDaysSplit);
-  if (days === 5) {
+
+  if (days === 3) {
+    trainingSplit = "threeDaysSplit";
+  } else if (days === 4) {
+    trainingSplit = "fourDaysSplit";
+  } else if (days === 5) {
     if (gender === "female") {
-      trainingSpecification = trainingStructureByGender.fiveDaysSplit;
+      trainingSplit = "fiveDaysSplit";
     } else if (gender === "male") {
       const randomNum = Math.floor(Math.random() * 2) + 1;
       if (randomNum === 1) {
-        trainingSpecification = trainingStructureByGender.fiveDaysSplit;
+        trainingSplit = "fiveDaysSplit";
       } else {
-        trainingSpecification = maleSplits.fiveDaysSplitUpperFocused;
+        trainingSplit = "fiveDaysSplitUpperFocused";
       }
     }
   }
+
+  trainingSpecification = trainingStructureByGender[trainingSplit!];
+  const restDays =
+    gender === "male"
+      ? maleSplitsRestDays[trainingSplit!]
+      : femaleSplitsRestDays[trainingSplit! as keyof typeof restDaysByGender];
+
+  console.log(restDays);
 
   const prompt = `
 I need you to generate a workout plan based on the given 'Valid Exercises List' and 'Training Specification'. Follow these steps:
@@ -67,5 +85,5 @@ Example Output:
   Provide the output as a JSON object, without any additional text, and with the exercise names mathching the exact names given in the 'Valid Exercises List'
 `;
   // console.log(prompt);
-  return prompt;
+  return { prompt, restDays };
 };

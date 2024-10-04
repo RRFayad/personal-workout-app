@@ -1,4 +1,13 @@
-export const femaleSplits = {
+import { SplitsByGender } from "@/types/training-splits";
+
+// 1 to 7
+export const femaleSplitsRestDays = {
+  fiveDaysSplit: [4, 7],
+  fourDaysSplit: [4, 6, 7],
+  threeDaysSplit: [2, 4, 6, 7],
+};
+
+export const femaleSplits: SplitsByGender = {
   fiveDaysSplit: {
     legs: [
       "Squat - 3 series",

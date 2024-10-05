@@ -7,13 +7,7 @@ import authOptions from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import * as formSchemas from "@/lib/form-schemas";
 import { getServerSession } from "next-auth/next";
-
-import { generateWorkout } from "@/lib/AI-related/generate-workout";
-import { generateTrainingPromptAndRestDays } from "@/lib/AI-related/exercise-prompts/prompt-generator";
-import {
-  setWorkoutPlanDates,
-  generateWorkoutProgramDetailsData,
-} from "@/lib/workout/helpers";
+import * as workoutHelpers from "@/lib/workout/helpers";
 
 interface CreateWorkoutPlanFormState {
   errors: {
@@ -51,55 +45,64 @@ export async function createWorkoutPlan(
     return { errors: { _form: ["User Not Found!"] } };
   }
 
-  const { prompt, restDays } = generateTrainingPromptAndRestDays(
-    trainingDays,
-    existingUser.profile.gender,
-  );
+  const { trainingSpecification, restDays } =
+    workoutHelpers.getTrainingSplitSpecificationsAndRestDays(
+      trainingDays,
+      existingUser.profile.gender,
+    );
 
-  // let workoutProgram;
-  // try {
-  //   workoutProgram = await generateWorkout(prompt);
-  // } catch (error) {
-  //   return {
-  //     errors: {
-  //       _form: [`${error}`],
-  //     },
-  //   };
-  // }
+  const prompt = workoutHelpers.generateTrainingPrompt(trainingSpecification);
 
-  // const { startDate, endDate } = setWorkoutPlanDates();
+  let workoutProgram;
+  try {
+    workoutProgram = await workoutHelpers.generateWorkout(prompt);
+  } catch (error) {
+    return {
+      errors: {
+        _form: [`${error}`],
+      },
+    };
+  }
 
-  // try {
-  //   await db.$transaction(async (db) => {
-  //     // Used deleteMany to not throw an error if there's no data to be deleted
-  //     await db.workoutProgramStructure.deleteMany({
-  //       where: { user_id: userId },
-  //     });
+  // For thesting purposes - to not to consume paid api
+  // const restDays = workoutHelpers.DUMMY_REST_DAYS;
+  // const workoutProgram = workoutHelpers.DUMMY_WORKOUT;
 
-  //     const createWorkoutProgramResult =
-  //       await db.workoutProgramStructure.create({
-  //         data: {
-  //           user_id: userId,
-  //           available_training_days_qty: trainingDays,
-  //           workout_program_start: startDate,
-  //           workout_program_end: endDate,
-  //         },
-  //       });
+  const { startDate, endDate } = workoutHelpers.setWorkoutPlanDates();
 
-  //     const workoutId = createWorkoutProgramResult.workout_program_id;
+  try {
+    await db.$transaction(async (db) => {
+      // Used deleteMany to not throw an error if there's no data to be deleted
+      await db.workoutProgramStructure.deleteMany({
+        where: { user_id: userId },
+      });
 
-  //     const workoutDetailsData = generateWorkoutProgramDetailsData(
-  //       workoutId,
-  //       workoutProgram,
-  //     );
+      const createWorkoutProgramResult =
+        await db.workoutProgramStructure.create({
+          data: {
+            user_id: userId,
+            available_training_days_qty: trainingDays,
+            workout_program_start: startDate,
+            workout_program_end: endDate,
+          },
+        });
 
-  //     await db.workoutProgramDetails.createMany({
-  //       data: workoutDetailsData,
-  //     });
-  //   });
-  // } catch (error) {
-  //   return { errors: { _form: [`Error: ${error}`] } };
-  // }
+      const workoutId = createWorkoutProgramResult.workout_program_id;
+
+      const workoutDetailsData =
+        workoutHelpers.generateWorkoutProgramDetailsData(
+          workoutId,
+          workoutProgram,
+          restDays,
+        );
+
+      await db.workoutProgramDetails.createMany({
+        data: workoutDetailsData,
+      });
+    });
+  } catch (error) {
+    return { errors: { _form: [`Error: ${error}`] } };
+  }
 
   // return { errors: { _form: ["Testing..."] } };
 

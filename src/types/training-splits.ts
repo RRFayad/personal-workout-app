@@ -15,9 +15,14 @@ export type TrainingSplit = {
   pullAndGlutes?: string[];
 };
 
-export interface SplitsByGender {
+export interface MaleSplits {
   threeDaysSplit: TrainingSplit;
   fourDaysSplit: TrainingSplit;
   fiveDaysSplit: TrainingSplit;
-  fiveDaysSplitUpperFocused?: TrainingSplit; // Optional since females might not have this
+  fiveDaysSplitUpperFocused: TrainingSplit;
+}
+export interface FemaleSplits {
+  threeDaysSplit: TrainingSplit;
+  fourDaysSplit: TrainingSplit;
+  fiveDaysSplit: TrainingSplit;
 }

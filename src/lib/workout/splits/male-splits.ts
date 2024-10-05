@@ -1,4 +1,4 @@
-import { SplitsByGender } from "@/types/training-splits";
+import { MaleSplits } from "@/types/training-splits";
 
 export const maleSplitsRestDays = {
   fiveDaysSplit: [4, 7],
@@ -7,7 +7,7 @@ export const maleSplitsRestDays = {
   threeDaysSplit: [2, 4, 6, 7],
 };
 
-export const maleSplits: SplitsByGender = {
+export const maleSplits: MaleSplits = {
   fiveDaysSplit: {
     push: [
       "High Intensity Chest Exercise - 3 Series",

@@ -1,5 +1,5 @@
 import { OpenAI } from "openai";
-import { DUMMY_WORKOUT, validateWorkoutExercises } from "../workout/helpers";
+import { DUMMY_WORKOUT, validateWorkoutExercises } from "./";
 
 const openai = new OpenAI({
   apiKey: process.env.GPT_API_KEY,
@@ -20,6 +20,7 @@ export const generateWorkout = async (prompt: string, maxRetries = 5) => {
     });
 
     workoutProgram = JSON.parse(response.choices[0].message.content as string);
+    console.log("Generated Workout:", workoutProgram);
     console.log(response.usage);
 
     // console.log("DUMMY WORKOUT CREATED!");

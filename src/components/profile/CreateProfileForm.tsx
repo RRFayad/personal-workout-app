@@ -85,9 +85,7 @@ function CreateProfileForm() {
       }
     }
 
-    if (data.profilePictureUrl) {
-      session.update();
-    }
+    session.update();
 
     setIsSubmitting(false);
     router.push(paths.createWorkout());

@@ -1,15 +1,10 @@
-import { FemaleSplits } from "@/types/training-splits";
+import { TrainingWeeklySplit } from "@/types/training-splits";
 
-// 1 to 7
-export const femaleSplitsRestDays = {
-  fiveDaysSplit: [4, 7],
-  fourDaysSplit: [4, 6, 7],
-  threeDaysSplit: [2, 4, 6, 7],
-};
-
-export const femaleSplits: FemaleSplits = {
-  fiveDaysSplit: {
-    legs: [
+export const fiveDaysSplit: TrainingWeeklySplit = {
+  legs: {
+    dayName: "Legs",
+    dayNumber: 1,
+    exercisesDescriptions: [
       "Squat - 3 series",
       "A high or moderate intensity quads exercise - 3 series",
       "An isolated Hamstring exercise - 3 series",
@@ -18,7 +13,11 @@ export const femaleSplits: FemaleSplits = {
       "Calves exercise - 3 series",
       "Abs (try to mix from the previous days) - 2 series",
     ],
-    push: [
+  },
+  push: {
+    dayName: "Push",
+    dayNumber: 2,
+    exercisesDescriptions: [
       "High Intensity Chest or Shoulders Exercise - 3 Series",
       "A moderate chest or shoulders intensity exercise (differing between chest or shoulders from the first exercise) - 3 Series",
       "A low intensity chest exercise - 3 series",
@@ -26,7 +25,11 @@ export const femaleSplits: FemaleSplits = {
       "Triceps - 3 series",
       "Abs - 2 series",
     ],
-    pull: [
+  },
+  pull: {
+    dayName: "Pull",
+    dayNumber: 3,
+    exercisesDescriptions: [
       "Deadlift - 3 Series",
       "A moderate or low intensity back exercise - 3 Series",
       "A moderate or low intensity back exercise (try to focus in a different movement pattern and grip related to the already selected exercise) - 3 series",
@@ -34,7 +37,11 @@ export const femaleSplits: FemaleSplits = {
       "Rear deltoid exercise - 3 series",
       "Abs (try to mix from the previous days) - 2 series",
     ],
-    lowerBody: [
+  },
+  lowerBody: {
+    dayName: "Lower Body",
+    dayNumber: 5,
+    exercisesDescriptions: [
       "A very high or high intensity glutes exercise (besides deadlift) - 3 series",
       "A moderate intensity Quads Exercise - 2 Series",
       "A moderate intensity glutes exercise - 3 Series",
@@ -43,7 +50,11 @@ export const femaleSplits: FemaleSplits = {
       "Calves - 3 Series",
       "Abs (try to mix from the previous days) - 2 series",
     ],
-    upperBody: [
+  },
+  upperBody: {
+    dayName: "Upper Body",
+    dayNumber: 6,
+    exercisesDescriptions: [
       "High or Moderate Intensity Chest or Shoulders Exercise (different muscle or movement angle related to the first exercise of the push day) - 3 Series",
       "High or Moderate Intensity Back Exercise - 3 Series",
       "A moderate or low intensity chest exercise - 2 series",
@@ -55,8 +66,13 @@ export const femaleSplits: FemaleSplits = {
       "Abs (try to mix from the previous days) - 2 series",
     ],
   },
-  fourDaysSplit: {
-    legsA: [
+};
+
+export const fourDaysSplit: TrainingWeeklySplit = {
+  legsA: {
+    dayName: "Legs A",
+    dayNumber: 1,
+    exercisesDescriptions: [
       "Squat - 3 series",
       "A high or moderate intensity quads exercise - 3 series",
       "An isolated Hamstring exercise - 3 series",
@@ -65,7 +81,11 @@ export const femaleSplits: FemaleSplits = {
       "Calves exercise - 3 series",
       "Abs (try to mix from the previous days) - 2 series",
     ],
-    push: [
+  },
+  push: {
+    dayName: "Push",
+    dayNumber: 2,
+    exercisesDescriptions: [
       "High Intensity Chest or Shoulders Exercise - 3 Series",
       "A moderate chest or shoulders intensity exercise (differing between chest or shoulders from the first exercise) - 3 Series",
       "A moderate or low intensity chest exercise - 3 series",
@@ -73,7 +93,11 @@ export const femaleSplits: FemaleSplits = {
       "Triceps - 3 series",
       "Abs - 2 series",
     ],
-    pull: [
+  },
+  pull: {
+    dayName: "Pull",
+    dayNumber: 3,
+    exercisesDescriptions: [
       "Deadlift - 3 Series",
       "A vertical pull back exercise - 3 Series",
       "A moderate or low intensity horizontal back exercise (try to focus in a different grip related to the previous exercise) - 3 series",
@@ -81,7 +105,11 @@ export const femaleSplits: FemaleSplits = {
       "Rear deltoid exercise - 3 series",
       "Abs (try to mix from the previous days) - 2 series",
     ],
-    legsB: [
+  },
+  legsB: {
+    dayName: "Legs B",
+    dayNumber: 5,
+    exercisesDescriptions: [
       "A very high or high intensity glutes exercise (besides deadlift) - 3 series",
       "A different high or moderate intensity glutes exercise - 3 Series",
       "A moderate intensity Quads Exercise - 2 Series",
@@ -91,8 +119,13 @@ export const femaleSplits: FemaleSplits = {
       "Abs (try to mix from the previous days) - 2 series",
     ],
   },
-  threeDaysSplit: {
-    legsAndGlutes: [
+};
+
+export const threeDaysSplit: TrainingWeeklySplit = {
+  legsAndGlutes: {
+    dayName: "Legs and Glutes",
+    dayNumber: 1,
+    exercisesDescriptions: [
       "Squat - 3 series",
       "Stiff Leg Deadlift - 3 series",
       "A moderate intensity quads exercise - 3 series",
@@ -101,7 +134,11 @@ export const femaleSplits: FemaleSplits = {
       "Calves exercise - 2 series",
       "Abs (try to mix from the previous days) - 3 series",
     ],
-    upperBody: [
+  },
+  upperBody: {
+    dayName: "Upper Body",
+    dayNumber: 3,
+    exercisesDescriptions: [
       "High Intensity Chest or Shoulders Exercise - 3 Series",
       "A moderate chest or shoulders intensity exercise (differing between chest or shoulders from the first exercise) - 3 Series",
       "A moderate or low intensity chest exercise - 3 series",
@@ -109,7 +146,11 @@ export const femaleSplits: FemaleSplits = {
       "Triceps - 3 series",
       "Abs (try to mix from the previous days) - 3 series",
     ],
-    pullAndGlutes: [
+  },
+  pullAndGlutes: {
+    dayName: "Pull and Glutes",
+    dayNumber: 5,
+    exercisesDescriptions: [
       "Deadlift - 3 Series",
       "A vertical pull back exercise - 3 Series",
       "A moderate glutes exercise - 3 Series",

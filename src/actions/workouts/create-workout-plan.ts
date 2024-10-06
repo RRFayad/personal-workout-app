@@ -45,64 +45,63 @@ export async function createWorkoutPlan(
     return { errors: { _form: ["User Not Found!"] } };
   }
 
-  const { trainingSpecification, restDays } =
-    workoutHelpers.getTrainingSplitSpecificationsAndRestDays(
-      trainingDays,
-      existingUser.profile.gender,
-    );
+  const trainingSpecification = workoutHelpers.getTrainingSplitSpecifications(
+    trainingDays,
+    existingUser.profile.gender,
+  );
 
   const prompt = workoutHelpers.generateTrainingPrompt(trainingSpecification);
 
-  let workoutProgram;
-  try {
-    workoutProgram = await workoutHelpers.generateWorkout(prompt);
-  } catch (error) {
-    return {
-      errors: {
-        _form: [`${error}`],
-      },
-    };
-  }
+  console.log(prompt);
 
-  // For thesting purposes - to not to consume paid api
-  // const restDays = workoutHelpers.DUMMY_REST_DAYS;
-  // const workoutProgram = workoutHelpers.DUMMY_WORKOUT;
+  // let workoutProgram;
+  // try {
+  //   workoutProgram = await workoutHelpers.generateWorkout(prompt);
+  // } catch (error) {
+  //   return {
+  //     errors: {
+  //       _form: [`${error}`],
+  //     },
+  //   };
+  // }
 
-  const { startDate, endDate } = workoutHelpers.setWorkoutPlanDates();
+  // // For thesting purposes - to not to consume paid api
+  // // const workoutProgram = workoutHelpers.DUMMY_WORKOUT;
 
-  try {
-    await db.$transaction(async (db) => {
-      // Used deleteMany to not throw an error if there's no data to be deleted
-      await db.workoutProgramStructure.deleteMany({
-        where: { user_id: userId },
-      });
+  // const { startDate, endDate } = workoutHelpers.setWorkoutPlanDates();
 
-      const createWorkoutProgramResult =
-        await db.workoutProgramStructure.create({
-          data: {
-            user_id: userId,
-            available_training_days_qty: trainingDays,
-            workout_program_start: startDate,
-            workout_program_end: endDate,
-          },
-        });
+  // try {
+  //   await db.$transaction(async (db) => {
+  //     // Used deleteMany to not throw an error if there's no data to be deleted
+  //     await db.workoutProgramStructure.deleteMany({
+  //       where: { user_id: userId },
+  //     });
 
-      const workoutId = createWorkoutProgramResult.workout_program_id;
+  //     const createWorkoutProgramResult =
+  //       await db.workoutProgramStructure.create({
+  //         data: {
+  //           user_id: userId,
+  //           available_training_days_qty: trainingDays,
+  //           workout_program_start: startDate,
+  //           workout_program_end: endDate,
+  //         },
+  //       });
 
-      const workoutDetailsData =
-        workoutHelpers.generateWorkoutProgramDetailsData(
-          workoutId,
-          workoutProgram,
-          restDays,
-        );
+  //     const workoutId = createWorkoutProgramResult.workout_program_id;
 
-      await db.workoutProgramDetails.createMany({
-        data: workoutDetailsData,
-      });
-    });
-  } catch (error) {
-    return { errors: { _form: [`Error: ${error}`] } };
-  }
+  //     const workoutDetailsData =
+  //       workoutHelpers.generateWorkoutProgramDetailsData(
+  //         workoutId,
+  //         workoutProgram,
+  //       );
+
+  //     await db.workoutProgramDetails.createMany({
+  //       data: workoutDetailsData,
+  //     });
+  //   });
+  // } catch (error) {
+  //   return { errors: { _form: [`Error: ${error}`] } };
+  // }
 
   // return { errors: { _form: ["Testing..."] } };
 

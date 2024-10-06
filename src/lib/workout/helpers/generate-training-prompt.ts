@@ -1,10 +1,20 @@
 import { promptExercisesList } from "./prompt-exercises-list";
 
-import { TrainingSplit } from "@/types/training-splits";
+import { TrainingWeeklySplit } from "@/types/training-splits";
 
 export const generateTrainingPrompt = (
-  trainingSpecification: TrainingSplit,
+  trainingWeeklySplit: TrainingWeeklySplit,
 ) => {
+  const trainingDays = Object.keys(trainingWeeklySplit);
+
+  let trainingSpecification: { [key: string]: string[] } = {}; // Specify the type to hold string arrays for each day.
+
+  for (const day of trainingDays) {
+    const dayDetails =
+      trainingWeeklySplit[day as keyof typeof trainingWeeklySplit];
+    trainingSpecification[day] = dayDetails!.exercisesDescriptions;
+  }
+
   const prompt = `
 I need you to generate a workout plan based on the given 'Valid Exercises List' and 'Training Specification'. Follow these steps:
 

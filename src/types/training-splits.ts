@@ -1,28 +1,34 @@
-export type TrainingSplit = {
-  push?: string[];
-  pull?: string[];
-  legs?: string[];
-  upperBody?: string[];
-  lowerBody?: string[];
-  fullBody?: string[];
-  pushA?: string[];
-  pushB?: string[];
-  pullA?: string[];
-  pullB?: string[];
-  legsA?: string[];
-  legsB?: string[];
-  legsAndGlutes?: string[];
-  pullAndGlutes?: string[];
+export type SplitDay = {
+  dayName: string;
+  dayNumber: number;
+  exercisesDescriptions: string[];
+};
+
+export type TrainingWeeklySplit = {
+  push?: SplitDay;
+  pull?: SplitDay;
+  legs?: SplitDay;
+  upperBody?: SplitDay;
+  lowerBody?: SplitDay;
+  fullBody?: SplitDay;
+  pushA?: SplitDay;
+  pushB?: SplitDay;
+  pullA?: SplitDay;
+  pullB?: SplitDay;
+  legsA?: SplitDay;
+  legsB?: SplitDay;
+  legsAndGlutes?: SplitDay;
+  pullAndGlutes?: SplitDay;
 };
 
 export interface MaleSplits {
-  threeDaysSplit: TrainingSplit;
-  fourDaysSplit: TrainingSplit;
-  fiveDaysSplit: TrainingSplit;
-  fiveDaysSplitUpperFocused: TrainingSplit;
+  threeDaysSplit: TrainingWeeklySplit;
+  fourDaysSplit: TrainingWeeklySplit;
+  fiveDaysSplit: TrainingWeeklySplit;
+  fiveDaysSplitUpperFocused: TrainingWeeklySplit;
 }
 export interface FemaleSplits {
-  threeDaysSplit: TrainingSplit;
-  fourDaysSplit: TrainingSplit;
-  fiveDaysSplit: TrainingSplit;
+  threeDaysSplit: TrainingWeeklySplit;
+  fourDaysSplit: TrainingWeeklySplit;
+  fiveDaysSplit: TrainingWeeklySplit;
 }

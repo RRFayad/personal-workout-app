@@ -45,63 +45,71 @@ export async function createWorkoutPlan(
     return { errors: { _form: ["User Not Found!"] } };
   }
 
-  const trainingSpecification = workoutHelpers.getTrainingSplitSpecifications(
+  const trainingWeeklySplit = workoutHelpers.getTrainingWeeklySplit(
     trainingDays,
     existingUser.profile.gender,
   );
 
-  const prompt = workoutHelpers.generateTrainingPrompt(trainingSpecification);
+  // console.log(trainingWeeklySplit);
 
-  console.log(prompt);
+  const prompt = workoutHelpers.generateTrainingPrompt(trainingWeeklySplit);
 
-  // let workoutProgram;
-  // try {
-  //   workoutProgram = await workoutHelpers.generateWorkout(prompt);
-  // } catch (error) {
-  //   return {
-  //     errors: {
-  //       _form: [`${error}`],
-  //     },
-  //   };
-  // }
+  // console.log(prompt);
+
+  let workoutProgram;
+  try {
+    workoutProgram = await workoutHelpers.generateWorkout(prompt);
+  } catch (error) {
+    return {
+      errors: {
+        _form: [`${error}`],
+      },
+    };
+  }
 
   // // For thesting purposes - to not to consume paid api
-  // // const workoutProgram = workoutHelpers.DUMMY_WORKOUT;
+  // const workoutProgram = workoutHelpers.DUMMY_WORKOUT;
+  // const workoutDetailsData = workoutHelpers.generateWorkoutProgramDetailsData(
+  //   9999,
+  //   workoutProgram,
+  //   trainingWeeklySplit,
+  // );
 
-  // const { startDate, endDate } = workoutHelpers.setWorkoutPlanDates();
+  const { startDate, endDate } = workoutHelpers.setWorkoutPlanDates();
 
-  // try {
-  //   await db.$transaction(async (db) => {
-  //     // Used deleteMany to not throw an error if there's no data to be deleted
-  //     await db.workoutProgramStructure.deleteMany({
-  //       where: { user_id: userId },
-  //     });
+  try {
+    await db.$transaction(async (db) => {
+      // Used deleteMany to not throw an error if there's no data to be deleted
+      await db.workoutProgramStructure.deleteMany({
+        where: { user_id: userId },
+      });
 
-  //     const createWorkoutProgramResult =
-  //       await db.workoutProgramStructure.create({
-  //         data: {
-  //           user_id: userId,
-  //           available_training_days_qty: trainingDays,
-  //           workout_program_start: startDate,
-  //           workout_program_end: endDate,
-  //         },
-  //       });
+      const createWorkoutProgramResult =
+        await db.workoutProgramStructure.create({
+          data: {
+            user_id: userId,
+            available_training_days_qty: trainingDays,
+            workout_program_start: startDate,
+            workout_program_end: endDate,
+          },
+        });
 
-  //     const workoutId = createWorkoutProgramResult.workout_program_id;
+      const workoutId = createWorkoutProgramResult.workout_program_id;
 
-  //     const workoutDetailsData =
-  //       workoutHelpers.generateWorkoutProgramDetailsData(
-  //         workoutId,
-  //         workoutProgram,
-  //       );
+      const workoutDetailsData =
+        workoutHelpers.generateWorkoutProgramDetailsData(
+          workoutId,
+          workoutProgram,
+          trainingWeeklySplit,
+        );
 
-  //     await db.workoutProgramDetails.createMany({
-  //       data: workoutDetailsData,
-  //     });
-  //   });
-  // } catch (error) {
-  //   return { errors: { _form: [`Error: ${error}`] } };
-  // }
+      await db.workoutProgramDetails.createMany({
+        data: workoutDetailsData,
+      });
+    });
+  } catch (error) {
+    return { errors: { _form: [`Error: ${error}`] } };
+  }
 
   // return { errors: { _form: ["Testing..."] } };
 

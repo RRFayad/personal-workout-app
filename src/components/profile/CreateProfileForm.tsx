@@ -87,8 +87,8 @@ function CreateProfileForm() {
 
     session.update();
 
-    setIsSubmitting(false);
     router.push(paths.createWorkout());
+    // setIsSubmitting(false);
   };
 
   return (

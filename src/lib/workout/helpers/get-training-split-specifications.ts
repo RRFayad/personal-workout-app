@@ -1,5 +1,4 @@
 import { Gender } from "@prisma/client";
-import { promptExercisesList } from "./prompt-exercises-list";
 import * as maleSplits from "../splits/male-splits";
 import * as femaleSplits from "../splits/female-splits";
 import {
@@ -8,7 +7,7 @@ import {
   TrainingWeeklySplit,
 } from "@/types/training-splits";
 
-export const getTrainingSplitSpecifications = (
+export const getTrainingWeeklySplit = (
   trainingDays: number,
   gender: Gender,
 ) => {
@@ -31,17 +30,15 @@ export const getTrainingSplitSpecifications = (
       }
     }
   }
-  let trainingSpecification: TrainingWeeklySplit;
+  let trainingWeeklySplit: TrainingWeeklySplit;
 
   if (gender === "male") {
-    trainingSpecification = maleSplits[
-      trainingSplitName!
-    ] as TrainingWeeklySplit;
+    trainingWeeklySplit = maleSplits[trainingSplitName!] as TrainingWeeklySplit;
   } else {
-    trainingSpecification = femaleSplits[
+    trainingWeeklySplit = femaleSplits[
       trainingSplitName! as keyof FemaleSplits
     ] as TrainingWeeklySplit;
   }
 
-  return trainingSpecification;
+  return trainingWeeklySplit;
 };

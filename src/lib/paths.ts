@@ -7,7 +7,7 @@ const paths = {
   // Server Action - Create Profile
   // Should Revalidate profile
   createProfile() {
-    return "profile/create-profile";
+    return "/profile/create-profile";
   },
   // Show Profile & Meal Plan
   // Server Action - Get Infos from the User

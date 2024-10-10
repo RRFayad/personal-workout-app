@@ -1,3 +1,6 @@
+import Image from "next/image";
+import FemalePic from "@/../public/images/female/push.avif";
+import MalePic from "@/../public/images/male/push.jpg";
 import { Button } from "@/components/ui/button";
 
 function WorkoutSplitPage() {
@@ -10,7 +13,10 @@ function WorkoutSplitPage() {
         </Button>
       </header>
 
-      <div className="col-span-6 flex-col bg-blue-100">aaa</div>
+      <div className="col-span-6 flex-col bg-blue-100">
+        <Image src={FemalePic} alt="Trainind Day Pic"></Image>
+        <Image src={FemalePic} alt="Trainind Day Pic"></Image>
+      </div>
       <div className="col-span-6 flex-col bg-red-100">aa</div>
     </>
   );

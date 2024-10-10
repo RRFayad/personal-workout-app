@@ -14,7 +14,7 @@ function GridDevTool() {
   return (
     <>
       <Button
-        className="fixed right-2 top-2 z-10 h-8 bg-project-orange px-2 hover:bg-project-orange"
+        className="fixed right-2 top-2 z-20 h-8 bg-project-orange px-2 hover:bg-project-orange"
         onClick={toggleShowGrid}
       >
         Grid

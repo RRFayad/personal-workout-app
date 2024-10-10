@@ -39,7 +39,7 @@ function HomePage() {
   };
 
   return (
-    <Card className="w-[420px]">
+    <Card className="col-span-6 col-start-4 mx-auto my-auto h-min w-[450px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}

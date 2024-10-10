@@ -96,7 +96,7 @@ function CreateProfileForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((formData) => submitHandler(formData))}
-          className="flex min-w-[320px] flex-col gap-4"
+          className="flex flex-col gap-4"
         >
           <FormField
             control={form.control}

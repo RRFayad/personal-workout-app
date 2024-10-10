@@ -13,7 +13,7 @@ import {
 
 function CreateProfilePage() {
   return (
-    <Card className="w-[480px]">
+    <Card className="col-span-6 col-start-4 mx-auto my-auto h-min w-[480px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}

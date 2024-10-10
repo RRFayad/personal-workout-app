@@ -12,7 +12,7 @@ import {
 
 async function CreateNutritionPlanPage() {
   return (
-    <Card className="max-w-[600px]">
+    <Card className="col-span-6 col-start-4 mx-auto my-auto h-min w-[600px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}

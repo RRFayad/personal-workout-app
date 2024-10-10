@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import * as formSchemas from "@/lib/form-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Loader2 } from "lucide-react";
 import {
   Select,
@@ -26,7 +26,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
+} from "../../ui/form";
 
 function CreateWorkoutForm() {
   const router = useRouter();

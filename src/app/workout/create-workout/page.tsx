@@ -1,4 +1,4 @@
-import CreateWorkoutForm from "@/components/workout/CreateWorkoutForm";
+import CreateWorkoutForm from "@/components/workout/create-workout-page/CreateWorkoutForm";
 import LogoLightDarkSwitcher from "@/components/ui/logo-light-dark-switcher";
 
 import BlackLogo from "@/../public/Primal Trainer Logos/logo__v2--black.png";
@@ -13,7 +13,7 @@ import {
 
 function CreateWorkoutPage() {
   return (
-    <Card className="col-span-6 col-start-4 mx-auto my-auto h-min w-[600px]">
+    <Card className="col-span-12 mx-auto my-auto mt-[5vh] h-min w-[600px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}

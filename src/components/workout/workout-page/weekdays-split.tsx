@@ -1,41 +1,15 @@
-import { Card } from "@/components/ui/card";
 import { db } from "@/db";
 import authOptions from "@/lib/auth";
 import { ChevronRight } from "lucide-react";
 import { getServerSession } from "next-auth";
 
-async function WeekDaysSplit() {
-  const session = await getServerSession(authOptions);
+import { Card } from "@/components/ui/card";
 
-  const userId = session!.user.id;
+interface WeekDaysSplitProps {
+  workoutDaysNames: string[];
+}
 
-  const user = await db.user.findFirst({
-    where: { id: userId },
-    include: {
-      WorkoutProgramStructure: { include: { WorkoutProgramDetails: true } },
-    },
-  });
-
-  //   console.log(user?.WorkoutProgramStructure?.WorkoutProgramDetails);
-  const daysNames: string[] = [];
-
-  if (!user?.WorkoutProgramStructure?.WorkoutProgramDetails) {
-    // Define what to do (probably, simply redirect)
-  } else {
-    let dayNumber = 1;
-    for (
-      let i = 0;
-      i < user?.WorkoutProgramStructure?.WorkoutProgramDetails!.length;
-      i++
-    ) {
-      const element = user?.WorkoutProgramStructure?.WorkoutProgramDetails![i];
-      //   console.log(element);
-      element.day_number === dayNumber &&
-        daysNames.push(element.day_name) &&
-        dayNumber++;
-    }
-  }
-
+function WeekDaysSplit({ workoutDaysNames }: WeekDaysSplitProps) {
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
   return (
     <>
@@ -49,7 +23,7 @@ async function WeekDaysSplit() {
                     {item}
                   </div>
                   <span className="ml-8 text-lg font-bold">
-                    {daysNames[index]}
+                    {workoutDaysNames[index]}
                   </span>
                 </div>
                 <ChevronRight

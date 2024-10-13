@@ -2,7 +2,7 @@ import { TrainingWeeklySplit } from "@/types/training-splits";
 
 export const fiveDaysSplit: TrainingWeeklySplit = {
   legs: {
-    dayName: "Legs",
+    dayName: "Legs Day",
     dayNumber: 1,
     exercisesDescriptions: [
       "Squat - 3 series",
@@ -15,7 +15,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     ],
   },
   push: {
-    dayName: "Push",
+    dayName: "Push Day",
     dayNumber: 2,
     exercisesDescriptions: [
       "High Intensity Chest or Shoulders Exercise - 3 Series",
@@ -27,7 +27,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     ],
   },
   pull: {
-    dayName: "Pull",
+    dayName: "Pull Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "Deadlift - 3 Series",
@@ -39,7 +39,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     ],
   },
   lowerBody: {
-    dayName: "Lower Body",
+    dayName: "Lower Body Day",
     dayNumber: 5,
     exercisesDescriptions: [
       "A very high or high intensity glutes exercise (besides deadlift) - 3 series",
@@ -52,7 +52,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     ],
   },
   upperBody: {
-    dayName: "Upper Body",
+    dayName: "Upper Body Day",
     dayNumber: 6,
     exercisesDescriptions: [
       "High or Moderate Intensity Chest or Shoulders Exercise (different muscle or movement angle related to the first exercise of the push day) - 3 Series",
@@ -70,7 +70,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
 
 export const fourDaysSplit: TrainingWeeklySplit = {
   legsA: {
-    dayName: "Legs A",
+    dayName: "Legs Day (A)",
     dayNumber: 1,
     exercisesDescriptions: [
       "Squat - 3 series",
@@ -83,7 +83,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     ],
   },
   push: {
-    dayName: "Push",
+    dayName: "Push Day",
     dayNumber: 2,
     exercisesDescriptions: [
       "High Intensity Chest or Shoulders Exercise - 3 Series",
@@ -95,7 +95,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     ],
   },
   pull: {
-    dayName: "Pull",
+    dayName: "Pull Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "Deadlift - 3 Series",
@@ -107,7 +107,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     ],
   },
   legsB: {
-    dayName: "Legs B",
+    dayName: "Legs Day (B)",
     dayNumber: 5,
     exercisesDescriptions: [
       "A very high or high intensity glutes exercise (besides deadlift) - 3 series",
@@ -123,7 +123,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
 
 export const threeDaysSplit: TrainingWeeklySplit = {
   legsAndGlutes: {
-    dayName: "Legs and Glutes",
+    dayName: "Legs and Glutes Day",
     dayNumber: 1,
     exercisesDescriptions: [
       "Squat - 3 series",
@@ -136,7 +136,7 @@ export const threeDaysSplit: TrainingWeeklySplit = {
     ],
   },
   upperBody: {
-    dayName: "Upper Body",
+    dayName: "Upper Body Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "High Intensity Chest or Shoulders Exercise - 3 Series",
@@ -148,7 +148,7 @@ export const threeDaysSplit: TrainingWeeklySplit = {
     ],
   },
   pullAndGlutes: {
-    dayName: "Pull and Glutes",
+    dayName: "Pull and Glutes Day",
     dayNumber: 5,
     exercisesDescriptions: [
       "Deadlift - 3 Series",

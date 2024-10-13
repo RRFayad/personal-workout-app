@@ -2,7 +2,7 @@ import { TrainingWeeklySplit } from "@/types/training-splits";
 
 export const fiveDaysSplit: TrainingWeeklySplit = {
   push: {
-    dayName: "Push",
+    dayName: "Push Day",
     dayNumber: 1,
     exercisesDescriptions: [
       "Chest Exercise - High Intensity - 3 Series",
@@ -15,7 +15,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     ],
   },
   pull: {
-    dayName: "Pull",
+    dayName: "Pull Day",
     dayNumber: 2,
     exercisesDescriptions: [
       "Back Exercise - High Intensity - 3 Series",
@@ -28,7 +28,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     ],
   },
   legs: {
-    dayName: "Legs",
+    dayName: "Legs Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "Squat - 3 series",
@@ -42,7 +42,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
   },
 
   upperBody: {
-    dayName: "Upper Body",
+    dayName: "Upper Body Day",
     dayNumber: 5,
     exercisesDescriptions: [
       "High Intensity Chest Exercise (different movement angle from the Push day) - 3 Series",
@@ -58,7 +58,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
   },
 
   lowerBody: {
-    dayName: "Lower Body",
+    dayName: "Lower Body Day",
     dayNumber: 6,
     exercisesDescriptions: [
       "Deadlift - 3 Series",
@@ -73,7 +73,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
 };
 export const fiveDaysSplitUpperFocused: TrainingWeeklySplit = {
   pushA: {
-    dayName: "Push A",
+    dayName: "Push Day (A)",
     dayNumber: 1,
     exercisesDescriptions: [
       "High Intensity Chest Exercise - 3 Series",
@@ -86,7 +86,7 @@ export const fiveDaysSplitUpperFocused: TrainingWeeklySplit = {
     ],
   },
   pullA: {
-    dayName: "Pull A",
+    dayName: "Pull Day (A)",
     dayNumber: 2,
     exercisesDescriptions: [
       "High Intensity back Exercise - 3 Series",
@@ -99,7 +99,7 @@ export const fiveDaysSplitUpperFocused: TrainingWeeklySplit = {
     ],
   },
   legs: {
-    dayName: "Legs",
+    dayName: "Legs Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "Squat - 3 series",
@@ -112,7 +112,7 @@ export const fiveDaysSplitUpperFocused: TrainingWeeklySplit = {
     ],
   },
   pushB: {
-    dayName: "Push B",
+    dayName: "Push Day (B)",
     dayNumber: 5,
     exercisesDescriptions: [
       "A moderate intensity chest exercise - 3 Series",
@@ -125,7 +125,7 @@ export const fiveDaysSplitUpperFocused: TrainingWeeklySplit = {
     ],
   },
   pullB: {
-    dayName: "Pull B",
+    dayName: "Pull Day (B)",
     dayNumber: 6,
     exercisesDescriptions: [
       "Deadlift - 3 Series",
@@ -141,7 +141,7 @@ export const fiveDaysSplitUpperFocused: TrainingWeeklySplit = {
 
 export const fourDaysSplit: TrainingWeeklySplit = {
   push: {
-    dayName: "Push",
+    dayName: "Push Day",
     dayNumber: 1,
     exercisesDescriptions: [
       "Barbell Bench Press - 3 Series",
@@ -154,7 +154,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     ],
   },
   pull: {
-    dayName: "Pull",
+    dayName: "Pull Day",
     dayNumber: 2,
     exercisesDescriptions: [
       "High Intensity back Exercise - 3 Series",
@@ -167,7 +167,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     ],
   },
   legs: {
-    dayName: "Legs",
+    dayName: "Legs Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "Squat - 3 series",
@@ -180,7 +180,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     ],
   },
   fullBody: {
-    dayName: "Full Body",
+    dayName: "Full Body Day",
     dayNumber: 5,
     exercisesDescriptions: [
       "Deadlift - 3 Series",
@@ -198,7 +198,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
 
 export const threeDaysSplit: TrainingWeeklySplit = {
   push: {
-    dayName: "Push",
+    dayName: "Push Day",
     dayNumber: 1,
     exercisesDescriptions: [
       "High Intensity Chest Exercise - 3 Series",
@@ -211,7 +211,7 @@ export const threeDaysSplit: TrainingWeeklySplit = {
     ],
   },
   pull: {
-    dayName: "Pull",
+    dayName: "Pull Day",
     dayNumber: 3,
     exercisesDescriptions: [
       "Deadlift - 3 Series",
@@ -224,7 +224,7 @@ export const threeDaysSplit: TrainingWeeklySplit = {
     ],
   },
   legs: {
-    dayName: "Legs",
+    dayName: "Legs Day",
     dayNumber: 5,
     exercisesDescriptions: [
       "Squat - 3 series",

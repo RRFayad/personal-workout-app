@@ -39,7 +39,7 @@ export const generateWorkoutProgramDetailsData = (
   const addRestDay = (dayNumber: number) => ({
     workout_program_id: workoutId,
     day_number: dayNumber,
-    day_name: "rest",
+    day_name: "Active Rest Day",
     exercise_number: 1,
     exercise_name: "activeRest",
     sets_qty: 1,

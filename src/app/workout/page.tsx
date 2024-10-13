@@ -8,11 +8,16 @@ import FemalePic from "@/../public/images/female/push.avif";
 import WeekDaysSplit from "@/components/workout/workout-page/weekdays-split";
 import OverallWorkoutInstructions from "@/components/workout/workout-page/overall-workout-instructions";
 
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
+import paths from "@/lib/paths";
 
 async function WorkoutSplitPage() {
   const session = await getServerSession(authOptions);
-
+  if (!session) {
+    redirect(paths.home());
+  }
   //   Get Days Names From Workout Details
   const userId = session!.user.id;
 
@@ -40,7 +45,6 @@ async function WorkoutSplitPage() {
   };
 
   let daysNames: string[];
-
   if (!user?.WorkoutProgramStructure?.WorkoutProgramDetails) {
     // Define what to do (probably, simply redirect to CreaeWorkoutPage)
   } else {
@@ -60,7 +64,7 @@ async function WorkoutSplitPage() {
         </Button> */}
       </header>
       <div className="col-span-6 grid grid-rows-2 gap-y-4">
-        <div className="relative col-span-6 row-span-1 flex-col overflow-hidden rounded-lg">
+        <Card className="relative col-span-6 row-span-1 flex-col overflow-hidden rounded-lg">
           <Image
             src={FemalePic}
             layout="fill"
@@ -68,9 +72,12 @@ async function WorkoutSplitPage() {
             alt="Trainind Day Pic"
           />
           <div className="absolute inset-0 flex items-end justify-end bg-black text-5xl text-white opacity-75">
-            <span className="mb-6 mr-12">Push Day</span>
+            <span className="mb-6 mr-12">
+              {daysNames![(new Date().getDay() + 6) % 7]}
+            </span>
           </div>
-        </div>
+        </Card>
+
         <OverallWorkoutInstructions />
       </div>
       <div className="col-span-6">

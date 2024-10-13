@@ -21,7 +21,7 @@ function GridDevTool() {
       </Button>
       {gridIsShown && (
         <div
-          className="pointer-events-none fixed grid w-screen grid-cols-12 px-[120px]"
+          className="pointer-events-none fixed z-30 grid w-screen grid-cols-12 px-[120px]"
           style={{ gap: "min(2%, 30px)" }}
         >
           <div className="h-screen bg-pink-200 opacity-20"></div>

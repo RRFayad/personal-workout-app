@@ -7,11 +7,13 @@ import Link from "next/link";
 interface WeekDaysSplitProps {
   trainingDaysData: { dayNumber: number; dayName: string }[];
   workoutProgramDetails: WorkoutProgramDetails[];
+  workoutProgramId: number;
 }
 
 function WeekDaysSplit({
   trainingDaysData,
   workoutProgramDetails,
+  workoutProgramId,
 }: WeekDaysSplitProps) {
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
@@ -21,7 +23,7 @@ function WeekDaysSplit({
         {weekdays.map((item, index) => {
           return (
             <li className="cursor-pointer" key={item}>
-              <Link href={"/workout"}>
+              <Link href={`/workout/${workoutProgramId}/${index + 1}`}>
                 <Card className="flex h-full flex-row items-center justify-between px-4 py-2 shadow-md hover:bg-project-light-gray active:bg-project-blue active:opacity-65">
                   <div className="flex flex-row items-center justify-center">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-project-blue text-sm font-bold text-white">

@@ -64,6 +64,7 @@ async function WorkoutSplitPage() {
     return trainingDays;
   };
 
+  const workoutProgramId = user?.WorkoutProgramStructure?.workout_program_id;
   let workoutProgramDetails: WorkoutProgramDetails[];
   if (!user?.WorkoutProgramStructure?.WorkoutProgramDetails) {
     // Define what to do (probably, simply redirect to CreaeWorkoutPage)
@@ -111,6 +112,7 @@ async function WorkoutSplitPage() {
         <WeekDaysSplit
           trainingDaysData={trainingDaysData!}
           workoutProgramDetails={workoutProgramDetails!}
+          workoutProgramId={workoutProgramId!}
         />
       </div>
     </>

@@ -29,29 +29,51 @@ async function WorkoutSplitPage() {
     },
   });
 
-  const getWorkoutDaysNamesFromWorkoutProgramDetails = (
+  const getWorkoutDaysDataFromWorkoutProgramDetails = (
     WorkoutProgramDetails: WorkoutProgramDetails[],
-  ): string[] => {
-    const daysNames: string[] = [];
+  ): { dayNumber: number; dayName: string }[] => {
+    const trainingDays: { dayNumber: number; dayName: string }[] = [];
 
     for (let i = 0; i < WorkoutProgramDetails.length; i++) {
       const element = WorkoutProgramDetails[i];
-      (!daysNames.includes(element.day_name) ||
-        element.day_name === "Active Rest") &&
-        daysNames.splice(element.day_number - 1, 0, element.day_name);
+
+      const dayExists = trainingDays.some(
+        (day) => day.dayNumber === element.day_number,
+      );
+
+      if (!dayExists) {
+        trainingDays.push({
+          dayNumber: element.day_number,
+          dayName: element.day_name,
+        });
+      }
     }
 
-    return daysNames;
+    // Fill in any missing days (1 through 7) as "Active Rest"
+    for (let i = 1; i <= 7; i++) {
+      if (!trainingDays.some((day) => day.dayNumber === i)) {
+        trainingDays.push({ dayNumber: i, dayName: "Active Rest" });
+      }
+    }
+
+    // Sort daysNames by dayNumber to maintain order
+    trainingDays.sort((a, b) => a.dayNumber - b.dayNumber);
+
+    // console.log(trainingDays);
+
+    return trainingDays;
   };
 
-  let daysNames: string[];
+  let workoutProgramDetails: WorkoutProgramDetails[];
   if (!user?.WorkoutProgramStructure?.WorkoutProgramDetails) {
     // Define what to do (probably, simply redirect to CreaeWorkoutPage)
   } else {
-    daysNames = getWorkoutDaysNamesFromWorkoutProgramDetails(
-      user.WorkoutProgramStructure.WorkoutProgramDetails,
-    );
+    workoutProgramDetails = user.WorkoutProgramStructure.WorkoutProgramDetails;
   }
+
+  const trainingDaysData = getWorkoutDaysDataFromWorkoutProgramDetails(
+    workoutProgramDetails!,
+  );
 
   return (
     <>
@@ -73,7 +95,12 @@ async function WorkoutSplitPage() {
           />
           <div className="absolute inset-0 flex items-end justify-end bg-black text-5xl text-white opacity-75">
             <span className="mb-6 mr-12">
-              {daysNames![(new Date().getDay() + 6) % 7]}
+              {
+                trainingDaysData.find(
+                  (day) =>
+                    day.dayNumber === ((new Date().getDay() + 6) % 7) + 1,
+                )!.dayName
+              }
             </span>
           </div>
         </Card>
@@ -81,7 +108,10 @@ async function WorkoutSplitPage() {
         <OverallWorkoutInstructions />
       </div>
       <div className="col-span-6">
-        <WeekDaysSplit workoutDaysNames={daysNames!} />
+        <WeekDaysSplit
+          trainingDaysData={trainingDaysData!}
+          workoutProgramDetails={workoutProgramDetails!}
+        />
       </div>
     </>
   );

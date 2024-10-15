@@ -79,17 +79,21 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
     exercises,
   );
 
-  console.log(populatedWorkoutProgramDetails);
+  // console.log(populatedWorkoutProgramDetails);
 
   return (
-    <div className="col-span-12 mx-auto">
-      <div className="flex items-center">
-        <ChevronLeftIcon size={28} />
-        <h3>Week {currentWeek}</h3>
-        <ChevronRightIcon size={28} />
+    <>
+      <div className="col-span-12 mx-auto">
+        <div className="flex items-center">
+          <ChevronLeftIcon size={28} />
+          <h3>Week {currentWeek}</h3>
+          <ChevronRightIcon size={28} />
+        </div>
+        <div className="container mx-auto py-10">
+          <DataTable columns={columns} data={populatedWorkoutProgramDetails} />
+        </div>
       </div>
-      <div className="container mx-auto py-10"></div>
-    </div>
+    </>
   );
 }
 

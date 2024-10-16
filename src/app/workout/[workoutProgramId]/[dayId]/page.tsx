@@ -18,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import WeekDisplay from "@/components/workout/daily-plan/week-display";
 
 interface WorkoutDayPlanPageProps {
   params: {
@@ -57,10 +58,6 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
     );
   }
 
-  // Populate with name, intensity, equipment and gif
-  // console.log(workoutData?.WorkoutProgramDetails);
-  // console.log(JSON.stringify(exercises));
-
   const populateExerciseDetails = (
     workoutProgramDetails: WorkoutProgramDetails[],
     exerciseData: any,
@@ -91,14 +88,10 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
 
   return (
     <>
-      <div className="col-span-10 col-start-2 mx-auto grid w-full grid-cols-12 gap-x-[30px]">
-        <div className="col-span-12 flex items-center justify-center">
-          <ChevronLeftIcon size={28} />
-          <h3>Week {currentWeek}</h3>
-          <ChevronRightIcon size={28} />
-        </div>
+      <div className="col-span-10 col-start-2 mx-auto w-full">
+        <WeekDisplay currentWeek={currentWeek} />
 
-        <div className="col-span-12 py-4">
+        <div className="py-3">
           <DataTable columns={columns} data={populatedWorkoutProgramDetails} />
         </div>
       </div>

@@ -10,6 +10,14 @@ import { columns } from "./columns";
 
 import * as exercises from "@/lib/workout/exercises";
 import { ExerciseDictionary } from "@/types/exercise";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface WorkoutDayPlanPageProps {
   params: {
@@ -83,13 +91,14 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
 
   return (
     <>
-      <div className="col-span-12 mx-auto">
-        <div className="flex items-center">
+      <div className="col-span-10 col-start-2 mx-auto grid w-full grid-cols-12 gap-x-[30px]">
+        <div className="col-span-12 flex items-center justify-center">
           <ChevronLeftIcon size={28} />
           <h3>Week {currentWeek}</h3>
           <ChevronRightIcon size={28} />
         </div>
-        <div className="container mx-auto py-10">
+
+        <div className="col-span-12 py-4">
           <DataTable columns={columns} data={populatedWorkoutProgramDetails} />
         </div>
       </div>

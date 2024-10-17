@@ -6,6 +6,7 @@ interface WeekDisplayProps {
 }
 
 function WeekDisplay({ currentWeek }: WeekDisplayProps) {
+  console.log(currentWeek);
   return (
     <>
       <div className="flex items-center justify-center">
@@ -14,7 +15,8 @@ function WeekDisplay({ currentWeek }: WeekDisplayProps) {
         <ChevronRightIcon size={28} />
       </div>
       <p className="mx-auto mt-1 text-center text-[0.8rem] text-project-dark-gray">
-        Oct 14th to Oct 20th
+        {currentWeek === 0 && "Your workout schedule starts on next Monday!"}
+        {currentWeek > 0 && "Oct 14th to Oct 20th"}
       </p>
     </>
   );

@@ -42,7 +42,7 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
   const today = new Date();
 
   let currentWeek: number;
-  if (isWithinInterval(today, { start: programStart, end: programEnd })) {
+  if (today < programEnd) {
     currentWeek = differenceInCalendarWeeks(today, programStart) + 1;
   } else {
     return (
@@ -90,7 +90,6 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
     <>
       <div className="col-span-10 col-start-2 mx-auto w-full">
         <WeekDisplay currentWeek={currentWeek} />
-
         <div className="py-3">
           <DataTable columns={columns} data={populatedWorkoutProgramDetails} />
         </div>

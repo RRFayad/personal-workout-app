@@ -3,23 +3,38 @@ import { addDays, differenceInCalendarWeeks, format, subDays } from "date-fns";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 
+import { columns } from "@/app/workout/[workoutProgramId]/[dayId]/columns";
+import { DataTable } from "@/app/workout/[workoutProgramId]/[dayId]/data-table";
+
 interface WeekDisplayProps {
   currentWeek: number;
   programStart: Date;
   programEnd: Date;
+  workoutData: {
+    exercise_name: any;
+    intensity: any;
+    equipment: any;
+    imageUrl: any;
+    workout_program_id: number;
+    day_number: number;
+    day_name: string;
+    exercise_number: number;
+    sets_qty: number;
+  }[];
 }
 
-function WeekDisplay({
+interface WeekData {
+  week: number;
+  weekStartDay: Date;
+  weekEndDay: Date;
+}
+
+function WorkoutDay({
   currentWeek,
   programStart,
   programEnd,
+  workoutData,
 }: WeekDisplayProps) {
-  interface WeekData {
-    week: number;
-    weekStartDay: Date;
-    weekEndDay: Date;
-  }
-
   const [weekDataToBeDisplayed, setWeekDataToBeDisplayed] = useState<WeekData>({
     week: currentWeek,
     weekStartDay: addDays(programStart, 7 * currentWeek),
@@ -71,8 +86,11 @@ function WeekDisplay({
         {weekDataToBeDisplayed.week > 0 &&
           `${format(weekDataToBeDisplayed.weekStartDay, "MMM do")} to ${format(weekDataToBeDisplayed.weekEndDay, "MMM do")}`}
       </p>
+      <div className="mt-4">
+        <DataTable columns={columns} data={workoutData} />
+      </div>
     </>
   );
 }
 
-export default WeekDisplay;
+export default WorkoutDay;

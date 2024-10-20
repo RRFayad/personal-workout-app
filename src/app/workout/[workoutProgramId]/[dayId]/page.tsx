@@ -1,11 +1,9 @@
 import { db } from "@/db";
 import * as exercises from "@/lib/workout/exercises";
 import { differenceInCalendarWeeks } from "date-fns";
-import WeekDisplay from "@/components/workout/daily-plan/week-display";
-import { WorkoutProgramDetails, WorkoutProgramStructure } from "@prisma/client";
+import { WorkoutProgramDetails } from "@prisma/client";
+import WorkoutDay from "@/components/workout/daily-plan/week-display";
 
-import { columns } from "./columns";
-import { DataTable } from "./data-table";
 import { Button } from "@/components/ui/button";
 
 interface WorkoutDayPlanPageProps {
@@ -77,14 +75,12 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
   return (
     <>
       <div className="col-span-10 col-start-2 mx-auto w-full">
-        <WeekDisplay
+        <WorkoutDay
           currentWeek={currentWeek}
           programStart={programStart}
           programEnd={programEnd}
+          workoutData={populatedWorkoutProgramDetails}
         />
-        <div className="py-3">
-          <DataTable columns={columns} data={populatedWorkoutProgramDetails} />
-        </div>
       </div>
     </>
   );

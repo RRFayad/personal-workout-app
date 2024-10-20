@@ -1,24 +1,12 @@
 import { db } from "@/db";
-import { WorkoutProgramDetails, WorkoutProgramStructure } from "@prisma/client";
-import { differenceInCalendarWeeks, isWithinInterval } from "date-fns";
-
-import { Button } from "@/components/ui/button";
-import { Bold, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-
-import { DataTable } from "./data-table";
-import { columns } from "./columns";
-
 import * as exercises from "@/lib/workout/exercises";
-import { ExerciseDictionary } from "@/types/exercise";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { differenceInCalendarWeeks } from "date-fns";
 import WeekDisplay from "@/components/workout/daily-plan/week-display";
+import { WorkoutProgramDetails, WorkoutProgramStructure } from "@prisma/client";
+
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+import { Button } from "@/components/ui/button";
 
 interface WorkoutDayPlanPageProps {
   params: {
@@ -89,7 +77,11 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
   return (
     <>
       <div className="col-span-10 col-start-2 mx-auto w-full">
-        <WeekDisplay currentWeek={currentWeek} />
+        <WeekDisplay
+          currentWeek={currentWeek}
+          programStart={programStart}
+          programEnd={programEnd}
+        />
         <div className="py-3">
           <DataTable columns={columns} data={populatedWorkoutProgramDetails} />
         </div>

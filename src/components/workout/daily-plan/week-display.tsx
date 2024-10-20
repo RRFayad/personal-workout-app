@@ -37,8 +37,8 @@ function WorkoutDay({
 }: WeekDisplayProps) {
   const [weekDataToBeDisplayed, setWeekDataToBeDisplayed] = useState<WeekData>({
     week: currentWeek,
-    weekStartDay: addDays(programStart, 7 * currentWeek),
-    weekEndDay: addDays(programStart, 7 * currentWeek + 6),
+    weekStartDay: addDays(programStart, 7 * (currentWeek - 1)),
+    weekEndDay: addDays(programStart, 7 * (currentWeek - 1) + 6),
   });
 
   const totalWeeks = differenceInCalendarWeeks(programEnd, programStart);

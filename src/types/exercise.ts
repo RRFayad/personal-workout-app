@@ -109,12 +109,12 @@ export const measurementTypes = {
   time: { en: "time", pt: "tempo" },
 } as const;
 
-type MuscularGroupKey = keyof typeof muscularGroups;
-type MuscleKey = keyof typeof muscles;
-type IntensityKey = keyof typeof intensityLevels;
-type CategoryKey = keyof typeof categories;
-type EquipmentKey = keyof typeof equipmentTypes;
-type MeasurementTypeKey = keyof typeof measurementTypes;
+export type MuscularGroupKey = keyof typeof muscularGroups;
+export type MuscleKey = keyof typeof muscles;
+export type IntensityKey = keyof typeof intensityLevels;
+export type CategoryKey = keyof typeof categories;
+export type EquipmentKey = keyof typeof equipmentTypes;
+export type MeasurementTypeKey = keyof typeof measurementTypes;
 
 // Handle non-applicable movement angle
 type MuscularGroupMovementVariables<T extends MuscularGroupKey> =

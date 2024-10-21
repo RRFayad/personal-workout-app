@@ -4,23 +4,29 @@ import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
 
 import { columns } from "@/app/workout/[workoutProgramId]/[dayId]/columns";
+import { defineExerciseRestPeriod } from "@/lib/workout/helpers/define-rest";
 import { DataTable } from "@/app/workout/[workoutProgramId]/[dayId]/data-table";
+import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-ranges";
+
+interface WorkoutData {
+  exercise_name: any;
+  intensity: any;
+  equipment: any;
+  imageUrl: any;
+  workout_program_id: number;
+  day_number: number;
+  day_name: string;
+  exercise_number: number;
+  sets_qty: number;
+  reps?: { min: number; max: number };
+  rest?: number;
+}
 
 interface WeekDisplayProps {
   currentWeek: number;
   programStart: Date;
   programEnd: Date;
-  workoutData: {
-    exercise_name: any;
-    intensity: any;
-    equipment: any;
-    imageUrl: any;
-    workout_program_id: number;
-    day_number: number;
-    day_name: string;
-    exercise_number: number;
-    sets_qty: number;
-  }[];
+  workoutData: WorkoutData[];
 }
 
 interface WeekData {
@@ -50,8 +56,6 @@ function WorkoutDay({
         weekStartDay: subDays(prevState.weekStartDay, 7),
         weekEndDay: subDays(prevState.weekEndDay, 7),
       }));
-
-    console.log(weekDataToBeDisplayed);
   };
 
   const increaseWeekHandler = () => {
@@ -61,9 +65,18 @@ function WorkoutDay({
         weekStartDay: addDays(prevState.weekStartDay, 7),
         weekEndDay: addDays(prevState.weekEndDay, 7),
       }));
-
-    console.log(weekDataToBeDisplayed);
   };
+
+  const workoutDataWithRepsAndRest = workoutData.map((exerciseData) => {
+    return {
+      ...exerciseData,
+      reps: defineExerciseWeeklyRepRanges(
+        exerciseData.intensity,
+        weekDataToBeDisplayed.week,
+      ),
+      rest: defineExerciseRestPeriod(exerciseData.intensity),
+    };
+  });
 
   return (
     <>
@@ -87,7 +100,7 @@ function WorkoutDay({
           `${format(weekDataToBeDisplayed.weekStartDay, "MMM do")} to ${format(weekDataToBeDisplayed.weekEndDay, "MMM do")}`}
       </p>
       <div className="mt-4">
-        <DataTable columns={columns} data={workoutData} />
+        <DataTable columns={columns} data={workoutDataWithRepsAndRest} />
       </div>
     </>
   );

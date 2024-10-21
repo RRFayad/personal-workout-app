@@ -1,8 +1,8 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { ColumnDef } from "@tanstack/react-table";
 import DummyGif from "@/../public/images/bench_press.gif";
 
 // This type is used to define the shape of our data.
@@ -63,7 +63,7 @@ export const columns: ColumnDef<any>[] = [
       <div className="flex h-full items-center justify-center gap-x-8">
         <span className="inline-block w-16 text-center">Sets</span>
         <span className="inline-block w-16 text-center">Reps</span>
-        <span className="inline-block w-16 text-center">Rest (min)</span>
+        <span className="inline-block w-16 text-center">Rest</span>
       </div>
     ),
     cell: ({ row }) => {
@@ -78,12 +78,14 @@ export const columns: ColumnDef<any>[] = [
           </div>
           <div className="flex w-16 flex-col items-center gap-y-2 font-semibold text-project-gray">
             {Array.from({ length: setsQty }, (_, i) => (
-              <p key={i}>{`${DUMMY_REPS.min} - ${DUMMY_REPS.max}`}</p>
+              <p
+                key={i}
+              >{`${row.original.reps.min} - ${row.original.reps.max}`}</p>
             ))}
           </div>
           <div className="flex w-16 flex-col items-center gap-y-2 font-semibold text-project-gray">
             {Array.from({ length: setsQty }, (_, i) => (
-              <p key={i}>{`3`}</p>
+              <p key={i}>{`${row.original.rest}'`}</p>
             ))}
           </div>
         </div>

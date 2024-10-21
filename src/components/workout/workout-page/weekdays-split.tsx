@@ -19,7 +19,7 @@ function WeekDaysSplit({
 
   return (
     <>
-      <ul className="grid h-full grid-rows-7 gap-y-4">
+      <ul className="grid h-full min-h-[75vh] grid-rows-7 gap-y-4">
         {weekdays.map((item, index) => {
           return (
             <li className="cursor-pointer" key={item}>

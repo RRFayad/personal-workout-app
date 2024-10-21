@@ -78,14 +78,12 @@ async function WorkoutSplitPage() {
 
   return (
     <>
-      <header className="relative col-span-12 flex justify-center">
-        <h1 className="">
-          {user?.profile?.full_name.split(" ")[0]}'s Training Program
-        </h1>
+      <header className="h12 col-span-12 flex justify-center">
+        <h1>{user?.profile?.full_name.split(" ")[0]}'s Training Program</h1>
         {/* <Button className="absolute inset-y-0 right-4 top-0 m-auto bg-project-orange hover:bg-project-orange hover:opacity-75">
           Extract to PDF?
         </Button> */}
-      </header>
+      </header>{" "}
       <div className="col-span-6 grid grid-rows-2 gap-y-4">
         <Card className="relative col-span-6 row-span-1 flex-col overflow-hidden rounded-lg">
           <Image
@@ -105,7 +103,6 @@ async function WorkoutSplitPage() {
             </span>
           </div>
         </Card>
-
         <OverallWorkoutInstructions />
       </div>
       <div className="col-span-6">

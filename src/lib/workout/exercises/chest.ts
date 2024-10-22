@@ -1,4 +1,10 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import benchPressImg from "@/../public/images/exercises/chest/bench_press.gif";
+import cableCrossoverImg from "@/../public/images/exercises/chest/Cable-Crossover.gif";
+import chestDipsImg from "@/../public/images/exercises/chest/Chest-Dips.gif";
+import dumbbellPressImg from "@/../public/images/exercises/chest/Dumbbell-Press.gif";
+import inclineBarbellBenchPressImg from "@/../public/images/exercises/chest/Incline-Barbell-Bench-Press.gif";
+import inclineDumbbellPressImg from "@/../public/images/exercises/chest/Incline-Dumbbell-Press.gif";
 
 export const chestExercises: ExerciseDictionary<"chest"> = {
   benchPress: {
@@ -19,7 +25,7 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
       movementAngle: "flat",
     },
 
-    imageUrl: "",
+    imageUrl: benchPressImg,
     videoTutorialUrl: "",
   },
   dumbbellBenchPress: {
@@ -40,7 +46,7 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     measurementType: "reps",
     alternatives: [],
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellPressImg,
   },
   inclinedBenchPress: {
     exerciseName: { en: "inclined bench press", pt: "supino inclinado" },
@@ -60,7 +66,7 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     measurementType: "reps",
     alternatives: [],
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: inclineBarbellBenchPressImg,
   },
   inclinedDumbbellBenchPress: {
     exerciseName: {
@@ -83,7 +89,7 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     measurementType: "reps",
     alternatives: ["inclinedBenchPress"],
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: inclineDumbbellPressImg,
   },
   chestDips: {
     exerciseName: { en: "chest dips", pt: "mergulho no paralelas" },
@@ -103,7 +109,7 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     measurementType: "reps",
     alternatives: [],
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: chestDipsImg,
   },
   crossOver: {
     exerciseName: { en: "crossover", pt: "crossover" },
@@ -123,6 +129,6 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     measurementType: "reps",
     alternatives: [],
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: cableCrossoverImg,
   },
 };

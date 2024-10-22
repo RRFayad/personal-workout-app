@@ -8,9 +8,6 @@ import DummyGif from "@/../public/images/bench_press.gif";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-const DUMMY_IMAGE_URL = "https://giphy.com/gifs/jokogif-xUPGcKoAYCn5fHK0Zq";
-const DUMMY_REPS = { min: 10, max: 12 };
-
 export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "exercise_name",
@@ -48,11 +45,12 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       return (
         <Image
-          src={DummyGif}
+          src={row.original.imageUrl === "" ? DummyGif : row.original.imageUrl}
           alt={row.original.exercise_name}
           height={120}
-          // width={180}
+          width={120}
           className="-my-2 p-0"
+          unoptimized
         />
       );
     },

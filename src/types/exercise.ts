@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export const muscularGroups = {
   absCore: { en: "abs/core", pt: "abs/core" },
   back: { en: "back", pt: "costas" },
@@ -137,7 +139,7 @@ interface BaseExercise<T extends MuscularGroupKey> {
   alternatives?: (keyof ExerciseDictionary<T>)[];
   measurementType: MeasurementTypeKey;
   videoTutorialUrl: string;
-  imageUrl: string;
+  imageUrl: StaticImageData | string;
 }
 
 // Exercise for specific muscular group

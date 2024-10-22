@@ -1,4 +1,14 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import chinUpImg from "@/../public/images/exercises/back/chinUp.gif";
+import pullUpImg from "@/../public/images/exercises/back/pullUp.gif";
+import tBarRowImg from "@/../public/images/exercises/back/tBarRow.gif";
+import latPullDownImg from "@/../public/images/exercises/back/Lat-Pulldown.gif";
+import oneArmDumbbellRowImg from "@/../public/images/exercises/back/oneArmDumbbellRow.gif";
+import closeGripCableRowImg from "@/../public/images/exercises/back/close-grip-cable-row.gif";
+import neutralGripPullDownImg from "@/../public/images/exercises/back/neutralGripPullDown.gif";
+import overhandBentOverRowImg from "@/../public/images/exercises/back/overhandBentOverRow.gif";
+import reverseLatPullDownImg from "@/../public/images/exercises/back/Reverse-Lat-Pulldown.gif";
+import underhandBentOverRowImg from "@/../public/images/exercises/back/underhandBentOverRow.gif";
 
 export const backExercises: ExerciseDictionary<"back"> = {
   overhandBentOverRow: {
@@ -21,7 +31,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "overhand",
       movementAngle: "horizontal",
     },
-    imageUrl: "",
+    imageUrl: overhandBentOverRowImg,
     videoTutorialUrl: "",
   },
   underhandBentOverRow: {
@@ -44,7 +54,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "underhand",
       movementAngle: "horizontal",
     },
-    imageUrl: "",
+    imageUrl: underhandBentOverRowImg,
     videoTutorialUrl: "",
   },
   oneArmDumbbellRow: {
@@ -67,7 +77,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "neutral",
       movementAngle: "horizontal",
     },
-    imageUrl: "",
+    imageUrl: oneArmDumbbellRowImg,
     videoTutorialUrl: "",
   },
   pullUp: {
@@ -87,7 +97,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "overhand",
       movementAngle: "vertical",
     },
-    imageUrl: "",
+    imageUrl: pullUpImg,
     videoTutorialUrl: "",
   },
   chinUp: {
@@ -107,7 +117,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "underhand",
       movementAngle: "vertical",
     },
-    imageUrl: "",
+    imageUrl: chinUpImg,
     videoTutorialUrl: "",
   },
   tBarRow: {
@@ -127,7 +137,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "neutral",
       movementAngle: "horizontal",
     },
-    imageUrl: "",
+    imageUrl: tBarRowImg,
     videoTutorialUrl: "",
   },
   overhandLatPullDown: {
@@ -150,7 +160,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "overhand",
       movementAngle: "vertical",
     },
-    imageUrl: "",
+    imageUrl: latPullDownImg,
     videoTutorialUrl: "",
   },
   underhandLatPullDown: {
@@ -173,7 +183,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "underhand",
       movementAngle: "vertical",
     },
-    imageUrl: "",
+    imageUrl: reverseLatPullDownImg,
     videoTutorialUrl: "",
   },
   neutralGripLatPullDown: {
@@ -196,7 +206,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "neutral",
       movementAngle: "vertical",
     },
-    imageUrl: "",
+    imageUrl: neutralGripPullDownImg,
     videoTutorialUrl: "",
   },
   seatedCableRow: {
@@ -216,7 +226,7 @@ export const backExercises: ExerciseDictionary<"back"> = {
       movementType: "neutral",
       movementAngle: "horizontal",
     },
-    imageUrl: "",
+    imageUrl: closeGripCableRowImg,
     videoTutorialUrl: "",
   },
 };

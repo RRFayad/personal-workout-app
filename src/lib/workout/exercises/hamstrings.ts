@@ -1,4 +1,8 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import barbellDeadliftImg from "@/../public/images/exercises/hamstrings/Barbell-Deadlift.gif";
+import legCurlImg from "@/../public/images/exercises/hamstrings/Leg-Curl.gif";
+import seatedLegCurlImg from "@/../public/images/exercises/hamstrings/Seated-Leg-Curl.gif";
+import stiffLegDeadliftImg from "@/../public/images/exercises/hamstrings/Stiff-Leg-Deadlift.gif";
 
 export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
   deadlift: {
@@ -18,7 +22,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
       movementType: "hip-hinge",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: barbellDeadliftImg,
   },
   stiffLegDeadlift: {
     exerciseName: { pt: "stiff", en: "stiff-leg deadlift" },
@@ -37,7 +41,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
       movementType: "hip-hinge",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: stiffLegDeadliftImg,
   },
   seatedLegCurl: {
     exerciseName: { pt: "cadeira flexora", en: "seated leg curl" },
@@ -56,7 +60,7 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
       movementType: "curl",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: seatedLegCurlImg,
   },
   lyingLegCurl: {
     exerciseName: { pt: "mesa flexora", en: "lying leg curl" },
@@ -75,6 +79,6 @@ export const hamstringsExercises: ExerciseDictionary<"hamstrings"> = {
       movementType: "curl",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: legCurlImg,
   },
 };

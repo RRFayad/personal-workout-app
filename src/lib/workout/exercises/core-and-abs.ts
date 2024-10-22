@@ -1,4 +1,10 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import abWheelRolloutImg from "@/../public/images/exercises/core-and-abs/Ab-Wheel-Rollout.gif";
+import captainsChairLegRaiseImg from "@/../public/images/exercises/core-and-abs/Captains-Chair-Leg-Raise.gif";
+import crunchImg from "@/../public/images/exercises/core-and-abs/Crunch.gif";
+import plankImg from "@/../public/images/exercises/core-and-abs/plank.gif";
+import standingCableCrunchImg from "@/../public/images/exercises/core-and-abs/Standing-Cable-Crunch.gif";
+import weightedSitupsImg from "@/../public/images/exercises/core-and-abs/weightedsitups.gif";
 
 export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
   plank: {
@@ -18,7 +24,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
       movementType: "plank",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: plankImg,
   },
   captainsChairLegRaise: {
     exerciseName: {
@@ -40,7 +46,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
       movementType: "leg-raises",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: captainsChairLegRaiseImg,
   },
   crunch: {
     exerciseName: { pt: "abdominal", en: "crunch" },
@@ -59,7 +65,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: crunchImg,
   },
   cableCrunch: {
     exerciseName: { pt: "abdominal no cabo", en: "cable crunch" },
@@ -78,7 +84,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: standingCableCrunchImg,
   },
   weightedSitUp: {
     exerciseName: { pt: "abdominal com peso", en: "weighted sit-up" },
@@ -97,7 +103,7 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: weightedSitupsImg,
   },
   abdominalRollout: {
     exerciseName: { pt: "abdominal com roda", en: "abdominal rollout" },
@@ -116,6 +122,6 @@ export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
       movementType: "crunch",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: abWheelRolloutImg,
   },
 };

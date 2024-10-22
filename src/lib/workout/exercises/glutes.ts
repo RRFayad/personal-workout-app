@@ -1,4 +1,7 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import barbellHipThrustImg from "@/../public/images/exercises/glutes/Barbell-Hip-Thrust.gif";
+import cableHipAbductionImg from "@/../public/images/exercises/glutes/Cable-Hip-Abduction.gif";
+import dumbbellStepUpImg from "@/../public/images/exercises/glutes/Dumbeel-Step-Up.gif";
 
 export const glutesExercises: ExerciseDictionary<"glutes"> = {
   hipThrust: {
@@ -18,7 +21,7 @@ export const glutesExercises: ExerciseDictionary<"glutes"> = {
       movementType: "hip-extension",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: barbellHipThrustImg,
   },
   stepUp: {
     exerciseName: { pt: "subida no banco", en: "step-up" },
@@ -37,7 +40,7 @@ export const glutesExercises: ExerciseDictionary<"glutes"> = {
       movementType: "hip-extension",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellStepUpImg,
   },
   cableHipAbduction: {
     exerciseName: {
@@ -59,6 +62,6 @@ export const glutesExercises: ExerciseDictionary<"glutes"> = {
       movementType: "abduction",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: cableHipAbductionImg,
   },
 };

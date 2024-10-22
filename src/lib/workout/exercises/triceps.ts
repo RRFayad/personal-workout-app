@@ -1,5 +1,12 @@
 import { ExerciseDictionary } from "@/types/exercise";
 
+import cableRopeOverheadTricepsExtensionImg from "@/../public/images/exercises/triceps/Cable-Rope-Overhead-Triceps-Extension.gif";
+import closeGripBenchPressImg from "@/../public/images/exercises/triceps/Close-Grip-Bench-Press.gif";
+import ezBarLyingCloseGripTricepsExtensionBehindHeadImg from "@/../public/images/exercises/triceps/EZ-Bar-Lying-Close-Grip-Triceps-Extension-Behind-Head.gif";
+import pushdownImg from "@/../public/images/exercises/triceps/Pushdown.gif";
+import seatedDumbbellTricepsExtensionImg from "@/../public/images/exercises/triceps/Seated-Dumbbell-Triceps-Extension.gif";
+import tricepsDipsImg from "@/../public/images/exercises/triceps/Triceps-Dips.gif";
+
 export const tricepsExercises: ExerciseDictionary<"triceps"> = {
   seatedTricepsPress: {
     exerciseName: {
@@ -20,7 +27,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: seatedDumbbellTricepsExtensionImg,
     videoTutorialUrl: "",
   },
   closeGripBenchPress: {
@@ -42,7 +49,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: closeGripBenchPressImg,
     videoTutorialUrl: "",
   },
   tricepsDips: {
@@ -61,7 +68,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: tricepsDipsImg,
     videoTutorialUrl: "",
   },
   skullcrusher: {
@@ -80,7 +87,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: ezBarLyingCloseGripTricepsExtensionBehindHeadImg,
     videoTutorialUrl: "",
   },
   tricepsPushdown: {
@@ -99,7 +106,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     intensity: "low",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: pushdownImg,
     videoTutorialUrl: "",
   },
   overheadCableTricepsExtension: {
@@ -121,7 +128,7 @@ export const tricepsExercises: ExerciseDictionary<"triceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: cableRopeOverheadTricepsExtensionImg,
     videoTutorialUrl: "",
   },
 };

@@ -1,4 +1,6 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import legPressCalfRaiseImg from "@/../public/images/exercises/calves/Leg-Press-Calf-Raise.gif";
+import leverSeatedCalfRaiseImg from "@/../public/images/exercises/calves/Lever-Seated-Calf-Raise.gif";
 
 export const calvesExercises: ExerciseDictionary<"calves"> = {
   seatedCalfRaise: {
@@ -21,7 +23,7 @@ export const calvesExercises: ExerciseDictionary<"calves"> = {
       movementType: "press/raise",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: leverSeatedCalfRaiseImg,
   },
   legPressCalfRaise: {
     exerciseName: {
@@ -43,6 +45,6 @@ export const calvesExercises: ExerciseDictionary<"calves"> = {
       movementType: "press/raise",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: legPressCalfRaiseImg,
   },
 };

@@ -1,4 +1,12 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import alternatingDumbbellFrontRaiseImg from "@/../public/images/exercises/shoulders/Alternating-Dumbbell-Front-Raise.gif";
+import arnoldPressImg from "@/../public/images/exercises/shoulders/Arnold-Press.gif";
+import barbellStandingMilitaryPressImg from "@/../public/images/exercises/shoulders/Barbell-Standing-Military-Press.gif";
+import cableLateralRaiseImg from "@/../public/images/exercises/shoulders/Cable-Lateral-Raise.gif";
+import dumbbellLateralRaiseImg from "@/../public/images/exercises/shoulders/Dumbbell-Lateral-Raise.gif";
+import dumbbellSeatedBentOverRearDeltRowImg from "@/../public/images/exercises/shoulders/Dumbbell-Seated-Bent-Over-Rear-Delt-Row.gif";
+import dumbbellShoulderPressImg from "@/../public/images/exercises/shoulders/Dumbbell-Shoulder-Press.gif";
+import facePullImg from "@/../public/images/exercises/shoulders/Face-Pull.gif";
 
 export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
   overheadPress: {
@@ -19,7 +27,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: ["seatedDumbbellPress"],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: barbellStandingMilitaryPressImg,
   },
   seatedDumbbellPress: {
     exerciseName: {
@@ -42,7 +50,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: ["overheadPress"],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellShoulderPressImg,
   },
   arnoldPress: {
     exerciseName: { en: "arnold press", pt: "desenvolvimento Arnold" },
@@ -62,7 +70,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: [],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: arnoldPressImg,
   },
   frontRaise: {
     exerciseName: { en: "front raise", pt: "elevação frontal" },
@@ -82,7 +90,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: [],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: alternatingDumbbellFrontRaiseImg,
   },
   lateralRaise: {
     exerciseName: { en: "lateral raise", pt: "elevação lateral" },
@@ -102,7 +110,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: [],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellLateralRaiseImg,
   },
   lateralCableRaise: {
     exerciseName: { en: "lateral cable raise", pt: "elevação lateral no cabo" },
@@ -122,7 +130,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: [],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: cableLateralRaiseImg,
   },
   facePull: {
     exerciseName: { en: "face pull", pt: "face pull" },
@@ -142,7 +150,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: [],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: facePullImg,
   },
   rearDeltRaise: {
     exerciseName: {
@@ -165,6 +173,6 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     alternatives: [],
     measurementType: "reps",
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellSeatedBentOverRearDeltRowImg,
   },
 };

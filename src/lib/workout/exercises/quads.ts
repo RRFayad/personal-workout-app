@@ -1,5 +1,13 @@
 import { ExerciseDictionary } from "@/types/exercise";
 
+import barbellSquatImg from "@/../public/images/exercises/quads/BARBELL-SQUAT.gif";
+import dumbbellBulgarianSplitSquatImg from "@/../public/images/exercises/quads/Dumbbell-Bulgarian-Split-Squat.gif";
+import dumbbellLungesImg from "@/../public/images/exercises/quads/dumbbell-lunges.gif";
+import frontSquatImg from "@/../public/images/exercises/quads/front-squat.gif";
+import legExtensionImg from "@/../public/images/exercises/quads/LEG-EXTENSION.gif";
+import legPressImg from "@/../public/images/exercises/quads/Leg-Press.gif";
+import sledHackSquatImg from "@/../public/images/exercises/quads/Sled-Hack-Squat.gif";
+
 export const quadsExercises: ExerciseDictionary<"quads"> = {
   squat: {
     exerciseName: { pt: "agachamento", en: "squat" },
@@ -18,7 +26,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: barbellSquatImg,
   },
   frontSquat: {
     exerciseName: { pt: "agachamento frontal", en: "front squat" },
@@ -37,7 +45,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: frontSquatImg,
   },
   hackSquat: {
     exerciseName: { pt: "agachamento hack", en: "hack squat" },
@@ -56,7 +64,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: sledHackSquatImg,
   },
   legPress: {
     exerciseName: { pt: "leg press", en: "leg press" },
@@ -75,7 +83,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: legPressImg,
   },
   bulgarianSplitSquat: {
     exerciseName: { pt: "agachamento búlgaro", en: "bulgarian split squat" },
@@ -94,7 +102,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellBulgarianSplitSquatImg,
   },
   lunges: {
     exerciseName: { pt: "avanço", en: "lunges" },
@@ -113,7 +121,7 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "squat/press",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: dumbbellLungesImg,
   },
   legExtension: {
     exerciseName: { pt: "extensão de pernas", en: "leg extension" },
@@ -132,6 +140,6 @@ export const quadsExercises: ExerciseDictionary<"quads"> = {
       movementType: "leg-extension",
     },
     videoTutorialUrl: "",
-    imageUrl: "",
+    imageUrl: legExtensionImg,
   },
 };

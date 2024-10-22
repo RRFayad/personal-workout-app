@@ -1,4 +1,9 @@
 import { ExerciseDictionary } from "@/types/exercise";
+import barbellCurlImg from "@/../public/images/exercises/biceps/Barbell-Curl.gif";
+import dumbbellCurlImg from "@/../public/images/exercises/biceps/Dumbbell-Curl.gif";
+import flexorInclineDumbbellCurlsImg from "@/../public/images/exercises/biceps/Flexor-Incline-Dumbbell-Curls.gif";
+import hammerCurlImg from "@/../public/images/exercises/biceps/Hammer-Curl.gif";
+import zBarCurlImg from "@/../public/images/exercises/biceps/Z-Bar-Curl.gif";
 
 export const bicepsExercises: ExerciseDictionary<"biceps"> = {
   barbellCurl: {
@@ -18,7 +23,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: barbellCurlImg,
     videoTutorialUrl: "",
   },
   ezBarbellCurl: {
@@ -38,7 +43,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: zBarCurlImg,
     videoTutorialUrl: "",
   },
   dumbbellCurl: {
@@ -58,7 +63,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: dumbbellCurlImg,
     videoTutorialUrl: "",
   },
   dumbbellHammerCurl: {
@@ -81,7 +86,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: hammerCurlImg,
     videoTutorialUrl: "",
   },
   inclineDumbbellCurl: {
@@ -104,7 +109,7 @@ export const bicepsExercises: ExerciseDictionary<"biceps"> = {
     intensity: "moderate",
     alternatives: [],
     measurementType: "reps",
-    imageUrl: "",
+    imageUrl: flexorInclineDumbbellCurlsImg,
     videoTutorialUrl: "",
   },
 };

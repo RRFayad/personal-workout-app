@@ -6,7 +6,7 @@ import plankImg from "@/../public/images/exercises/core-and-abs/plank.gif";
 import standingCableCrunchImg from "@/../public/images/exercises/core-and-abs/Standing-Cable-Crunch.gif";
 import weightedSitupsImg from "@/../public/images/exercises/core-and-abs/weightedsitups.gif";
 
-export const absAndCoreExercises: ExerciseDictionary<"absCore"> = {
+export const absCoreExercises: ExerciseDictionary<"absCore"> = {
   plank: {
     exerciseName: { pt: "prancha", en: "plank" },
     mainMuscles: ["abs"],

@@ -2,7 +2,7 @@ export { backExercises as back } from "./back";
 export { bicepsExercises as biceps } from "./biceps";
 export { calvesExercises as calves } from "./calves";
 export { chestExercises as chest } from "./chest";
-export { absAndCoreExercises as absAndCore } from "./core-and-abs";
+export { absCoreExercises as absCore } from "./core-and-abs";
 export { glutesExercises as glutes } from "./glutes";
 export { hamstringsExercises as hamstrings } from "./hamstrings";
 export { quadsExercises as quads } from "./quads";

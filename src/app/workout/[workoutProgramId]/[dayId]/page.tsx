@@ -5,6 +5,7 @@ import { WorkoutProgramDetails } from "@prisma/client";
 import WorkoutDay from "@/components/workout/daily-plan/week-display";
 
 import { Button } from "@/components/ui/button";
+import { MuscularGroupKey } from "@/types/exercise";
 
 interface WorkoutDayPlanPageProps {
   params: {
@@ -46,23 +47,30 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
 
   const populateExerciseDetails = (
     workoutProgramDetails: WorkoutProgramDetails[],
-    exerciseData: any,
+    exerciseCompleteData: any,
   ) => {
-    return workoutProgramDetails.map((exercise: WorkoutProgramDetails) => {
-      const category = Object.keys(exerciseData).find(
-        (key) => exerciseData[key][exercise.exercise_name],
-      );
+    return workoutProgramDetails.map(
+      (exerciseDataFromWorkoutDB: WorkoutProgramDetails) => {
+        const muscularGroup = Object.keys(exerciseCompleteData).find(
+          (key) =>
+            exerciseCompleteData[key][exerciseDataFromWorkoutDB.exercise_name],
+        ) as MuscularGroupKey;
 
-      const exerciseDetails = exerciseData[category!][exercise.exercise_name];
+        const exerciseDetails =
+          exerciseCompleteData[muscularGroup!][
+            exerciseDataFromWorkoutDB.exercise_name
+          ];
 
-      return {
-        ...exercise,
-        exercise_name: exerciseDetails.exerciseName?.en,
-        intensity: exerciseDetails.intensity,
-        equipment: exerciseDetails.equipment,
-        imageUrl: exerciseDetails.imageUrl,
-      };
-    });
+        return {
+          ...exerciseDataFromWorkoutDB,
+          exercise_name: exerciseDetails.exerciseName.en,
+          intensity: exerciseDetails.intensity,
+          equipment: exerciseDetails.equipment,
+          imageUrl: exerciseDetails.imageUrl,
+          muscularGroup: muscularGroup,
+        };
+      },
+    );
   };
 
   const populatedWorkoutProgramDetails = populateExerciseDetails(

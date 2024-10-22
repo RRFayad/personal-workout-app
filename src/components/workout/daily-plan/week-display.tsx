@@ -1,12 +1,14 @@
 "use client";
-import { addDays, differenceInCalendarWeeks, format, subDays } from "date-fns";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useState } from "react";
+import { MuscularGroupKey } from "@/types/exercise";
+import * as exercises from "@/lib/workout/exercises";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { defineExerciseRestPeriod } from "@/lib/workout/helpers/define-rest";
+import { addDays, differenceInCalendarWeeks, format, subDays } from "date-fns";
+import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-ranges";
 
 import { columns } from "@/app/workout/[workoutProgramId]/[dayId]/columns";
-import { defineExerciseRestPeriod } from "@/lib/workout/helpers/define-rest";
 import { DataTable } from "@/app/workout/[workoutProgramId]/[dayId]/data-table";
-import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-ranges";
 
 interface WorkoutData {
   exercise_name: any;
@@ -20,6 +22,7 @@ interface WorkoutData {
   sets_qty: number;
   reps?: { min: number; max: number };
   rest?: number;
+  muscularGroup?: MuscularGroupKey;
 }
 
 interface WeekDisplayProps {
@@ -68,12 +71,33 @@ function WorkoutDay({
   };
 
   const workoutDataWithRepsAndRest = workoutData.map((exerciseData) => {
-    return {
-      ...exerciseData,
-      reps: defineExerciseWeeklyRepRanges(
+    let reps: { min: number; max: number };
+    if (exerciseData.exercise_name === "plank") {
+      reps = defineExerciseWeeklyRepRanges(
         exerciseData.intensity,
         weekDataToBeDisplayed.week,
-      ),
+        "plank",
+      );
+    }
+    if (
+      exerciseData.muscularGroup === "absCore" &&
+      exerciseData.exercise_name !== "plank"
+    ) {
+      reps = defineExerciseWeeklyRepRanges(
+        exerciseData.intensity,
+        weekDataToBeDisplayed.week,
+        "absCore",
+      );
+    }
+    if (exerciseData.muscularGroup !== "absCore") {
+      reps = defineExerciseWeeklyRepRanges(
+        exerciseData.intensity,
+        weekDataToBeDisplayed.week,
+      );
+    }
+    return {
+      ...exerciseData,
+      reps: reps!,
       rest: defineExerciseRestPeriod(exerciseData.intensity),
     };
   });

@@ -37,15 +37,17 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "imageUrl",
-    header: () => (
-      <div className="flex h-full w-64 items-center justify-center gap-x-8">
-        <span></span>
-      </div>
-    ),
+    header: (row) => {
+      return (
+        <div className="flex h-full w-64 items-center justify-center gap-x-8">
+          <span>{}</span>
+        </div>
+      );
+    },
     cell: ({ row }) => {
       return (
         <Image
-          src={row.original.imageUrl === "" ? DummyGif : row.original.imageUrl}
+          src={row.original.imageUrl}
           alt={row.original.exercise_name}
           height={120}
           width={120}

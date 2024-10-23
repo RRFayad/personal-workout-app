@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ColumnDef } from "@tanstack/react-table";
 import DummyGif from "@/../public/images/bench_press.gif";
+import { ChevronRightIcon } from "lucide-react";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -29,7 +30,16 @@ export const columns: ColumnDef<any>[] = [
             </span>
           </div>
           <span className="mt-8 text-xs font-bold text-project-orange">
-            <Link href={"/"}>View Details{">"}</Link>
+            <Link
+              href={"/"}
+              className="flex items-center justify-center align-middle"
+            >
+              View Details{" "}
+              <ChevronRightIcon
+                size={16}
+                className="-ml-[2px] mt-[2px] align-middle"
+              />
+            </Link>
           </span>
         </div>
       );

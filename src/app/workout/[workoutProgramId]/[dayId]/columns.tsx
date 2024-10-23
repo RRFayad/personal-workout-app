@@ -94,9 +94,15 @@ export const columns: ColumnDef<any>[] = [
             ))}
           </div>
           <div className="flex w-16 flex-col items-center gap-y-2 font-semibold text-project-gray">
-            {Array.from({ length: setsQty }, (_, i) => (
-              <p key={i}>{`${row.original.rest}'`}</p>
-            ))}
+            {Array.from({ length: setsQty }, (_, i) => {
+              const minutes = Math.floor(row.original.rest);
+              const seconds = Math.round((row.original.rest - minutes) * 60);
+              return (
+                <p
+                  key={i}
+                >{`${Math.floor(row.original.rest)}'${seconds < 10 ? "0" : ""}${seconds}"`}</p>
+              );
+            })}
           </div>
         </div>
       );

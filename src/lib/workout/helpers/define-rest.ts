@@ -4,7 +4,7 @@ export const defineExerciseRestPeriod = (intensity: IntensityKey) => {
   let restingPeriodInMinutes;
   switch (intensity) {
     case "veryHigh":
-      restingPeriodInMinutes = 4;
+      restingPeriodInMinutes = 3.5;
       break;
     case "high":
       restingPeriodInMinutes = 3;

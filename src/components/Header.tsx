@@ -25,7 +25,7 @@ function Header() {
   return (
     <>
       {process.env.NODE_ENV === "development" && <GridDevTool />}
-      <header className="fixed top-0 z-10 flex h-[72px] w-[100vw] items-center justify-between bg-project-blue px-[120px] dark:bg-background">
+      <header className="fixed top-0 z-10 flex h-[72px] w-[100vw] items-center justify-between bg-project-blue px-[120px] dark:bg-project-dark-blue">
         <Link href={"/"}>
           <div className="-ml-4 flex items-center justify-center">
             <Image

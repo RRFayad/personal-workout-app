@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { MuscularGroupKey } from "@/types/exercise";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { defineExerciseRestPeriod } from "@/lib/workout/helpers/define-rest";
@@ -8,7 +9,6 @@ import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-
 
 import { columns } from "@/app/workout/[workoutProgramId]/[dayId]/columns";
 import { DataTable } from "@/app/workout/[workoutProgramId]/[dayId]/data-table";
-import { useRouter } from "next/navigation";
 
 interface WorkoutData {
   exercise_name: any;

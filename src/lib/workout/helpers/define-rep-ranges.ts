@@ -93,5 +93,6 @@ export const defineExerciseWeeklyRepRanges = (
         break;
     }
   }
-  return weeklyRepRanges[week - 1];
+
+  return weeklyRepRanges[week - 1] || weeklyRepRanges[week];
 };

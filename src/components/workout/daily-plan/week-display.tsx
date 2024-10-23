@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { MuscularGroupKey } from "@/types/exercise";
-import * as exercises from "@/lib/workout/exercises";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { defineExerciseRestPeriod } from "@/lib/workout/helpers/define-rest";
 import { addDays, differenceInCalendarWeeks, format, subDays } from "date-fns";
@@ -9,6 +8,7 @@ import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-
 
 import { columns } from "@/app/workout/[workoutProgramId]/[dayId]/columns";
 import { DataTable } from "@/app/workout/[workoutProgramId]/[dayId]/data-table";
+import { useRouter } from "next/navigation";
 
 interface WorkoutData {
   exercise_name: any;
@@ -44,6 +44,8 @@ function WorkoutDay({
   programEnd,
   workoutData,
 }: WeekDisplayProps) {
+  const router = useRouter();
+
   const [weekDataToBeDisplayed, setWeekDataToBeDisplayed] = useState<WeekData>({
     week: currentWeek,
     weekStartDay: addDays(programStart, 7 * (currentWeek - 1)),
@@ -104,7 +106,14 @@ function WorkoutDay({
 
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="relative flex items-center justify-center">
+        <span
+          className="absolute left-0 top-1 flex cursor-pointer align-middle font-bold text-project-dark-gray"
+          onClick={() => router.back()}
+        >
+          <ChevronLeftIcon />
+          Back
+        </span>
         <ChevronLeftIcon
           className="cursor-pointer"
           size={28}

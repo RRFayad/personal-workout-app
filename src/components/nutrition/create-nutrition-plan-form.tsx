@@ -188,11 +188,26 @@ function CreateNutritionPlanForm() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {Object.values(DietPhase).map((dietPhase) => (
-                      <SelectItem key={dietPhase} value={dietPhase}>
-                        {dietPhase.charAt(0).toUpperCase() + dietPhase.slice(1)}
-                      </SelectItem>
-                    ))}
+                    {Object.values(DietPhase).map((dietPhase) => {
+                      let dietPhaseDescription: string;
+                      if (dietPhase === "bulk") {
+                        dietPhaseDescription = "Gain muscle";
+                      } else if (dietPhase === "cut") {
+                        dietPhaseDescription = "Fat loss";
+                      } else {
+                        dietPhaseDescription = "Maintain body weight";
+                      }
+
+                      return (
+                        <SelectItem key={dietPhase} value={dietPhase}>
+                          {`${
+                            dietPhase.charAt(0).toUpperCase() +
+                            dietPhase.slice(1)
+                          } 
+                          - ${dietPhaseDescription}`}
+                        </SelectItem>
+                      );
+                    })}
                   </SelectContent>
                 </Select>
                 <FormMessage />

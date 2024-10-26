@@ -50,11 +50,6 @@ function CreateNutritionPlanForm() {
     const result = await action.createNutritionPlan(data);
 
     if (result?.errors) {
-      if (result.errors.height) {
-        form.setError("height", {
-          message: result.errors.height[0],
-        });
-      }
       if (result.errors.weight) {
         form.setError("weight", {
           message: result.errors.weight[0],
@@ -70,15 +65,15 @@ function CreateNutritionPlanForm() {
           message: result.errors.dietPhase[0],
         });
       }
-
       if (result.errors._form) {
         form.setError("root", {
           message: result.errors._form[0],
         });
       }
+      setIsSubmitting(false);
+    } else {
+      router.push(paths.workoutSplit());
     }
-    setIsSubmitting(false);
-    router.push(paths.workoutSplit());
   };
 
   return (
@@ -130,19 +125,7 @@ function CreateNutritionPlanForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="height"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Insert your height (in centimeters)</FormLabel>
-                <FormControl>
-                  <Input placeholder="170" type="number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
           <FormField
             control={form.control}
             name="weight"

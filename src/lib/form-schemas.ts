@@ -54,6 +54,10 @@ export const createProfileFormSchema = z.object({
 
       return allowedCharacters.test(fullName) && namesQtd.length > 1;
     }, "Please insert your full name"),
+  height: z.coerce
+    .number({ message: "Required: Please, insert your height" })
+    .gte(140, { message: "Your height must be in centimeters - Min: 140" })
+    .lte(220, { message: "Your height must be in centimeters - Max: 220" }),
   profilePictureUrl: z.string().optional(),
   dateOfBirth: z.date().refine((date) => {
     const today = new Date();
@@ -79,10 +83,6 @@ export const createWorkoutFormSchema = z.object({
 });
 
 export const createNutritionPlanFormSchema = z.object({
-  height: z.coerce
-    .number({ message: "Required: Please, insert your height" })
-    .gte(140, { message: "Your height must be in centimeters - Min: 140" })
-    .lte(220, { message: "Your height must be in centimeters - Max: 220" }),
   weight: z.coerce
     .number({ message: "Required: Please, insert your weight" })
     .gte(45, { message: "Your weight must be in kilograms - Min: 45" })

@@ -57,6 +57,7 @@ function CreateProfileForm() {
     gender: Gender;
     fullName: string;
     dateOfBirth: Date;
+    height: number;
     profilePictureUrl?: string | undefined;
   }) => {
     setIsSubmitting(true);
@@ -73,6 +74,11 @@ function CreateProfileForm() {
       if (result.errors.dateOfBirth) {
         form.setError("dateOfBirth", { message: result.errors.dateOfBirth[0] });
       }
+      if (result.errors.height) {
+        form.setError("height", {
+          message: result.errors.height[0],
+        });
+      }
       if (result.errors.profilePictureUrl) {
         form.setError("profilePictureUrl", {
           message: result.errors.profilePictureUrl[0],
@@ -83,12 +89,13 @@ function CreateProfileForm() {
           message: result.errors._form[0],
         });
       }
+      setIsSubmitting(false);
+    } else {
+      session.update();
+
+      router.push(paths.createWorkout());
+      // setIsSubmitting(false);
     }
-
-    session.update();
-
-    router.push(paths.createWorkout());
-    // setIsSubmitting(false);
   };
 
   return (
@@ -173,6 +180,19 @@ function CreateProfileForm() {
                     ))}
                   </SelectContent>
                 </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="height"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Height (in centimeters)</FormLabel>
+                <FormControl>
+                  <Input placeholder="170" type="number" {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

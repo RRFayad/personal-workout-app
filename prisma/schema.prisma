@@ -98,6 +98,7 @@ model Authenticator {
 model UserProfile {
   user_id       String   @id
   full_name     String
+  height_in_cm  Int
   gender        Gender
   image_url     String?
   date_of_birth DateTime
@@ -136,7 +137,6 @@ model WorkoutProgramDetails {
 
 model NutritionProgram {
   user_id                        String    @id
-  height_in_cm                   Int
   weight_in_kg                   Int
   current_diet_phase             DietPhase
   weekly_training_hours          Int

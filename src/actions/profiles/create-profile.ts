@@ -13,6 +13,7 @@ interface CreateProfileFormState {
     fullName?: string[];
     dateOfBirth?: string[];
     gender?: string[];
+    height?: string[];
     profilePictureUrl?: string[];
     _form?: string[];
   } | null;
@@ -22,10 +23,11 @@ export async function createProfile(formData: {
   fullName: string;
   dateOfBirth: Date;
   gender: Gender;
+  height: number;
   profilePictureUrl?: string | undefined;
 }): Promise<CreateProfileFormState> {
   const session = await getServerSession(authOptions);
-  const { fullName, profilePictureUrl, dateOfBirth, gender } = formData;
+  const { fullName, profilePictureUrl, dateOfBirth, gender, height } = formData;
 
   if (!session || !session.user) {
     return { errors: { _form: ["Unauthorized!"] } };
@@ -37,6 +39,7 @@ export async function createProfile(formData: {
   const inputValidationResult = formSchemas.createProfileFormSchema.safeParse({
     fullName,
     dateOfBirth,
+    height,
     gender,
   });
 
@@ -70,12 +73,14 @@ export async function createProfile(formData: {
         full_name: fullName,
         gender,
         date_of_birth: dateOfBirth,
+        height_in_cm: height,
       },
       create: {
         user_id: userId,
         full_name: fullName,
         gender,
         date_of_birth: dateOfBirth,
+        height_in_cm: height,
       },
     });
   } catch (error) {

@@ -13,7 +13,7 @@ interface CreateWorkoutPlanFormState {
   errors: {
     trainingDays?: string[];
     _form?: string[];
-  } | null;
+  };
 }
 
 export async function createWorkoutPlan(

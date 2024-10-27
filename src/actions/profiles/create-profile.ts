@@ -16,7 +16,7 @@ interface CreateProfileFormState {
     height?: string[];
     profilePictureUrl?: string[];
     _form?: string[];
-  } | null;
+  };
 }
 
 export async function createProfile(formData: {
@@ -89,5 +89,5 @@ export async function createProfile(formData: {
 
   revalidatePath(paths.profile());
   // redirect(paths.profile());
-  return { errors: null };
+  return { errors: {} };
 }

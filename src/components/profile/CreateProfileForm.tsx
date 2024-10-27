@@ -64,7 +64,7 @@ function CreateProfileForm() {
 
     const result = await action.createProfile(data);
 
-    if (result?.errors) {
+    if (Object.keys(result?.errors).length > 0) {
       if (result.errors.fullName) {
         form.setError("fullName", { message: result.errors.fullName[0] });
       }
@@ -92,9 +92,7 @@ function CreateProfileForm() {
       setIsSubmitting(false);
     } else {
       session.update();
-
       router.push(paths.createWorkout());
-      // setIsSubmitting(false);
     }
   };
 

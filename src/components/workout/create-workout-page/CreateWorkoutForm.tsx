@@ -43,7 +43,7 @@ function CreateWorkoutForm() {
 
     const result = await action.createWorkoutPlan(data);
 
-    if (result?.errors) {
+    if (Object.keys(result?.errors).length > 0) {
       if (result.errors.trainingDays) {
         form.setError("trainingDays", {
           message: result.errors.trainingDays[0],

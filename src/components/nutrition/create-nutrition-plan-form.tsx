@@ -49,7 +49,7 @@ function CreateNutritionPlanForm() {
 
     const result = await action.createNutritionPlan(data);
 
-    if (result?.errors) {
+    if (Object.keys(result?.errors).length > 0) {
       if (result.errors.weight) {
         form.setError("weight", {
           message: result.errors.weight[0],

@@ -48,7 +48,7 @@ async function NutritionPage() {
 
   return (
     <>
-      <Card className="col-span-6 col-start-4">
+      <Card className="col-span-12 mx-auto max-w-[520px]">
         <CardHeader>
           <Avatar className="mx-auto mb-2 h-32 w-32">
             <AvatarImage
@@ -63,73 +63,40 @@ async function NutritionPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {/* <ul className="text-sm">
-            <li className="mt-2">
-              <span className="">Name: </span>
-              <span className="font-bold">{userData.profile?.full_name}</span>
-            </li>
-            <li className="mt-2">
-              <span className="">E-mail: </span>
-              <span className="font-bold">{userData.email}</span>
-            </li>
-            <li className="mt-2">
-              <span className="">Height: </span>
-              <span className="font-bold">
-                {userData.profile?.height_in_cm} cm
-              </span>
-            </li>
-            <li className="mt-2">
-              <span className="">Gender: </span>
-              <span className="font-bold capitalize">
-                {userData.profile?.gender}
-              </span>
-            </li>
-            <li className="mt-2">
-              <span className="">Date of birth: </span>
-              <span className="font-bold">
-                {format(userData.profile?.date_of_birth!, "MMM dd, yyy")}
-              </span>
-            </li>
-          </ul>
-          <CardTitle className="mt-4 text-center font-bold capitalize">
-            Nutrition Info
-          </CardTitle> */}
-
-          {/* <h5 className="mt-4">Additional Info:</h5> */}
-          <ul className="text-sm">
+          <ul className="text-[0.825rem] text-project-gray">
             <li className="mt-2">
               <span className="">Current weight: </span>
-              <span className="font-bold">
+              <span className="font-bold text-project-dark-gray">
                 {userData.NutritionProgram?.weight_in_kg} kg
               </span>
             </li>
             <li className="mt-2">
               <span className="">Weekly Training Hours: </span>
-              <span className="font-bold">
+              <span className="font-bold text-project-dark-gray">
                 {userData.NutritionProgram?.weekly_training_hours} hours
               </span>
             </li>
             <li className="mt-2">
               <span className="">Basal Metabolic Rate: </span>
-              <span className="font-bold">
+              <span className="font-bold text-project-dark-gray">
                 {userData.NutritionProgram?.basal_metabolic_rate} calories
               </span>
             </li>
             <li className="mt-2">
               <span className="">Total Daily Energy Expenditure: </span>
-              <span className="font-bold">
+              <span className="font-bold text-project-dark-gray">
                 {userData.NutritionProgram?.total_daily_energy_expenditure}{" "}
                 calories
               </span>
             </li>
           </ul>
         </CardContent>
-        <CardFooter className="flex-col">
-          <CardDescription className="mx-auto">
+        <CardFooter className="flex-col items-start">
+          <CardDescription className="">
             These are the daily intakes for{" "}
-            <span className="font-bold capitalize">{dietPhaseName}:</span>
+            <span className="font-bold">{dietPhaseName}</span>*:
           </CardDescription>
-          <ul className="mt-4 flex w-full items-center justify-around rounded bg-project-blue p-2 font-bold text-white">
+          <ul className="mt-4 flex w-full items-center justify-around rounded bg-project-blue p-2 text-sm font-bold text-white">
             <li className="flex flex-col items-center justify-center">
               <span className="">Calories </span>
               <span className="font-bold">
@@ -155,11 +122,24 @@ async function NutritionPage() {
               </span>
             </li>
           </ul>
-          <Link href={paths.createNutritionPlan()}>
+          <Link href={paths.createNutritionPlan()} className="self-center">
             <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
               Need to update your nutrition plan or goals?
             </p>
           </Link>
+          <p className="mt-6 text-xs text-project-gray">
+            <strong>*Tip: </strong>
+            Start cutting when your body fat is around{" "}
+            <b>
+              {userData.profile?.gender === "male"
+                ? "15% to 17%"
+                : "25% to 27%"}
+            </b>{" "}
+            (or higher) and bulking when your body fat is around{" "}
+            <b>
+              {userData.profile?.gender === "male" ? "8% to 10%" : "18% to 20%"}
+            </b>
+          </p>
         </CardFooter>
       </Card>
     </>

@@ -16,6 +16,8 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import paths from "@/lib/paths";
 
 async function NutritionPage() {
   const session = await getServerSession(authOptions);
@@ -56,13 +58,9 @@ async function NutritionPage() {
               <Loader2 className="h-4 w-4 animate-spin" />
             </AvatarFallback>
           </Avatar>
-          <CardTitle className="mt-4 text-center font-bold capitalize">
-            Nutritional Info
+          <CardTitle className="text-center font-bold capitalize">
+            {`${userData.profile?.full_name.split(" ")[0]}'s`} Nutritional Info:
           </CardTitle>
-          <CardDescription className="mx-auto">
-            These are the nutritional guides for{" "}
-            <span className="font-bold capitalize">{dietPhaseName}</span>
-          </CardDescription>
         </CardHeader>
         <CardContent>
           {/* <ul className="text-sm">
@@ -96,6 +94,8 @@ async function NutritionPage() {
           <CardTitle className="mt-4 text-center font-bold capitalize">
             Nutrition Info
           </CardTitle> */}
+
+          {/* <h5 className="mt-4">Additional Info:</h5> */}
           <ul className="text-sm">
             <li className="mt-2">
               <span className="">Current weight: </span>
@@ -122,41 +122,44 @@ async function NutritionPage() {
                 calories
               </span>
             </li>
-            <li className="mt-2">
-              <h5 className="">Daily Intakes: </h5>
-              <ul className="flex w-full items-center justify-around bg-project-blue p-2 font-bold text-white">
-                <li className="flex flex-col items-center justify-center">
-                  <span className="">Calories </span>
-                  <span className="font-bold">
-                    {userData.NutritionProgram?.daily_kcal} kcal
-                  </span>
-                </li>
-                <li className="flex flex-col items-center justify-center">
-                  <span className="">Proteins </span>
-                  <span className="font-bold">
-                    {userData.NutritionProgram?.daily_proteins} g
-                  </span>
-                </li>
-                <li className="flex flex-col items-center justify-center">
-                  <span className="">Carbs </span>
-                  <span className="font-bold">
-                    {userData.NutritionProgram?.daily_carbs} g
-                  </span>
-                </li>
-                <li className="flex flex-col items-center justify-center">
-                  <span className="">Fats </span>
-                  <span className="font-bold">
-                    {userData.NutritionProgram?.daily_fats} g
-                  </span>
-                </li>
-              </ul>
-            </li>
           </ul>
         </CardContent>
-        <CardFooter>
-          <Button className="mx-auto mt-2 w-44 bg-project-orange hover:brightness-90">
-            Update Infos
-          </Button>
+        <CardFooter className="flex-col">
+          <CardDescription className="mx-auto">
+            These are the daily intakes for{" "}
+            <span className="font-bold capitalize">{dietPhaseName}:</span>
+          </CardDescription>
+          <ul className="mt-4 flex w-full items-center justify-around rounded bg-project-blue p-2 font-bold text-white">
+            <li className="flex flex-col items-center justify-center">
+              <span className="">Calories </span>
+              <span className="font-bold">
+                {userData.NutritionProgram?.daily_kcal} kcal
+              </span>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <span className="">Proteins </span>
+              <span className="font-bold">
+                {userData.NutritionProgram?.daily_proteins} g
+              </span>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <span className="">Carbs </span>
+              <span className="font-bold">
+                {userData.NutritionProgram?.daily_carbs} g
+              </span>
+            </li>
+            <li className="flex flex-col items-center justify-center">
+              <span className="">Fats </span>
+              <span className="font-bold">
+                {userData.NutritionProgram?.daily_fats} g
+              </span>
+            </li>
+          </ul>
+          <Link href={paths.createNutritionPlan()}>
+            <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
+              Need to update your nutrition plan or goals?
+            </p>
+          </Link>
         </CardFooter>
       </Card>
     </>

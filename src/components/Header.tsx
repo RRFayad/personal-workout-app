@@ -43,7 +43,7 @@ function Header() {
             <Link href={paths.workoutSplit()}>
               <h5 className="h-full text-white">WORKOUT</h5>
             </Link>
-            <Link href={paths.workoutSplit()}>
+            <Link href={paths.showNutritionPlan()}>
               <h5 className="h-full text-white">NUTRITION</h5>
             </Link>
             <Link href={paths.profile()}>

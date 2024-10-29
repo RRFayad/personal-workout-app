@@ -7,7 +7,10 @@ const paths = {
   // Server Action - Create Profile
   // Should Revalidate profile
   createProfile() {
-    return "/profile/create-profile";
+    return "/profile/create";
+  },
+  updateProfile() {
+    return "/profile/update";
   },
   // Show Profile & Meal Plan
   // Server Action - Get Infos from the User
@@ -22,7 +25,7 @@ const paths = {
     return "/workout";
   },
   createWorkout() {
-    return "/workout/create-workout";
+    return "/workout/create";
   },
   // Workout Plan
   // Server Action - Get Daily Workout Plan
@@ -40,7 +43,10 @@ const paths = {
     return "/nutrition";
   },
   createNutritionPlan() {
-    return "/nutrition/create-nutrition-plan";
+    return "/nutrition/create";
+  },
+  updateNutritionPlan() {
+    return "/nutrition/update";
   },
   // Valid Exercises List?
   exercisesList() {

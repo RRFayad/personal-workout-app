@@ -48,7 +48,7 @@ async function NutritionPage() {
 
   return (
     <>
-      <Card className="col-span-12 mx-auto max-w-[520px]">
+      <Card className="col-span-12 mx-auto w-[600px]">
         <CardHeader>
           <Avatar className="mx-auto mb-2 h-32 w-32">
             <AvatarImage
@@ -124,7 +124,7 @@ async function NutritionPage() {
           </ul>
           <Link href={paths.createNutritionPlan()} className="self-center">
             <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
-              Need to update your nutrition plan or goals?
+              Need to update your <b>nutrition plan or goals</b>?
             </p>
           </Link>
           <p className="mt-6 text-xs text-project-gray">

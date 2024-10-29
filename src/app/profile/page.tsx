@@ -48,7 +48,7 @@ async function ProfilePage() {
 
   return (
     <>
-      <Card className="col-span-6 col-start-4">
+      <Card className="col-span-12 mx-auto w-[600px]">
         <CardHeader>
           <Avatar className="mx-auto mb-2 h-32 w-32">
             <AvatarImage

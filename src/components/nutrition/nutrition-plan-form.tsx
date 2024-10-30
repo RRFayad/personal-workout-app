@@ -31,7 +31,15 @@ import {
   FormMessage,
 } from "../ui/form";
 
-function CreateNutritionPlanForm() {
+interface ProfileFormProps {
+  updatingUserData: null | {
+    weeklyTrainingHours: number;
+    weight: number;
+    dietPhase: DietPhase;
+  };
+}
+
+function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
   const router = useRouter();
   const session = useSession();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,6 +48,11 @@ function CreateNutritionPlanForm() {
     z.infer<typeof formSchemas.createNutritionPlanFormSchema>
   >({
     resolver: zodResolver(formSchemas.createNutritionPlanFormSchema),
+    defaultValues: {
+      weeklyTrainingHours: updatingUserData?.weeklyTrainingHours || undefined,
+      dietPhase: updatingUserData?.dietPhase || undefined,
+      weight: updatingUserData?.weight || undefined,
+    },
   });
 
   const submitHandler = async (
@@ -47,7 +60,7 @@ function CreateNutritionPlanForm() {
   ) => {
     setIsSubmitting(true);
 
-    const result = await action.createNutritionPlan(data);
+    const result = await action.createOrUpdateNutritionPlan(data);
 
     if (Object.keys(result?.errors).length > 0) {
       if (result.errors.weight) {
@@ -72,7 +85,9 @@ function CreateNutritionPlanForm() {
       }
       setIsSubmitting(false);
     } else {
-      router.push(paths.workoutSplit());
+      updatingUserData
+        ? router.push(paths.showNutritionPlan())
+        : router.push(paths.workoutSplit());
     }
   };
 
@@ -93,12 +108,13 @@ function CreateNutritionPlanForm() {
                 </FormLabel>
 
                 <FormDescription>
-                  <b>Important:</b> Consider 1 hour per workout day you defined
-                  in the previous step
+                  <b>Important:</b> Consider 1 hour per workout day additionally
+                  to other activities / sports.
                 </FormDescription>
 
                 <Select
                   onValueChange={(value) => field.onChange(Number(value))}
+                  defaultValue={field.value.toString()}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -217,4 +233,4 @@ function CreateNutritionPlanForm() {
   );
 }
 
-export default CreateNutritionPlanForm;
+export default NutritionPlanForm;

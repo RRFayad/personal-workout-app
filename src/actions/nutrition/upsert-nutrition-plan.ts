@@ -19,7 +19,7 @@ interface CreateNutritionPlanFormState {
   };
 }
 
-export async function createNutritionPlan(
+export async function createOrUpdateNutritionPlan(
   data: z.infer<typeof formSchemas.createNutritionPlanFormSchema>,
 ): Promise<CreateNutritionPlanFormState> {
   const session = await getServerSession(authOptions);

@@ -122,7 +122,18 @@ async function NutritionPage() {
               </span>
             </li>
           </ul>
-          <Link href={paths.editNutritionPlan()} className="self-center">
+          <Link
+            href={{
+              pathname: paths.editNutritionPlan(),
+              query: {
+                weeklyTrainingHours:
+                  userData.NutritionProgram?.weekly_training_hours,
+                weight: userData.NutritionProgram?.weight_in_kg,
+                dietPhase: userData.NutritionProgram?.current_diet_phase,
+              },
+            }}
+            className="self-center"
+          >
             <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
               Need to update your <b>nutrition plan or goals</b>?
             </p>

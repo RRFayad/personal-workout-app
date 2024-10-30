@@ -26,7 +26,7 @@ function HomePage() {
   const [authProcess, setAuthProcess] = useState<"login" | "signup">("login");
 
   if (session.data?.user) {
-    router.push(paths.createProfile());
+    router.push(paths.editProfile());
   }
 
   const toggleAuthProcess = () => {

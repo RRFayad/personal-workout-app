@@ -19,7 +19,7 @@ interface CreateProfileFormState {
   };
 }
 
-export async function createProfile(formData: {
+export async function createOrUpdateProfile(formData: {
   fullName: string;
   dateOfBirth: Date;
   gender: Gender;
@@ -87,7 +87,7 @@ export async function createProfile(formData: {
     return { errors: { _form: ["Failed to create user profile"] } };
   }
 
-  revalidatePath(paths.profile());
+  revalidatePath(paths.showProfile());
   // redirect(paths.profile());
   return { errors: {} };
 }

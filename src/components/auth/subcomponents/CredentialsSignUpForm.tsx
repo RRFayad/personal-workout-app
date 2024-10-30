@@ -82,7 +82,7 @@ function CredentialsSignUpForm({ className }: CredentialsSignInFormProps) {
       }
 
       if (response?.ok) {
-        router.push(paths.createProfile());
+        router.push(paths.editProfile());
       }
     }
 

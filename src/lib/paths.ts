@@ -6,16 +6,14 @@ const paths = {
   // Form to create profile
   // Server Action - Create Profile
   // Should Revalidate profile
-  createProfile() {
-    return "/profile/create";
+  editProfile() {
+    return "/profile/edit";
   },
-  updateProfile() {
-    return "/profile/update";
-  },
+
   // Show Profile & Meal Plan
   // Server Action - Get Infos from the User
   // No Revalidation
-  profile() {
+  showProfile() {
     return "/profile";
   },
   // Workout Split
@@ -42,11 +40,8 @@ const paths = {
   showNutritionPlan() {
     return "/nutrition";
   },
-  createNutritionPlan() {
-    return "/nutrition/create";
-  },
-  updateNutritionPlan() {
-    return "/nutrition/update";
+  editNutritionPlan() {
+    return "/nutrition/edit";
   },
   // Valid Exercises List?
   exercisesList() {

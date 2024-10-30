@@ -122,7 +122,7 @@ async function NutritionPage() {
               </span>
             </li>
           </ul>
-          <Link href={paths.createNutritionPlan()} className="self-center">
+          <Link href={paths.editNutritionPlan()} className="self-center">
             <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
               Need to update your <b>nutrition plan or goals</b>?
             </p>

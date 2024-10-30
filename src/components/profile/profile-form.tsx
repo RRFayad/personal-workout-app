@@ -39,10 +39,20 @@ import {
   FormMessage,
 } from "../ui/form";
 
-function CreateProfileForm() {
+interface ProfileFormProps {
+  updatingUserData: null | {
+    fullName?: string;
+    height?: number;
+    gender?: Gender;
+    dateOfBirth?: Date;
+  };
+}
+
+function ProfileForm({ updatingUserData }: ProfileFormProps) {
   const router = useRouter();
   const session = useSession();
   const isDarkMode = useDarkModeObserver();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<{
     url: string;
@@ -51,6 +61,13 @@ function CreateProfileForm() {
 
   const form = useForm<z.infer<typeof formSchemas.createProfileFormSchema>>({
     resolver: zodResolver(formSchemas.createProfileFormSchema),
+    defaultValues: {
+      fullName: updatingUserData?.fullName || "",
+      gender: updatingUserData?.gender || undefined,
+      height: updatingUserData?.height || undefined,
+      dateOfBirth: updatingUserData?.dateOfBirth || undefined,
+      profilePictureUrl: undefined,
+    },
   });
 
   const submitHandler = async (data: {
@@ -62,7 +79,7 @@ function CreateProfileForm() {
   }) => {
     setIsSubmitting(true);
 
-    const result = await action.createProfile(data);
+    const result = await action.createOrUpdateProfile(data);
 
     if (Object.keys(result?.errors).length > 0) {
       if (result.errors.fullName) {
@@ -92,7 +109,9 @@ function CreateProfileForm() {
       setIsSubmitting(false);
     } else {
       session.update();
-      router.push(paths.createWorkout());
+      updatingUserData
+        ? router.push(paths.showProfile())
+        : router.push(paths.createWorkout());
     }
   };
 
@@ -263,4 +282,4 @@ function CreateProfileForm() {
   );
 }
 
-export default CreateProfileForm;
+export default ProfileForm;

@@ -29,21 +29,11 @@ async function ProfilePage() {
 
   const userData = await db.user.findFirst({
     where: { id: userId },
-    include: { profile: true, NutritionProgram: true },
+    include: { profile: true },
   });
 
   if (userData === null) {
     redirect("/");
-  }
-
-  let dietPhaseName: "cutting" | "bulking" | "maintaining";
-
-  if (userData.NutritionProgram?.current_diet_phase === "cut") {
-    dietPhaseName = "cutting";
-  } else if (userData.NutritionProgram?.current_diet_phase === "bulk") {
-    dietPhaseName = "bulking";
-  } else {
-    dietPhaseName = "maintaining";
   }
 
   return (
@@ -93,7 +83,17 @@ async function ProfilePage() {
           </ul>
         </CardContent>
         <CardFooter className="flex-col">
-          <Link href={paths.createProfile()}>
+          <Link
+            href={{
+              pathname: paths.editProfile(),
+              query: {
+                fullName: userData.profile?.full_name,
+                height: userData.profile?.height_in_cm,
+                gender: userData.profile?.gender,
+                dateOfBirth: userData.profile?.date_of_birth.toISOString(),
+              },
+            }}
+          >
             <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
               Need to update your{" "}
               <span className="font-bold">Profile Info</span>?

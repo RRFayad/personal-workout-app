@@ -52,7 +52,7 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
     }
 
     if (response?.ok) {
-      router.push(paths.createProfile());
+      router.push(paths.editProfile());
     }
 
     setIsSubmitting(false);

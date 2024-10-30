@@ -46,7 +46,7 @@ function Header() {
             <Link href={paths.showNutritionPlan()}>
               <h5 className="h-full text-white">NUTRITION</h5>
             </Link>
-            <Link href={paths.profile()}>
+            <Link href={paths.showProfile()}>
               <h5 className="text-white">PROFILE</h5>
             </Link>
 

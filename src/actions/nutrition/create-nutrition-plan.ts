@@ -111,6 +111,6 @@ export async function createNutritionPlan(
     };
   }
 
-  revalidatePath(paths.profile());
+  revalidatePath(paths.showProfile());
   return { errors: {} };
 }

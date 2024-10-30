@@ -57,7 +57,7 @@ function CreateWorkoutForm() {
       }
       setIsSubmitting(false);
     } else {
-      router.push(paths.createNutritionPlan());
+      router.push(paths.editNutritionPlan());
     }
     // setIsSubmitting(false);
   };

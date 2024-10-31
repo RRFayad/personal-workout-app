@@ -12,6 +12,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { db } from "@/db";
+import { getServerSession } from "next-auth";
+import authOptions from "@/lib/auth";
+import { redirect } from "next/navigation";
+import paths from "@/lib/paths";
 
 interface EditProfilePageProps {
   params: {};
@@ -23,8 +28,28 @@ interface EditProfilePageProps {
   };
 }
 
-function EditProfilePage({ params, searchParams }: EditProfilePageProps) {
+async function EditProfilePage({ params, searchParams }: EditProfilePageProps) {
+  const session = await getServerSession(authOptions);
+  const userId = session?.user.id;
+
   const isUpdating = Object.keys(searchParams).length > 0;
+
+  const userData = await db.user.findUnique({
+    where: { id: userId },
+    include: {
+      profile: true,
+      WorkoutProgramStructure: true,
+      NutritionProgram: true,
+    },
+  });
+
+  if (!isUpdating && userData?.profile) {
+    !userData.WorkoutProgramStructure && redirect(paths.createWorkout());
+    !userData.NutritionProgram && redirect(paths.editNutritionPlan());
+    userData.WorkoutProgramStructure &&
+      userData.NutritionProgram &&
+      redirect(paths.workoutSplit());
+  }
 
   const updatingUserData = isUpdating
     ? {

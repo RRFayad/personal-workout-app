@@ -42,7 +42,7 @@ export async function credentialsSignUp(
   if (existingUser) {
     return {
       errors: {
-        _form: ["E-mail already exists"],
+        _form: ["E-mail already registered"],
       },
     };
   }

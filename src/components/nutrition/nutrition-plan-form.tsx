@@ -114,7 +114,7 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
 
                 <Select
                   onValueChange={(value) => field.onChange(Number(value))}
-                  defaultValue={field.value.toString()}
+                  defaultValue={field.value?.toString() || undefined}
                 >
                   <FormControl>
                     <SelectTrigger>

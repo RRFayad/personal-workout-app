@@ -88,8 +88,7 @@ async function WorkoutSplitPage() {
         <Card className="relative col-span-6 row-span-1 flex-col overflow-hidden rounded-lg">
           <Image
             src={FemalePic}
-            layout="fill"
-            objectFit="cover"
+            className="absolute inset-0 h-full w-full object-cover"
             alt="Trainind Day Pic"
           />
           <div className="absolute inset-0 flex items-end justify-end bg-black text-5xl text-white opacity-75">

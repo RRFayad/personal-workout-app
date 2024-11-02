@@ -83,6 +83,7 @@ function CredentialsSignUpForm({
           type: "value",
           message: response.error,
         });
+        loadingStateData.setIsLoading(false);
       }
 
       if (response?.ok) {

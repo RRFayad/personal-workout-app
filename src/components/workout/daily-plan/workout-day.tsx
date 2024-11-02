@@ -128,7 +128,7 @@ function WorkoutDay({
       </div>
       <p className="mx-auto mt-1 text-center text-[0.8rem] text-secondary-foreground">
         {weekDataToBeDisplayed.week === 0 &&
-          "Your workout schedule starts on next Monday!"}
+          "Your workout is set to start on next Monday, but you can do it today!"}
         {weekDataToBeDisplayed.week > 0 &&
           `${format(weekDataToBeDisplayed.weekStartDay, "MMM do")} to ${format(weekDataToBeDisplayed.weekEndDay, "MMM do")}`}
       </p>

@@ -6,7 +6,7 @@ function OverallWorkoutInstructions() {
       <CardHeader>
         <CardTitle className="font-extrabold">Overall Workout Tips:</CardTitle>
       </CardHeader>
-      <CardContent className="-mt-2 flex-grow py-2">
+      <CardContent className="-mt-2 mb-2 flex-grow py-2">
         <ul className="flex h-full flex-col justify-between gap-y-2">
           {/* <li>
             <ul>
@@ -50,7 +50,7 @@ function OverallWorkoutInstructions() {
             - Always control the negative, and be explosive on the positive;
           </li>
           <li>
-            - Use the workout tracker feature to track your weights and reps;
+            - Use the workout tracker feature to track your weights and reps.
           </li>
         </ul>
       </CardContent>

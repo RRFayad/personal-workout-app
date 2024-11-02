@@ -79,7 +79,9 @@ async function WorkoutSplitPage() {
   return (
     <>
       <header className="h12 col-span-12 flex justify-center">
-        <h1>{user?.profile?.full_name.split(" ")[0]}'s Training Program</h1>
+        <h1>
+          {user?.profile?.full_name.split(" ")[0]}&apos;s Training Program
+        </h1>
         {/* <Button className="absolute inset-y-0 right-4 top-0 m-auto bg-project-orange hover:bg-project-orange hover:opacity-75">
           Extract to PDF?
         </Button> */}

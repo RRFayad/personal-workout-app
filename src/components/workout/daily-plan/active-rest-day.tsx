@@ -27,12 +27,13 @@ function ActiveRestDay() {
       <h1 className="mt-8">Active Rest Day</h1>
       <p className="mt-4 text-start">
         Use this day for light physical activies, such as walking or light
-        cardio. If you've been skipping abs exercises during the week, consider
-        doing some core exercises, or even focus on <strong>small</strong> and
-        stubborn muscles, such as forearms or side deltoids.
+        cardio. If you&apos;ve been skipping abs exercises during the week,
+        consider doing some core exercises, or even focus on{" "}
+        <strong>small</strong> and stubborn muscles, such as forearms or side
+        deltoids.
       </p>
       <p className="mt-2 self-start">
-        Don't forget that rest is crucial for your performance in the next
+        Don&apos;t forget that rest is crucial for your performance in the next
         workout session and in the long-term progress.
       </p>
     </div>

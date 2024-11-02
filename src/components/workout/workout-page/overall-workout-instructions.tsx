@@ -32,8 +32,8 @@ function OverallWorkoutInstructions() {
             eccentric;
           </li>
           <li>
-            - Technique is the most important variable! Don't sacrifice it for
-            heavier weights;
+            - Technique is the most important variable! Don&apos;t sacrifice it
+            for heavier weights;
           </li>
           <li>
             - For each exercise, always challenge yourself to set a new record

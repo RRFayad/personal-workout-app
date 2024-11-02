@@ -25,7 +25,7 @@ function Header() {
   return (
     <>
       {process.env.NODE_ENV === "development" && <GridDevTool />}
-      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-12 content-start gap-[30px] bg-project-blue px-[120px] dark:bg-project-dark-blue">
+      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-12 content-start gap-[30px] bg-project-blue px-[120px]">
         <Link href={"/"} className="col-span-3 col-start-1">
           <div className="flex items-center justify-start">
             <Image
@@ -65,7 +65,7 @@ function Header() {
               </PopoverTrigger>
               <PopoverContent className="p-3" side="right">
                 <Button
-                  className="h-7 bg-project-dark-blue px-2 hover:bg-project-dark-blue"
+                  className="h-7 bg-project-dark-blue px-2 hover:bg-project-dark-blue dark:bg-project-blue dark:text-white"
                   onClick={async () => {
                     await signOut({ redirect: false });
                     router.push(paths.home());

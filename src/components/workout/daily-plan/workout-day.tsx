@@ -108,7 +108,7 @@ function WorkoutDay({
     <>
       <div className="relative flex items-center justify-center">
         <span
-          className="absolute left-0 top-1 flex cursor-pointer align-middle font-bold text-project-dark-gray"
+          className="absolute left-0 top-1 flex cursor-pointer align-middle font-bold dark:text-secondary-foreground"
           onClick={() => router.back()}
         >
           <ChevronLeftIcon />
@@ -126,7 +126,7 @@ function WorkoutDay({
           onClick={increaseWeekHandler}
         />
       </div>
-      <p className="mx-auto mt-1 text-center text-[0.8rem] text-project-dark-gray">
+      <p className="mx-auto mt-1 text-center text-[0.8rem] text-secondary-foreground">
         {weekDataToBeDisplayed.week === 0 &&
           "Your workout schedule starts on next Monday!"}
         {weekDataToBeDisplayed.week > 0 &&

@@ -31,7 +31,7 @@ export const columns: ColumnDef<any>[] = [
           </div>
           <span className="mt-8 text-xs font-bold text-project-orange">
             <Link
-              href={"/"}
+              href={"/workout"}
               className="flex items-center justify-center align-middle"
             >
               View Details{" "}

@@ -41,8 +41,8 @@
     }
 
     .dark {
-      --project-dark-blue: 210 100% 10%; /* Darken and reduce brightness */
-      --project-blue: 210 100% 30%; /* Darken slightly */
+      --project-dark-blue: 210 100% 5%; /* Darken and reduce brightness */
+      --project-blue: 210 100% 10%; /* Darken slightly */
       --project-green: 100 69% 35%; /* Darken the green */
       --project-light-green: 95 100% 65%; /* Darken slightly */
       --project-dark-gray: 0 0% 10%; /* Make the dark gray even darker */

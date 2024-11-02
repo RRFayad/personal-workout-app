@@ -55,27 +55,27 @@ async function ProfilePage() {
         <CardContent>
           <ul className="text-sm">
             <li className="mt-2">
-              <span className="">Name: </span>
+              <span className="text-project-gray">Name: </span>
               <span className="font-bold">{userData.profile?.full_name}</span>
             </li>
             <li className="mt-2">
-              <span className="">E-mail: </span>
+              <span className="text-project-gray">E-mail: </span>
               <span className="font-bold">{userData.email}</span>
             </li>
             <li className="mt-2">
-              <span className="">Height: </span>
+              <span className="text-project-gray">Height: </span>
               <span className="font-bold">
                 {userData.profile?.height_in_cm} cm
               </span>
             </li>
             <li className="mt-2">
-              <span className="">Gender: </span>
+              <span className="text-project-gray">Gender: </span>
               <span className="font-bold capitalize">
                 {userData.profile?.gender}
               </span>
             </li>
             <li className="mt-2">
-              <span className="">Date of birth: </span>
+              <span className="text-project-gray">Date of birth: </span>
               <span className="font-bold">
                 {format(userData.profile?.date_of_birth!, "MMM dd, yyy")}
               </span>
@@ -94,7 +94,7 @@ async function ProfilePage() {
               },
             }}
           >
-            <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
+            <p className="mt-6 cursor-pointer text-sm hover:font-semibold hover:underline">
               Need to update your{" "}
               <span className="font-bold">Profile Info</span>?
             </p>

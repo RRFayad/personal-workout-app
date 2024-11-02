@@ -35,9 +35,9 @@ function WeekDaysSplit({
           return (
             <li className="cursor-pointer" key={item}>
               <Link href={`/workout/${redirectPath}`}>
-                <Card className="flex h-full flex-row items-center justify-between px-4 py-2 shadow-md hover:bg-project-light-gray active:bg-project-blue active:opacity-65">
+                <Card className="group flex h-full flex-row items-center justify-between px-4 py-2 shadow-md hover:bg-project-light-gray active:bg-project-blue active:opacity-65 dark:hover:bg-project-blue">
                   <div className="flex flex-row items-center justify-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-project-blue text-sm font-bold text-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-project-blue text-sm font-bold text-white dark:group-hover:bg-project-dark-blue">
                       {item}
                     </div>
                     <span className="ml-8 text-lg font-bold">
@@ -46,7 +46,7 @@ function WeekDaysSplit({
                   </div>
                   <ChevronRight
                     size={30}
-                    className="text-project-blue"
+                    className="text-project-blue dark:group-hover:text-project-dark-blue"
                   ></ChevronRight>
                 </Card>
               </Link>

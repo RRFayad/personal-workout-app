@@ -58,7 +58,7 @@ async function NutritionPage() {
               <Loader2 className="h-4 w-4 animate-spin" />
             </AvatarFallback>
           </Avatar>
-          <CardTitle className="text-center font-bold capitalize">
+          <CardTitle className="text-center font-bold capitalize text-card-foreground">
             {`${userData.profile?.full_name.split(" ")[0]}'s`} Nutritional Info:
           </CardTitle>
         </CardHeader>
@@ -66,25 +66,25 @@ async function NutritionPage() {
           <ul className="text-[0.825rem] text-project-gray">
             <li className="mt-2">
               <span className="">Current weight: </span>
-              <span className="font-bold text-project-dark-gray">
+              <span className="font-bold text-card-foreground">
                 {userData.NutritionProgram?.weight_in_kg} kg
               </span>
             </li>
             <li className="mt-2">
               <span className="">Weekly Training Hours: </span>
-              <span className="font-bold text-project-dark-gray">
+              <span className="font-bold text-card-foreground">
                 {userData.NutritionProgram?.weekly_training_hours} hours
               </span>
             </li>
             <li className="mt-2">
               <span className="">Basal Metabolic Rate: </span>
-              <span className="font-bold text-project-dark-gray">
+              <span className="font-bold text-card-foreground">
                 {userData.NutritionProgram?.basal_metabolic_rate} calories
               </span>
             </li>
             <li className="mt-2">
               <span className="">Total Daily Energy Expenditure: </span>
-              <span className="font-bold text-project-dark-gray">
+              <span className="font-bold text-card-foreground">
                 {userData.NutritionProgram?.total_daily_energy_expenditure}{" "}
                 calories
               </span>
@@ -92,7 +92,7 @@ async function NutritionPage() {
           </ul>
         </CardContent>
         <CardFooter className="flex-col items-start">
-          <CardDescription className="">
+          <CardDescription className="text-project-gray">
             These are the daily intakes for{" "}
             <span className="font-bold">{dietPhaseName}</span>*:
           </CardDescription>
@@ -134,7 +134,7 @@ async function NutritionPage() {
             }}
             className="self-center"
           >
-            <p className="mt-6 cursor-pointer text-sm text-project-gray hover:font-semibold hover:underline">
+            <p className="mt-6 cursor-pointer text-sm hover:font-semibold hover:underline">
               Need to update your <b>nutrition plan or goals</b>?
             </p>
           </Link>

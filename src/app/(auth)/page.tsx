@@ -23,6 +23,7 @@ import {
 function HomePage() {
   const router = useRouter();
   const session = useSession();
+  const [isLoading, setIsLoading] = useState(false);
   const [authProcess, setAuthProcess] = useState<"login" | "signup">("login");
 
   if (session.data?.user) {
@@ -53,10 +54,21 @@ function HomePage() {
         <CardDescription>Unleash your natural strength</CardDescription>
       </CardHeader>
       <CardContent>
-        <AuthButtons authProcess={authProcess} />
+        <AuthButtons
+          authProcess={authProcess}
+          loadingStateData={{ isLoading, setIsLoading }}
+        />
         <hr className="my-4 mt-6" />
-        {authProcess === "login" && <CredentialsSignInForm />}
-        {authProcess === "signup" && <CredentialsSignUpForm />}
+        {authProcess === "login" && (
+          <CredentialsSignInForm
+            loadingStateData={{ isLoading, setIsLoading }}
+          />
+        )}
+        {authProcess === "signup" && (
+          <CredentialsSignUpForm
+            loadingStateData={{ isLoading, setIsLoading }}
+          />
+        )}
       </CardContent>
       <CardFooter className="flex items-center justify-center">
         <button onClick={toggleAuthProcess}>

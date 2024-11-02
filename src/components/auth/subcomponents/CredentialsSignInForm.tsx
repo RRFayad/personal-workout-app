@@ -25,10 +25,13 @@ import {
 interface CredentialsSignInFormProps {
   className?: string;
   authProcess?: "login" | "signup";
+  loadingStateData: { isLoading: boolean; setIsLoading: Function };
 }
 
-function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+function CredentialsSignInForm({
+  className,
+  loadingStateData,
+}: CredentialsSignInFormProps) {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchemas.credentialsSignIn>>({
@@ -40,7 +43,7 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
   });
 
   const submitHandler = async (data: { email: string; password: string }) => {
-    setIsSubmitting(true);
+    loadingStateData.setIsLoading(true);
 
     const response = await signIn("credentials", { ...data, redirect: false });
 
@@ -54,8 +57,6 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
     if (response?.ok) {
       router.push(paths.editProfile());
     }
-
-    setIsSubmitting(false);
   };
 
   return (
@@ -100,8 +101,8 @@ function CredentialsSignInForm({ className }: CredentialsSignInFormProps) {
           </div>
         )}
 
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? (
+        <Button type="submit" disabled={loadingStateData.isLoading}>
+          {loadingStateData.isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Logging in...

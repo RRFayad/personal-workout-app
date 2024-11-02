@@ -29,7 +29,7 @@ async function ProfilePage() {
 
   const userData = await db.user.findFirst({
     where: { id: userId },
-    include: { profile: true },
+    include: { profile: true, NutritionProgram: true },
   });
 
   if (userData === null) {

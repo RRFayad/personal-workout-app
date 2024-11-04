@@ -25,8 +25,8 @@ function Header() {
   return (
     <>
       {process.env.NODE_ENV === "development" && <GridDevTool />}
-      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-12 content-start gap-[30px] bg-project-blue px-[120px]">
-        <Link href={"/"} className="col-span-3 col-start-1">
+      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-12 content-start gap-[30px] bg-project-blue lg:px-[30px] xl:px-[120px]">
+        <Link href={"/"} className="col-span-5 col-start-1">
           <div className="flex items-center justify-start">
             <Image
               src={whiteHeadLogo}
@@ -35,7 +35,9 @@ function Header() {
               height={80}
               className="-ml-[10px] mr-[6px]"
             ></Image>
-            <h2 className="align-middle text-white">Primal Trainer</h2>
+            <h2 className="overflow-auto align-middle text-white">
+              Primal Trainer
+            </h2>
           </div>
         </Link>
         {session.data?.user && (

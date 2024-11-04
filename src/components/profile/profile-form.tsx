@@ -135,6 +135,7 @@ function ProfileForm({ updatingUserData }: ProfileFormProps) {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="dateOfBirth"
@@ -176,6 +177,19 @@ function ProfileForm({ updatingUserData }: ProfileFormProps) {
           />
           <FormField
             control={form.control}
+            name="height"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Height (in centimeters)</FormLabel>
+                <FormControl>
+                  <Input placeholder="170" type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="gender"
             render={({ field }) => (
               <FormItem>
@@ -201,19 +215,7 @@ function ProfileForm({ updatingUserData }: ProfileFormProps) {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="height"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Height (in centimeters)</FormLabel>
-                <FormControl>
-                  <Input placeholder="170" type="number" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+
           <FormField
             control={form.control}
             name="profilePictureUrl"

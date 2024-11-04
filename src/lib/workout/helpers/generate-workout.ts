@@ -8,7 +8,7 @@ const openai = new OpenAI({
 });
 
 export const generateWorkout = async (prompt: string, maxRetries = 5) => {
-  //   console.log(prompt);
+  console.log(prompt);
   let retries = 0;
   let workoutProgram;
   while (retries < maxRetries) {
@@ -16,7 +16,7 @@ export const generateWorkout = async (prompt: string, maxRetries = 5) => {
       model: "gpt-4o",
       messages: [{ role: "assistant", content: prompt }],
       response_format: { type: "json_object" },
-      temperature: 0,
+      temperature: 1,
     });
 
     workoutProgram = JSON.parse(response.choices[0].message.content as string);

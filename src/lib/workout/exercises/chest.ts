@@ -5,6 +5,8 @@ import chestDipsImg from "@/../public/images/exercises/chest/Chest-Dips.gif";
 import dumbbellPressImg from "@/../public/images/exercises/chest/Dumbbell-Press.gif";
 import inclineBarbellBenchPressImg from "@/../public/images/exercises/chest/Incline-Barbell-Bench-Press.gif";
 import inclineDumbbellPressImg from "@/../public/images/exercises/chest/Incline-Dumbbell-Press.gif";
+import chestPressMachineImg from "@/../public/images/exercises/chest/Chest-Press-Machine.gif";
+import inclinedChestPressMachineImg from "@/../public/images/exercises/chest/Incline-Chest-Press-Machine.gif";
 
 export const chestExercises: ExerciseDictionary<"chest"> = {
   benchPress: {
@@ -110,6 +112,53 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     alternatives: [],
     videoTutorialUrl: "",
     imageUrl: chestDipsImg,
+  },
+  chestPressMachine: {
+    exerciseName: {
+      en: "chest press machine",
+      pt: "supino reto máquina",
+    },
+    mainMuscles: ["chest"],
+    auxiliarMuscles: ["triceps", "deltoids"],
+    category: "compound",
+    equipment: "machine",
+    intensity: "moderate",
+    execution: {
+      en: "Sit on the chest press machine with your back firmly against the pad. Hold the handles with a grip that aligns with your chest. Press the handles forward until your arms are fully extended, then return to the starting position in a controlled manner.",
+      pt: "Sente-se na máquina de press de peito com as costas firmemente apoiadas no encosto. Segure as alças com uma pegada alinhada com o peito. Pressione as alças para a frente até que os braços estejam totalmente estendidos e, em seguida, retorne à posição inicial de forma controlada.",
+    },
+    movementVariables: {
+      movementType: "press",
+      movementAngle: "flat",
+    },
+    measurementType: "reps",
+    alternatives: [],
+    videoTutorialUrl: "",
+    imageUrl: chestPressMachineImg,
+  },
+
+  inclinedChestPressMachine: {
+    exerciseName: {
+      en: "inclined chest press machine",
+      pt: "supino inclinado máquina",
+    },
+    mainMuscles: ["upperChest"],
+    auxiliarMuscles: ["triceps", "deltoids"],
+    category: "compound",
+    equipment: "machine",
+    intensity: "moderate",
+    execution: {
+      en: "Sit on an incline chest press machine with your back against the pad and hold the handles with a grip aligned to your chest. Press the handles forward until your arms are fully extended, then return to the starting position in a controlled manner.",
+      pt: "Sente-se na máquina de press de peito inclinado com as costas apoiadas no encosto e segure as alças com uma pegada alinhada ao peito. Pressione as alças para a frente até que os braços estejam completamente estendidos e retorne à posição inicial de forma controlada.",
+    },
+    movementVariables: {
+      movementType: "press",
+      movementAngle: "inclined",
+    },
+    measurementType: "reps",
+    alternatives: [],
+    videoTutorialUrl: "",
+    imageUrl: inclinedChestPressMachineImg,
   },
   crossOver: {
     exerciseName: { en: "crossover", pt: "crossover" },

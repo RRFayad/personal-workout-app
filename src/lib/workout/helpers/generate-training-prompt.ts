@@ -18,11 +18,13 @@ export const generateTrainingPrompt = (
   const prompt = `
 I need you to generate a workout plan based on the given 'Valid Exercises List' and 'Training Specification'. Follow these steps:
 
-Select exercises from the 'Valid Exercises List' according to the 'Training Specification' for each day.
+1. Select exercises from the 'Valid Exercises List' according to the 'Training Specification' for each day.
 
-Never repeat the same exercise for the same day.
+2. Never repeat the same exercise for the same day.
 
-Ensure the plan adheres to the specific instructions and general rules.
+3. Ensure the plan adheres to the specific instructions and general rules.
+
+4. Ensure the exercise selection is randomized, will following the other rules (so each workout plan must be different)
 
 Valid Exercises List (by muscle group):
   "

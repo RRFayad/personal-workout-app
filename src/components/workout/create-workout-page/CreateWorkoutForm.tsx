@@ -59,7 +59,7 @@ function CreateWorkoutForm() {
     } else {
       router.push(paths.editNutritionPlan());
     }
-    // setIsSubmitting(false);
+    setIsSubmitting(false);
   };
 
   return (

@@ -98,7 +98,7 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     auxiliarMuscles: [],
     category: "isolated",
     equipment: "dumbbells",
-    intensity: "moderate",
+    intensity: "low",
     execution: {
       en: "Stand with a dumbbell in each hand at your side, palms facing each other. Raise your arms to the sides until they are parallel to the floor, keeping them slightly bent at the elbows. Lower them back to the starting position.",
       pt: "Em pé, com um haltere em cada mão ao lado do corpo, palmas viradas uma para a outra. Eleve os braços para os lados até que estejam paralelos ao chão, mantendo-os levemente dobrados nos cotovelos. Abaixe-os de volta à posição inicial.",

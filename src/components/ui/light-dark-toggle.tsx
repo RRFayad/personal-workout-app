@@ -16,22 +16,24 @@ function LightDarkToggle({ className }: LightDarkToggleProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger
-          className={className}
-          onClick={() => {
-            setIsDarkMode((prevState) => !prevState);
-            document.body.classList.toggle("dark");
-          }}
-        >
-          {isDarkMode ? <SunIcon /> : <MoonIcon />}
-        </TooltipTrigger>
-        <TooltipContent>
-          {isDarkMode ? "Enable light mode" : "Enable dark mode"}
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <div className="hidden md:inline-block">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger
+            className={className}
+            onClick={() => {
+              setIsDarkMode((prevState) => !prevState);
+              document.body.classList.toggle("dark");
+            }}
+          >
+            {isDarkMode ? <SunIcon /> : <MoonIcon />}
+          </TooltipTrigger>
+          <TooltipContent>
+            {isDarkMode ? "Enable light mode" : "Enable dark mode"}
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
   );
 }
 

@@ -25,9 +25,14 @@ function Header() {
   return (
     <>
       {process.env.NODE_ENV === "development" && <GridDevTool />}
-      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-12 content-start gap-[30px] bg-project-blue lg:px-[30px] xl:px-[120px]">
+      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-1 bg-project-blue md:grid-cols-12 md:content-start md:gap-[30px] lg:px-[30px] xl:px-[120px]">
+        <div className="fixed left-4 top-[25.5px] md:hidden">
+          <div className="mb-[6px] h-[3px] w-[26px] bg-white"></div>
+          <div className="mb-[6px] h-[3px] w-[22px] bg-white"></div>
+          <div className="h-[3px] w-[26px] bg-white"></div>
+        </div>
         <Link href={"/"} className="col-span-5 col-start-1">
-          <div className="flex items-center justify-start">
+          <div className="flex items-center justify-center md:justify-start">
             <Image
               src={whiteHeadLogo}
               alt="logo"
@@ -41,7 +46,7 @@ function Header() {
           </div>
         </Link>
         {session.data?.user && (
-          <nav className="col-end-13 flex flex-row items-center justify-end gap-10">
+          <nav className="col-end-13 hidden flex-row items-center justify-end gap-10 md:flex">
             <Link href={paths.workoutSplit()}>
               <h5 className="h-full text-white">WORKOUT</h5>
             </Link>
@@ -80,7 +85,7 @@ function Header() {
           </nav>
         )}
         {!session.data?.user && (
-          <nav className="col-span-2 col-start-11 flex flex-row items-center justify-end gap-x-6">
+          <nav className="col-span-2 col-start-11 hidden flex-row items-center justify-end gap-x-6 md:flex">
             <Link href={"/"}>
               <h5 className="text-white">SIGN IN</h5>
             </Link>

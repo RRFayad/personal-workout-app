@@ -28,7 +28,7 @@ export default function AuthButtons({
     <>
       <div className="m-auto flex w-full items-center justify-center gap-4">
         <Button
-          className="h-[36px] w-[240px]"
+          className="h-[36px] w-[220px]"
           onClick={() => loginHandler("google")}
           disabled={loadingStateData.isLoading}
         >
@@ -44,14 +44,16 @@ export default function AuthButtons({
                 alt="Google"
                 className="mr-2"
               />
-              {authProcess === "signup"
-                ? "Sign up with Google"
-                : "Log in with Google"}
+              <span className="">
+                {authProcess === "signup"
+                  ? "Sign up with Google"
+                  : "Log in with Google"}
+              </span>
             </>
           )}
         </Button>
         <Button
-          className="h-[36px] w-[240px]"
+          className="h-[36px] w-[220px]"
           size={"sm"}
           onClick={() => loginHandler("github")}
           disabled={loadingStateData.isLoading}
@@ -69,9 +71,11 @@ export default function AuthButtons({
                 alt="Github"
                 className="mr-2"
               />
-              {authProcess === "signup"
-                ? "Sign up with Github"
-                : "Log in with Github"}
+              <span className="">
+                {authProcess === "signup"
+                  ? "Sign up with Github"
+                  : "Log in with Github"}
+              </span>
             </>
           )}
         </Button>

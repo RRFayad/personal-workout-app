@@ -61,7 +61,7 @@ async function EditProfilePage({ params, searchParams }: EditProfilePageProps) {
     : null;
 
   return (
-    <Card className="col-span-12 mx-auto my-auto mt-[3vh] h-min w-[480px]">
+    <Card className="mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[480px]">
       <CardHeader className="-mb-2 flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}

@@ -67,7 +67,7 @@ function CreateWorkoutForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((formData) => submitHandler(formData))}
-          className="flex min-w-[320px] flex-col gap-4"
+          className="flex flex-col gap-4 md:min-w-[320px]"
         >
           <FormField
             control={form.control}
@@ -78,17 +78,18 @@ function CreateWorkoutForm() {
                   How many days per week do you plan to work out?
                 </FormLabel>
 
-                <FormDescription>
-                  <b>Important:</b> There must be a rest day after 3 days of
-                  continuous workouts.
-                </FormDescription>
-
                 <Select
                   onValueChange={(value) => field.onChange(Number(value))}
                 >
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select your training frequency (without considering cardio)" />
+                    <SelectTrigger className="text-[0.825rem] md:text-base">
+                      <SelectValue
+                        placeholder={
+                          <span>
+                            Select your training frequency (without cardio)
+                          </span>
+                        }
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -101,6 +102,10 @@ function CreateWorkoutForm() {
                     ))}
                   </SelectContent>
                 </Select>
+                <FormDescription className="text-[0.825rem] md:text-base">
+                  <b>Important:</b> It's recommended to have a rest day after 3
+                  days of continuous workouts.
+                </FormDescription>
 
                 <FormMessage />
               </FormItem>

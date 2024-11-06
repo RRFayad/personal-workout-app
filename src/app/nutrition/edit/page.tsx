@@ -35,7 +35,8 @@ async function EditNutritionPlanPage({
     : null;
 
   return (
-    <Card className="col-span-12 mx-auto my-auto mt-[3vh] h-min w-[600px]">
+    /*mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[480px]*/
+    <Card className="mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[600px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher
           DarkModeImage={WhiteLogo}
@@ -45,7 +46,7 @@ async function EditNutritionPlanPage({
           alt="logo"
           className="mb-2"
         />
-        <CardTitle>
+        <CardTitle className="text-center">
           {isUpdating ? "Update" : "Create"} Your Nutrition Plan
         </CardTitle>
         {!isUpdating && (

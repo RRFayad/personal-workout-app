@@ -96,7 +96,7 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((formData) => submitHandler(formData))}
-          className="flex min-w-[320px] flex-col gap-4"
+          className="flex flex-col gap-4 md:min-w-[320px]"
         >
           <FormField
             control={form.control}
@@ -107,17 +107,12 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
                   How many hours per week in total will you exercise?
                 </FormLabel>
 
-                <FormDescription>
-                  <b>Important:</b> Consider 1 hour per workout day additionally
-                  to other activities / sports.
-                </FormDescription>
-
                 <Select
                   onValueChange={(value) => field.onChange(Number(value))}
                   defaultValue={field.value?.toString() || undefined}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="text-[0.825rem] md:text-base">
                       <SelectValue placeholder="Select your training total volume" />
                     </SelectTrigger>
                   </FormControl>
@@ -136,7 +131,10 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
                     ))}
                   </SelectContent>
                 </Select>
-
+                <FormDescription className="text-[0.825rem] md:text-base">
+                  <b>Important:</b> Consider 1 hour per workout day additionally
+                  to other activities / sports.
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -149,7 +147,12 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
               <FormItem>
                 <FormLabel>Insert your current weight (in kilograms)</FormLabel>
                 <FormControl>
-                  <Input placeholder="70" type="number" {...field} />
+                  <Input
+                    className="text-[0.825rem] md:text-base"
+                    placeholder="70"
+                    type="number"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -162,27 +165,13 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Define Your Diet Phase</FormLabel>
-                <FormDescription>
-                  <b>Obs:</b> We recommend to start cutting when your body fat
-                  is around{" "}
-                  <b>
-                    {session.data?.user.gender === "male"
-                      ? "15% to 17%"
-                      : "25% to 27%"}
-                  </b>{" "}
-                  (or higher) and bulking when your body fat is around{" "}
-                  <b>
-                    {session.data?.user.gender === "male"
-                      ? "8% to 10%"
-                      : "18% to 20%"}
-                  </b>
-                </FormDescription>
+
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="text-[0.825rem] md:text-base">
                       <SelectValue placeholder="Select current diet phase" />
                     </SelectTrigger>
                   </FormControl>
@@ -209,6 +198,21 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
                     })}
                   </SelectContent>
                 </Select>
+                <FormDescription className="text-[0.825rem] md:text-base">
+                  <b>Obs:</b> We recommend to start cutting when your body fat
+                  is around{" "}
+                  <b>
+                    {session.data?.user.gender === "male"
+                      ? "15% to 17%"
+                      : "25% to 27%"}
+                  </b>{" "}
+                  (or higher) and bulking when your body fat is around{" "}
+                  <b>
+                    {session.data?.user.gender === "male"
+                      ? "8% to 10%"
+                      : "18% to 20%"}
+                  </b>
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}

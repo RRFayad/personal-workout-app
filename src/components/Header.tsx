@@ -31,16 +31,23 @@ function Header() {
           <div className="mb-[6px] h-[3px] w-[22px] bg-white"></div>
           <div className="h-[3px] w-[26px] bg-white"></div>
         </div>
-        <Link href={"/"} className="col-span-5 col-start-1">
-          <div className="flex items-center justify-center md:justify-start">
+        <Link href={"/"} className="col-start-1 md:col-span-5">
+          <div className="flex h-full items-center justify-center md:justify-start">
             <Image
               src={whiteHeadLogo}
               alt="logo"
               width={80}
               height={80}
-              className="-ml-[10px] mr-[6px]"
-            ></Image>
-            <h2 className="overflow-auto align-middle text-white">
+              className="-ml-[10px] mr-[6px] hidden md:block"
+            />
+            <Image
+              src={whiteHeadLogo}
+              alt="logo"
+              width={60}
+              height={60}
+              className="-ml-[10px] mr-[6px] md:hidden"
+            />
+            <h2 className="align-middle text-[1.375rem] text-white md:text-3xl">
               Primal Trainer
             </h2>
           </div>

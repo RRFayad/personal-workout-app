@@ -38,9 +38,10 @@ async function ProfilePage() {
 
   return (
     <>
-      <Card className="col-span-12 mx-auto w-[600px]">
+      {/* mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[480px] */}
+      <Card className="mx-auto md:col-span-12 md:w-[600px]">
         <CardHeader>
-          <Avatar className="mx-auto mb-2 h-32 w-32">
+          <Avatar className="mx-auto mb-2 h-20 w-20 md:h-32 md:w-32">
             <AvatarImage
               src={userData?.image || "https://github.com/shadcn.png"}
             />
@@ -48,7 +49,7 @@ async function ProfilePage() {
               <Loader2 className="h-4 w-4 animate-spin" />
             </AvatarFallback>
           </Avatar>
-          <CardTitle className="text-center font-bold capitalize">
+          <CardTitle className="text-center text-xl font-bold capitalize md:text-2xl">
             {`${userData.profile?.full_name.split(" ")[0]}'s`} Personal Info:
           </CardTitle>
         </CardHeader>

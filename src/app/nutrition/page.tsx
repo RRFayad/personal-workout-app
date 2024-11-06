@@ -48,9 +48,9 @@ async function NutritionPage() {
 
   return (
     <>
-      <Card className="col-span-12 mx-auto w-[600px]">
-        <CardHeader>
-          <Avatar className="mx-auto mb-2 h-32 w-32">
+      <Card className="mx-auto md:col-span-12 md:w-[600px]">
+        <CardHeader className="">
+          <Avatar className="mx-auto mb-2 h-20 w-20 md:h-32 md:w-32">
             <AvatarImage
               src={userData?.image || "https://github.com/shadcn.png"}
             />
@@ -58,12 +58,12 @@ async function NutritionPage() {
               <Loader2 className="h-4 w-4 animate-spin" />
             </AvatarFallback>
           </Avatar>
-          <CardTitle className="text-center font-bold capitalize text-card-foreground">
+          <CardTitle className="text-center text-xl font-bold capitalize text-card-foreground md:text-2xl">
             {`${userData.profile?.full_name.split(" ")[0]}'s`} Nutritional Info:
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ul className="text-[0.825rem] text-project-gray">
+          <ul className="text-sm text-project-gray">
             <li className="mt-2">
               <span className="">Current weight: </span>
               <span className="font-bold text-card-foreground">
@@ -96,7 +96,7 @@ async function NutritionPage() {
             These are the daily intakes for{" "}
             <span className="font-bold">{dietPhaseName}</span>*:
           </CardDescription>
-          <ul className="mt-4 flex w-full items-center justify-around rounded bg-project-blue p-2 text-sm font-bold text-white">
+          <ul className="mt-4 flex w-full min-w-[240px] items-center justify-around rounded bg-project-blue py-2 text-sm font-bold text-white">
             <li className="flex flex-col items-center justify-center">
               <span className="">Calories </span>
               <span className="font-bold">
@@ -135,7 +135,7 @@ async function NutritionPage() {
             className="self-center"
           >
             <p className="mt-6 cursor-pointer text-sm hover:font-semibold hover:underline">
-              Need to update your <b>nutrition plan or goals</b>?
+              Need to update your <b>nutrition plan or goals?</b>
             </p>
           </Link>
           <p className="mt-6 text-xs text-project-gray">

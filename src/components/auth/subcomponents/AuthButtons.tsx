@@ -28,7 +28,7 @@ export default function AuthButtons({
     <>
       <div className="m-auto flex w-full items-center justify-center gap-4">
         <Button
-          className="h-[36px] w-[220px]"
+          className="w-[30vw] md:h-[36px] md:w-[220px]"
           onClick={() => loginHandler("google")}
           disabled={loadingStateData.isLoading}
         >
@@ -44,16 +44,20 @@ export default function AuthButtons({
                 alt="Google"
                 className="mr-2"
               />
-              <span className="">
-                {authProcess === "signup"
-                  ? "Sign up with Google"
-                  : "Log in with Google"}
-              </span>
+              {authProcess === "signup" ? (
+                <span>
+                  Sign up <span className="hidden md:inline">with Google</span>
+                </span>
+              ) : (
+                <span>
+                  Log in <span className="hidden md:inline">with Google</span>
+                </span>
+              )}
             </>
           )}
         </Button>
         <Button
-          className="h-[36px] w-[220px]"
+          className="w-[30vw] md:h-[36px] md:w-[220px]"
           size={"sm"}
           onClick={() => loginHandler("github")}
           disabled={loadingStateData.isLoading}
@@ -71,11 +75,15 @@ export default function AuthButtons({
                 alt="Github"
                 className="mr-2"
               />
-              <span className="">
-                {authProcess === "signup"
-                  ? "Sign up with Github"
-                  : "Log in with Github"}
-              </span>
+              {authProcess === "signup" ? (
+                <span>
+                  Sign up <span className="hidden md:inline">with Github</span>
+                </span>
+              ) : (
+                <span>
+                  Log in <span className="hidden md:inline">with Github</span>
+                </span>
+              )}
             </>
           )}
         </Button>

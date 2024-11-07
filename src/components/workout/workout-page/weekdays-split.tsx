@@ -27,10 +27,6 @@ function WeekDaysSplit({
           // console.log(redirectPath);
 
           const redirectPath = `${workoutProgramId}/${index + 1}`;
-          // const redirectPath =
-          //   workoutDayName !== "Active Rest Day"
-          //     ? `${workoutProgramId}/${index + 1}`
-          //     : "active-rest-day";
 
           return (
             <li className="cursor-pointer" key={item}>
@@ -47,7 +43,7 @@ function WeekDaysSplit({
                   <ChevronRight
                     size={30}
                     className="text-project-blue dark:group-hover:text-project-dark-blue"
-                  ></ChevronRight>
+                  />
                 </Card>
               </Link>
             </li>

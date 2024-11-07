@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import Image from "next/image";
+import { format } from "date-fns";
 import authOptions from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { WorkoutProgramDetails } from "@prisma/client";
@@ -29,7 +30,7 @@ async function WorkoutSplitPage() {
     },
   });
 
-  const getWorkoutDaysDataFromWorkoutProgramDetails = (
+  const getWorkoutDaysNumberAndNameList = (
     WorkoutProgramDetails: WorkoutProgramDetails[],
   ): { dayNumber: number; dayName: string }[] => {
     const trainingDays: { dayNumber: number; dayName: string }[] = [];
@@ -49,17 +50,8 @@ async function WorkoutSplitPage() {
       }
     }
 
-    // Fill in any missing days (1 through 7) as "Active Rest"
-    for (let i = 1; i <= 7; i++) {
-      if (!trainingDays.some((day) => day.dayNumber === i)) {
-        trainingDays.push({ dayNumber: i, dayName: "Active Rest" });
-      }
-    }
-
     // Sort daysNames by dayNumber to maintain order
     trainingDays.sort((a, b) => a.dayNumber - b.dayNumber);
-
-    // console.log(trainingDays);
 
     return trainingDays;
   };
@@ -67,19 +59,19 @@ async function WorkoutSplitPage() {
   const workoutProgramId = user?.WorkoutProgramStructure?.workout_program_id;
   let workoutProgramDetails: WorkoutProgramDetails[];
   if (!user?.WorkoutProgramStructure?.WorkoutProgramDetails) {
-    // Define what to do (probably, simply redirect to CreaeWorkoutPage)
+    redirect(paths.createWorkout());
   } else {
     workoutProgramDetails = user.WorkoutProgramStructure.WorkoutProgramDetails;
   }
 
-  const trainingDaysData = getWorkoutDaysDataFromWorkoutProgramDetails(
+  const trainingDaysData = getWorkoutDaysNumberAndNameList(
     workoutProgramDetails!,
   );
 
   return (
     <>
       <header className="h12 col-span-12 flex justify-center">
-        <h1>
+        <h1 className="text-center">
           {user?.profile?.full_name.split(" ")[0]}&apos;s Training Program
         </h1>
         {/* <Button className="absolute inset-y-0 right-4 top-0 m-auto bg-project-orange hover:bg-project-orange hover:opacity-75">
@@ -93,14 +85,14 @@ async function WorkoutSplitPage() {
             className="absolute inset-0 h-full w-full object-cover"
             alt="Trainind Day Pic"
           />
-          <div className="absolute inset-0 flex items-end justify-end bg-black text-5xl text-white opacity-75">
+          <div className="absolute inset-0 flex items-end justify-end bg-black text-4xl text-white opacity-75">
             <span className="mb-6 mr-12">
-              {
+              {`${format(new Date(), "EEEE")}: ${
                 trainingDaysData.find(
                   (day) =>
                     day.dayNumber === ((new Date().getDay() + 6) % 7) + 1,
                 )!.dayName
-              }
+              }`}
             </span>
           </div>
         </Card>

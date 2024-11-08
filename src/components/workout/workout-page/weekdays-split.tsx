@@ -1,8 +1,9 @@
+import Link from "next/link";
+import paths from "@/lib/paths";
 import { ChevronRight } from "lucide-react";
 import { WorkoutProgramDetails } from "@prisma/client";
 
 import { Card } from "@/components/ui/card";
-import Link from "next/link";
 
 interface WeekDaysSplitProps {
   trainingDaysData: { dayNumber: number; dayName: string }[];
@@ -26,11 +27,9 @@ function WeekDaysSplit({
           )!.dayName;
           // console.log(redirectPath);
 
-          const redirectPath = `${workoutProgramId}/${index + 1}`;
-
           return (
             <li className="cursor-pointer" key={item}>
-              <Link href={`/workout/${redirectPath}`}>
+              <Link href={paths.workoutDay(workoutProgramId, index + 1)}>
                 <Card className="group flex h-full flex-row items-center justify-between px-4 py-2 shadow-md hover:bg-project-light-gray active:bg-project-blue active:opacity-65 dark:hover:bg-project-blue">
                   <div className="flex flex-row items-center justify-center">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-project-blue text-sm font-bold text-white dark:group-hover:bg-project-dark-blue">

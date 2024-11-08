@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import Image from "next/image";
-import { format } from "date-fns";
+import { format, getDay } from "date-fns";
 import authOptions from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { WorkoutProgramDetails } from "@prisma/client";
@@ -13,6 +13,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 import paths from "@/lib/paths";
+import Link from "next/link";
 
 async function WorkoutSplitPage() {
   const session = await getServerSession(authOptions);
@@ -57,6 +58,11 @@ async function WorkoutSplitPage() {
   };
 
   const workoutProgramId = user?.WorkoutProgramStructure?.workout_program_id;
+  const todaysWeekDay = {
+    name: format(new Date(), "EEEE"),
+    number: new Date().getDay() === 0 ? 7 : new Date().getDay(),
+  };
+
   let workoutProgramDetails: WorkoutProgramDetails[];
   if (!user?.WorkoutProgramStructure?.WorkoutProgramDetails) {
     redirect(paths.createWorkout());
@@ -79,22 +85,26 @@ async function WorkoutSplitPage() {
         </Button> */}
       </header>{" "}
       <div className="col-span-6 grid grid-rows-2 gap-y-4">
-        <Card className="relative col-span-6 row-span-1 flex-col overflow-hidden rounded-lg">
-          <Image
-            src={FemalePic}
-            className="absolute inset-0 h-full w-full object-cover"
-            alt="Trainind Day Pic"
-          />
-          <div className="absolute inset-0 flex items-end justify-end bg-black text-4xl text-white opacity-75">
-            <span className="mb-6 mr-12">
-              {`${format(new Date(), "EEEE")}: ${
-                trainingDaysData.find(
-                  (day) =>
-                    day.dayNumber === ((new Date().getDay() + 6) % 7) + 1,
-                )!.dayName
-              }`}
-            </span>
-          </div>
+        <Card className="relative col-span-6 row-span-1 cursor-pointer flex-col overflow-hidden rounded-lg">
+          <Link
+            href={paths.workoutDay(workoutProgramId!, todaysWeekDay.number)}
+          >
+            <Image
+              src={FemalePic}
+              className="absolute inset-0 h-full w-full object-cover"
+              alt="Trainind Day Pic"
+            />
+            <div className="absolute inset-0 flex items-end justify-end bg-black text-4xl text-white opacity-75">
+              <span className="mb-6 mr-12">
+                {`${todaysWeekDay.name} | ${
+                  trainingDaysData.find(
+                    (day) =>
+                      day.dayNumber === ((new Date().getDay() + 6) % 7) + 1,
+                  )!.dayName
+                }`}
+              </span>
+            </div>
+          </Link>
         </Card>
         <OverallWorkoutInstructions />
       </div>

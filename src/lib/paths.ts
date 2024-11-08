@@ -28,8 +28,8 @@ const paths = {
   // Workout Plan
   // Server Action - Get Daily Workout Plan
   // No Revalidation
-  workoutDay(dayId: string) {
-    return `/workout/day/${dayId}`;
+  workoutDay(workoutId: string | number, dayId: string | number) {
+    return `/workout/${workoutId}/${dayId}`;
   },
   // Workout Tracker
   // Server Action - Get Daily Workout Plan + Get Last History? + Post Workout

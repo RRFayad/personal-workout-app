@@ -27,7 +27,7 @@ export default async function RootLayout({
         <body className={`${openSans.className} `}>
           <Header />
           <LightDarkToggle className="fixed right-6 top-[calc(50%-12px)]" />
-          <main className="mt-[80px] grid min-h-[calc(100vh-80px)] w-screen grid-cols-1 content-start px-[5vw] py-[2.5vw] md:grid-cols-12 md:gap-[30px] md:py-2 lg:px-[30px] xl:px-[120px]">
+          <main className="mt-[80px] flex min-h-[calc(100vh-80px)] w-screen flex-col content-start px-[5vw] py-[2.5vw] md:grid md:grid-cols-12 md:gap-[30px] md:px-[60px] md:py-2 xl:px-[120px]">
             {children}
           </main>
         </body>

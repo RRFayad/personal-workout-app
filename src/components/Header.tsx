@@ -26,12 +26,12 @@ function Header() {
     <>
       {process.env.NODE_ENV === "development" && <GridDevTool />}
       <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-1 bg-project-blue md:grid-cols-12 md:content-start md:gap-[30px] lg:px-[30px] xl:px-[120px]">
-        <div className="fixed left-4 top-[25.5px] md:hidden">
+        <div className="fixed right-[5vw] top-[25.5px] md:hidden">
           <div className="mb-[6px] h-[3px] w-[26px] bg-white"></div>
-          <div className="mb-[6px] h-[3px] w-[22px] bg-white"></div>
+          <div className="mb-[6px] ml-[4px] h-[3px] w-[22px] bg-white"></div>
           <div className="h-[3px] w-[26px] bg-white"></div>
         </div>
-        <Link href={"/"} className="col-start-1 md:col-span-5">
+        <Link href={"/"} className="md:col-span-5 md:col-start-1">
           <div className="flex h-full items-center justify-center md:justify-start">
             <Image
               src={whiteHeadLogo}
@@ -40,14 +40,14 @@ function Header() {
               height={80}
               className="-ml-[10px] mr-[6px] hidden md:block"
             />
-            <Image
-              src={whiteHeadLogo}
-              alt="logo"
-              width={60}
-              height={60}
-              className="-ml-[10px] mr-[6px] md:hidden"
-            />
             <h2 className="align-middle text-[1.375rem] text-white md:text-3xl">
+              <Image
+                src={whiteHeadLogo}
+                alt="logo"
+                width={60}
+                height={60}
+                className="fixed left-[calc(50vw-60px-80px-16px)] top-2 md:hidden"
+              />
               Primal Trainer
             </h2>
           </div>

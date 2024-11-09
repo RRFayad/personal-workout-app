@@ -40,14 +40,14 @@ function Header() {
               height={80}
               className="-ml-[10px] mr-[6px] hidden md:block"
             />
+            <Image
+              src={whiteHeadLogo}
+              alt="logo"
+              width={60}
+              height={60}
+              className="fixed left-[5vw] top-2 md:hidden"
+            />
             <h2 className="align-middle text-[1.375rem] text-white md:text-3xl">
-              <Image
-                src={whiteHeadLogo}
-                alt="logo"
-                width={60}
-                height={60}
-                className="fixed left-[calc(50vw-60px-80px-16px)] top-2 md:hidden"
-              />
               Primal Trainer
             </h2>
           </div>

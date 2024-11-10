@@ -7,13 +7,15 @@ import { WorkoutProgramDetails } from "@prisma/client";
 import MalePic from "@/../public/images/male/push.jpg";
 import FemalePic from "@/../public/images/female/push.avif";
 import WeekDaysSplit from "@/components/workout/workout-page/weekdays-split";
-import OverallWorkoutInstructions from "@/components/workout/workout-page/overall-workout-instructions";
+import WorkoutInstructionsCard from "@/components/workout/workout-page/workout-instructions-card";
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { redirect } from "next/navigation";
 import paths from "@/lib/paths";
 import Link from "next/link";
+import MobileWorkoutInstructionsCard from "@/components/workout/workout-page/mobile-workout-instructions-card";
+import MobileWeekdaysSplit from "@/components/workout/workout-page/mobile-weekdays-split";
 
 async function WorkoutSplitPage() {
   const session = await getServerSession(authOptions);
@@ -77,25 +79,25 @@ async function WorkoutSplitPage() {
   return (
     <>
       <header className="h12 col-span-12 flex justify-center">
-        <h1 className="text-center">
+        <h1 className="-mt-2 mb-2 text-center md:mb-0">
           {user?.profile?.full_name.split(" ")[0]}&apos;s Training Program
         </h1>
         {/* <Button className="absolute inset-y-0 right-4 top-0 m-auto bg-project-orange hover:bg-project-orange hover:opacity-75">
           Extract to PDF?
         </Button> */}
       </header>{" "}
-      <div className="col-span-6 grid grid-rows-2 gap-y-4">
-        <Card className="relative col-span-6 row-span-1 cursor-pointer flex-col overflow-hidden rounded-lg">
+      <div className="flex flex-col gap-y-4 md:col-span-6 md:grid md:grid-rows-2">
+        <Card className="relative min-h-48 cursor-pointer overflow-hidden rounded-lg md:col-span-6 md:row-span-1">
           <Link
             href={paths.workoutDay(workoutProgramId!, todaysWeekDay.number)}
           >
             <Image
               src={FemalePic}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 w-full md:h-full md:object-cover"
               alt="Trainind Day Pic"
             />
-            <div className="absolute inset-0 flex items-end justify-end bg-black text-4xl text-white opacity-75">
-              <span className="mb-6 mr-12">
+            <div className="absolute inset-0 flex items-end justify-end bg-black text-2xl text-white opacity-75 md:text-4xl">
+              <span className="mb-2 mr-4 md:mb-6 md:mr-12">
                 {`${todaysWeekDay.name} | ${
                   trainingDaysData.find(
                     (day) =>
@@ -106,14 +108,26 @@ async function WorkoutSplitPage() {
             </div>
           </Link>
         </Card>
-        <OverallWorkoutInstructions />
+        <>
+          <WorkoutInstructionsCard />
+        </>
       </div>
-      <div className="col-span-6">
-        <WeekDaysSplit
-          trainingDaysData={trainingDaysData!}
-          workoutProgramDetails={workoutProgramDetails!}
-          workoutProgramId={workoutProgramId!}
-        />
+      <div className="md:col-span-6">
+        <>
+          <WeekDaysSplit
+            trainingDaysData={trainingDaysData!}
+            workoutProgramDetails={workoutProgramDetails!}
+            workoutProgramId={workoutProgramId!}
+            className="hidden md:grid"
+          />
+          <MobileWeekdaysSplit
+            trainingDaysData={trainingDaysData!}
+            workoutProgramDetails={workoutProgramDetails!}
+            workoutProgramId={workoutProgramId!}
+            className="grid md:hidden"
+          />
+          <MobileWorkoutInstructionsCard />
+        </>
       </div>
     </>
   );

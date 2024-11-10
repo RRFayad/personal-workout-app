@@ -5,22 +5,24 @@ import { WorkoutProgramDetails } from "@prisma/client";
 
 import { Card } from "@/components/ui/card";
 
-interface WeekDaysSplitProps {
+export interface WeekDaysSplitProps {
   trainingDaysData: { dayNumber: number; dayName: string }[];
   workoutProgramDetails: WorkoutProgramDetails[];
   workoutProgramId: number;
+  className?: string;
 }
 
 function WeekDaysSplit({
   trainingDaysData,
   workoutProgramDetails,
   workoutProgramId,
+  className,
 }: WeekDaysSplitProps) {
   const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
   return (
     <>
-      <ul className="grid h-full min-h-[75vh] grid-rows-7 gap-y-4">
+      <ul className={`h-full min-h-[75vh] grid-rows-7 gap-y-4 ${className}`}>
         {weekdays.map((item, index) => {
           const workoutDayName = trainingDaysData.find(
             (day) => day.dayNumber === index + 1,

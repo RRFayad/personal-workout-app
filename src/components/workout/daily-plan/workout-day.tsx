@@ -7,8 +7,8 @@ import { defineExerciseRestPeriod } from "@/lib/workout/helpers/define-rest";
 import { addDays, differenceInCalendarWeeks, format, subDays } from "date-fns";
 import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-ranges";
 
-import { columns } from "@/app/workout/[workoutProgramId]/[dayId]/columns";
-import { DataTable } from "@/app/workout/[workoutProgramId]/[dayId]/data-table";
+import { columns } from "@/components/workout/daily-plan/columns";
+import { DataTable } from "@/components/workout/daily-plan/data-table";
 
 interface WorkoutData {
   exercise_name: any;
@@ -106,9 +106,9 @@ function WorkoutDay({
 
   return (
     <>
-      <div className="relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center pt-4 md:pt-0">
         <span
-          className="absolute left-0 top-1 flex cursor-pointer align-middle font-bold dark:text-secondary-foreground"
+          className="absolute left-0 top-0 flex cursor-pointer align-middle text-base font-bold dark:text-secondary-foreground lg:top-1"
           onClick={() => router.back()}
         >
           <ChevronLeftIcon />

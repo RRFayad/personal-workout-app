@@ -16,7 +16,7 @@ function LightDarkToggle({ className }: LightDarkToggleProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
-    <div className="hidden md:inline-block">
+    <div className="hidden lg:inline-block">
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger

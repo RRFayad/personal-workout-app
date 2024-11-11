@@ -16,7 +16,7 @@ function MobileWeekdaysSplit({
   className,
 }: WeekDaysSplitProps) {
   return (
-    <Card className="relative row-span-1 row-start-2 my-2 flex h-full flex-col md:hidden">
+    <Card className="relative row-span-1 row-start-2 my-2 flex h-full flex-col lg:hidden">
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger className="flex justify-center">

@@ -3,7 +3,7 @@ import WorkoutInstructions from "./workout-instructions";
 
 function WorkoutInstructionsCard() {
   return (
-    <Card className="relative col-span-6 row-span-1 row-start-2 hidden h-full flex-col md:flex">
+    <Card className="relative col-span-6 row-span-1 row-start-2 hidden h-full flex-col lg:flex">
       <CardHeader>
         <CardTitle className="font-extrabold">Overall Workout Tips:</CardTitle>
       </CardHeader>

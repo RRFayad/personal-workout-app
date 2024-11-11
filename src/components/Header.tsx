@@ -25,35 +25,35 @@ function Header() {
   return (
     <>
       {process.env.NODE_ENV === "development" && <GridDevTool />}
-      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-1 bg-project-blue md:grid-cols-12 md:content-start md:gap-[30px] lg:px-[30px] xl:px-[120px]">
-        <div className="fixed right-[5vw] top-[25.5px] md:hidden">
+      <header className="fixed top-0 z-10 grid h-[72px] w-[100vw] grid-cols-1 bg-project-blue lg:grid-cols-12 lg:content-start lg:gap-[30px] lg:px-[30px] xl:px-[120px]">
+        <div className="fixed right-[5vw] top-[25.5px] lg:hidden">
           <div className="mb-[6px] h-[3px] w-[26px] bg-white"></div>
           <div className="mb-[6px] ml-[4px] h-[3px] w-[22px] bg-white"></div>
           <div className="h-[3px] w-[26px] bg-white"></div>
         </div>
-        <Link href={"/"} className="md:col-span-5 md:col-start-1">
-          <div className="flex h-full items-center justify-center md:justify-start">
+        <Link href={"/"} className="lg:col-span-5 lg:col-start-1">
+          <div className="flex h-full items-center justify-center lg:justify-start">
             <Image
               src={whiteHeadLogo}
               alt="logo"
               width={80}
               height={80}
-              className="-ml-[10px] mr-[6px] hidden md:block"
+              className="-ml-[10px] mr-[6px] hidden lg:block"
             />
             <Image
               src={whiteHeadLogo}
               alt="logo"
               width={60}
               height={60}
-              className="fixed left-[5vw] top-2 md:hidden"
+              className="fixed left-[5vw] top-2 lg:hidden"
             />
-            <h2 className="align-middle text-[1.375rem] text-white md:text-3xl">
+            <h2 className="align-middle text-[1.375rem] text-white lg:text-3xl">
               Primal Trainer
             </h2>
           </div>
         </Link>
         {session.data?.user && (
-          <nav className="col-end-13 hidden flex-row items-center justify-end gap-10 md:flex">
+          <nav className="col-end-13 hidden flex-row items-center justify-end gap-10 lg:flex">
             <Link href={paths.workoutSplit()}>
               <h5 className="h-full text-white">WORKOUT</h5>
             </Link>
@@ -92,7 +92,7 @@ function Header() {
           </nav>
         )}
         {!session.data?.user && (
-          <nav className="col-span-2 col-start-11 hidden flex-row items-center justify-end gap-x-6 md:flex">
+          <nav className="col-span-2 col-start-11 hidden flex-row items-center justify-end gap-x-6 lg:flex">
             <Link href={"/"}>
               <h5 className="text-white">SIGN IN</h5>
             </Link>

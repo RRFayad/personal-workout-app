@@ -92,7 +92,7 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
 
   return (
     <>
-      <div className="col-span-10 col-start-2 mx-auto w-full">
+      <div className="mx-auto w-full md:col-span-12 md:col-start-1 xl:col-span-10 xl:col-start-2">
         <WorkoutDay
           currentWeek={currentWeek}
           programStart={programStart}

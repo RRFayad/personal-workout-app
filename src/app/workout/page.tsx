@@ -79,25 +79,25 @@ async function WorkoutSplitPage() {
   return (
     <>
       <header className="h12 col-span-12 flex justify-center">
-        <h1 className="-mt-2 mb-2 text-center md:mb-0">
+        <h1 className="-mt-2 mb-2 text-center lg:mb-0">
           {user?.profile?.full_name.split(" ")[0]}&apos;s Training Program
         </h1>
         {/* <Button className="absolute inset-y-0 right-4 top-0 m-auto bg-project-orange hover:bg-project-orange hover:opacity-75">
           Extract to PDF?
         </Button> */}
       </header>{" "}
-      <div className="flex flex-col gap-y-4 md:col-span-6 md:grid md:grid-rows-2">
-        <Card className="relative min-h-48 cursor-pointer overflow-hidden rounded-lg md:col-span-6 md:row-span-1">
+      <div className="flex flex-col gap-y-4 lg:col-span-6 lg:grid lg:grid-rows-2">
+        <Card className="relative min-h-48 cursor-pointer overflow-hidden rounded-lg lg:col-span-6 lg:row-span-1">
           <Link
             href={paths.workoutDay(workoutProgramId!, todaysWeekDay.number)}
           >
             <Image
               src={FemalePic}
-              className="absolute inset-0 w-full md:h-full md:object-cover"
+              className="absolute inset-0 w-full lg:h-full lg:object-cover"
               alt="Trainind Day Pic"
             />
-            <div className="absolute inset-0 flex items-end justify-end bg-black text-2xl text-white opacity-75 md:text-4xl">
-              <span className="mb-2 mr-4 md:mb-6 md:mr-12">
+            <div className="absolute inset-0 flex items-end justify-end bg-black text-2xl text-white opacity-75 lg:text-4xl">
+              <span className="mb-2 mr-4 lg:mb-6 lg:mr-12">
                 {`${todaysWeekDay.name} | ${
                   trainingDaysData.find(
                     (day) =>
@@ -112,19 +112,19 @@ async function WorkoutSplitPage() {
           <WorkoutInstructionsCard />
         </>
       </div>
-      <div className="md:col-span-6">
+      <div className="lg:col-span-6">
         <>
           <WeekDaysSplit
             trainingDaysData={trainingDaysData!}
             workoutProgramDetails={workoutProgramDetails!}
             workoutProgramId={workoutProgramId!}
-            className="hidden md:grid"
+            className="hidden lg:grid"
           />
           <MobileWeekdaysSplit
             trainingDaysData={trainingDaysData!}
             workoutProgramDetails={workoutProgramDetails!}
             workoutProgramId={workoutProgramId!}
-            className="grid md:hidden"
+            className="grid lg:hidden"
           />
           <MobileWorkoutInstructionsCard />
         </>

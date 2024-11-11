@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 
-import Header from "@/components/Header";
+import Header from "@/components/nav/header";
 import { getServerSession } from "next-auth";
 import Provider from "@/components/auth/Provider";
 import LightDarkToggle from "@/components/ui/light-dark-toggle";

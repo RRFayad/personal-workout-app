@@ -31,9 +31,9 @@ export default function AuthButtons({
 
   return (
     <>
-      <div className="m-auto flex w-full items-center justify-center gap-4">
+      <div className="m-auto flex w-full items-center justify-center gap-x-4">
         <Button
-          className="w-[30vw] md:h-[36px] md:w-[220px]"
+          className="h-[36px] w-[30vw] md:w-full"
           onClick={() => loginHandler("google")}
           disabled={!!loadingStateData.loadingProvider}
         >
@@ -62,8 +62,7 @@ export default function AuthButtons({
           )}
         </Button>
         <Button
-          className="w-[30vw] md:h-[36px] md:w-[220px]"
-          size={"sm"}
+          className="h-[36px] w-[30vw] md:w-full"
           onClick={() => loginHandler("github")}
           disabled={!!loadingStateData.loadingProvider}
         >

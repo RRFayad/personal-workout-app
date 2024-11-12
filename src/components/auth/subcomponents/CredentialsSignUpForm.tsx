@@ -25,7 +25,12 @@ import {
 
 interface CredentialsSignInFormProps {
   className?: string;
-  loadingStateData: { isLoading: boolean; setIsLoading: Function };
+  loadingStateData: {
+    loadingProvider: "credentials" | "google" | "github" | null;
+    setLoadingProvider: React.Dispatch<
+      React.SetStateAction<"credentials" | "google" | "github" | null>
+    >;
+  };
 }
 
 function CredentialsSignUpForm({
@@ -42,7 +47,7 @@ function CredentialsSignUpForm({
   const submitHandler = async (
     data: z.infer<typeof formSchemas.credentialsSignUp>,
   ) => {
-    loadingStateData.setIsLoading(true);
+    loadingStateData.setLoadingProvider("credentials");
 
     const result = await actions.credentialsSignUp(data); // Signup action
 
@@ -83,7 +88,7 @@ function CredentialsSignUpForm({
           type: "value",
           message: response.error,
         });
-        loadingStateData.setIsLoading(false);
+        loadingStateData.setLoadingProvider(null);
       }
 
       if (response?.ok) {
@@ -148,8 +153,8 @@ function CredentialsSignUpForm({
           </div>
         )}
 
-        <Button type="submit" disabled={loadingStateData.isLoading}>
-          {loadingStateData.isLoading ? (
+        <Button type="submit" disabled={!!loadingStateData.loadingProvider}>
+          {loadingStateData.loadingProvider === "credentials" ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Signing Up...

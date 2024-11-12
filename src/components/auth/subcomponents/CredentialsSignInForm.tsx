@@ -25,7 +25,12 @@ import {
 interface CredentialsSignInFormProps {
   className?: string;
   authProcess?: "login" | "signup";
-  loadingStateData: { isLoading: boolean; setIsLoading: Function };
+  loadingStateData: {
+    loadingProvider: "credentials" | "google" | "github" | null;
+    setLoadingProvider: React.Dispatch<
+      React.SetStateAction<"credentials" | "google" | "github" | null>
+    >;
+  };
 }
 
 function CredentialsSignInForm({
@@ -43,7 +48,7 @@ function CredentialsSignInForm({
   });
 
   const submitHandler = async (data: { email: string; password: string }) => {
-    loadingStateData.setIsLoading(true);
+    loadingStateData.setLoadingProvider("credentials");
 
     const response = await signIn("credentials", { ...data, redirect: false });
 
@@ -53,7 +58,7 @@ function CredentialsSignInForm({
         message: response.error,
       });
 
-      loadingStateData.setIsLoading(false);
+      loadingStateData.setLoadingProvider(null);
     }
 
     if (response?.ok) {
@@ -103,8 +108,8 @@ function CredentialsSignInForm({
           </div>
         )}
 
-        <Button type="submit" disabled={loadingStateData.isLoading}>
-          {loadingStateData.isLoading ? (
+        <Button type="submit" disabled={!!loadingStateData.loadingProvider}>
+          {loadingStateData.loadingProvider === "credentials" ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Logging in...

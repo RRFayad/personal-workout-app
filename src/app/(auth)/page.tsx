@@ -23,7 +23,9 @@ import {
 function HomePage() {
   const router = useRouter();
   const session = useSession();
-  const [isLoading, setIsLoading] = useState(false);
+  const [loadingProvider, setLoadingProvider] = useState<
+    "credentials" | "google" | "github" | null
+  >(null);
   const [authProcess, setAuthProcess] = useState<"login" | "signup">("login");
 
   if (session.data?.user) {
@@ -56,17 +58,26 @@ function HomePage() {
       <CardContent>
         <AuthButtons
           authProcess={authProcess}
-          loadingStateData={{ isLoading, setIsLoading }}
+          loadingStateData={{
+            loadingProvider,
+            setLoadingProvider,
+          }}
         />
         <hr className="my-4 mt-6" />
         {authProcess === "login" && (
           <CredentialsSignInForm
-            loadingStateData={{ isLoading, setIsLoading }}
+            loadingStateData={{
+              loadingProvider,
+              setLoadingProvider,
+            }}
           />
         )}
         {authProcess === "signup" && (
           <CredentialsSignUpForm
-            loadingStateData={{ isLoading, setIsLoading }}
+            loadingStateData={{
+              loadingProvider,
+              setLoadingProvider,
+            }}
           />
         )}
       </CardContent>

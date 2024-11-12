@@ -12,15 +12,20 @@ import { Loader2 } from "lucide-react";
 
 interface AuthButtonsProps {
   authProcess: "login" | "signup";
-  loadingStateData: { isLoading: boolean; setIsLoading: Function };
+  loadingStateData: {
+    loadingProvider: "credentials" | "google" | "github" | null;
+    setLoadingProvider: React.Dispatch<
+      React.SetStateAction<"credentials" | "google" | "github" | null>
+    >;
+  };
 }
 
 export default function AuthButtons({
   authProcess,
   loadingStateData,
 }: AuthButtonsProps) {
-  const loginHandler = (provider: string) => {
-    loadingStateData.setIsLoading(true);
+  const loginHandler = (provider: "google" | "github") => {
+    loadingStateData.setLoadingProvider(provider);
     signIn(provider, { redirect: false });
   };
 
@@ -30,12 +35,12 @@ export default function AuthButtons({
         <Button
           className="w-[30vw] md:h-[36px] md:w-[220px]"
           onClick={() => loginHandler("google")}
-          disabled={loadingStateData.isLoading}
+          disabled={!!loadingStateData.loadingProvider}
         >
-          {loadingStateData.isLoading && (
+          {loadingStateData.loadingProvider === "google" && (
             <Loader2 className="mx-auto h-4 w-4 animate-spin" />
           )}
-          {!loadingStateData.isLoading && (
+          {loadingStateData.loadingProvider !== "google" && (
             <>
               <Image
                 src={GoogleImage}
@@ -60,12 +65,12 @@ export default function AuthButtons({
           className="w-[30vw] md:h-[36px] md:w-[220px]"
           size={"sm"}
           onClick={() => loginHandler("github")}
-          disabled={loadingStateData.isLoading}
+          disabled={!!loadingStateData.loadingProvider}
         >
-          {loadingStateData.isLoading && (
+          {loadingStateData.loadingProvider === "github" && (
             <Loader2 className="mx-auto h-4 w-4 animate-spin" />
           )}
-          {!loadingStateData.isLoading && (
+          {loadingStateData.loadingProvider !== "github" && (
             <>
               <LogoLightDarkSwitcher
                 DarkModeImage={GithubInverted}

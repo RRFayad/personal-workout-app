@@ -2,30 +2,18 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import paths from "@/lib/paths";
 import { useState } from "react";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import GridDevTool from "@/components/dev-tools/GridDevTool";
 
-import { Button } from "@/components/ui/button";
-import { CircleUserRound, Loader2 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import whiteHeadLogo from "@/../public/Primal Trainer Logos/logo__head--white.png";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import DesktopNavBar from "./desktop-nav-bar";
+import MobileMenu from "./mobile-menu";
 
 function Header() {
-  const router = useRouter();
   const session = useSession();
-
-  const [mobileMenuIsOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
   return (
     <>
@@ -35,8 +23,8 @@ function Header() {
           <Drawer
             direction="right"
             open={mobileMenuIsOpen}
-            onOpenChange={(open) => setMobileMenuOpen(open)}
-            onClose={() => setMobileMenuOpen(false)}
+            onOpenChange={(open) => setMobileMenuIsOpen(open)}
+            onClose={() => setMobileMenuIsOpen(false)}
           >
             <DrawerTrigger>
               {/* Hamburger Menu */}
@@ -44,8 +32,13 @@ function Header() {
               <div className="mb-[6px] ml-[4px] h-[3px] w-[22px] bg-white"></div>
               <div className="h-[3px] w-[26px] bg-white"></div>
             </DrawerTrigger>
-            {/* TODO: */}
-            <DrawerContent>AAAAAAHHHH</DrawerContent>
+
+            <DrawerContent className="h-full w-[100vw]">
+              <MobileMenu
+                isLoggedIn={!!session.data?.user}
+                userImage={session?.data?.user.image}
+              />
+            </DrawerContent>
           </Drawer>
         </div>
         <Link href={"/"} className="lg:col-span-5 lg:col-start-1">

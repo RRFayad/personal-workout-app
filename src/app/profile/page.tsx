@@ -36,6 +36,10 @@ async function ProfilePage() {
     redirect("/");
   }
 
+  if (userData.profile === null) {
+    redirect(paths.editProfile());
+  }
+
   return (
     <>
       {/* mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[480px] */}

@@ -36,6 +36,12 @@ async function NutritionPage() {
     redirect("/");
   }
 
+  if (userData.NutritionProgram === null) {
+    userData?.profile === null
+      ? redirect(paths.editProfile())
+      : redirect(paths.editNutritionPlan());
+  }
+
   let dietPhaseName: "cutting" | "bulking" | "maintaining";
 
   if (userData.NutritionProgram?.current_diet_phase === "cut") {

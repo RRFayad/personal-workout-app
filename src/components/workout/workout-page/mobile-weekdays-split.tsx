@@ -11,7 +11,6 @@ import { WeekDaysSplitProps } from "./weekdays-split";
 
 function MobileWeekdaysSplit({
   trainingDaysData,
-  workoutProgramDetails,
   workoutProgramId,
   className,
 }: WeekDaysSplitProps) {
@@ -28,7 +27,6 @@ function MobileWeekdaysSplit({
             <CardContent className="-mt-2 mb-2 flex-grow py-2">
               <WeekDaysSplit
                 trainingDaysData={trainingDaysData!}
-                workoutProgramDetails={workoutProgramDetails!}
                 workoutProgramId={workoutProgramId!}
                 className="grid"
               />

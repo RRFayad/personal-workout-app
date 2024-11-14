@@ -1,21 +1,21 @@
 import { db } from "@/db";
+import Link from "next/link";
 import Image from "next/image";
-import { format, getDay } from "date-fns";
+import paths from "@/lib/paths";
 import authOptions from "@/lib/auth";
+import { format } from "date-fns";
+import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { WorkoutProgramDetails } from "@prisma/client";
 import MalePic from "@/../public/images/male/push.jpg";
 import FemalePic from "@/../public/images/female/push.avif";
 import WeekDaysSplit from "@/components/workout/workout-page/weekdays-split";
-import WorkoutInstructionsCard from "@/components/workout/workout-page/workout-instructions-card";
-
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
-import paths from "@/lib/paths";
-import Link from "next/link";
-import MobileWorkoutInstructionsCard from "@/components/workout/workout-page/mobile-workout-instructions-card";
 import MobileWeekdaysSplit from "@/components/workout/workout-page/mobile-weekdays-split";
+import WorkoutInstructionsCard from "@/components/workout/workout-page/workout-instructions-card";
+import MobileWorkoutInstructionsCard from "@/components/workout/workout-page/mobile-workout-instructions-card";
+
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 async function WorkoutSplitPage() {
   const session = await getServerSession(authOptions);
@@ -93,6 +93,7 @@ async function WorkoutSplitPage() {
           >
             <Image
               src={FemalePic}
+              // src={session.user.gender === "male" ? MalePic : FemalePic}
               className="absolute inset-0 w-full lg:h-full lg:object-cover"
               alt="Trainind Day Pic"
             />
@@ -108,26 +109,20 @@ async function WorkoutSplitPage() {
             </div>
           </Link>
         </Card>
-        <>
-          <WorkoutInstructionsCard />
-        </>
+        <WorkoutInstructionsCard />
       </div>
       <div className="lg:col-span-6">
-        <>
-          <WeekDaysSplit
-            trainingDaysData={trainingDaysData!}
-            workoutProgramDetails={workoutProgramDetails!}
-            workoutProgramId={workoutProgramId!}
-            className="hidden lg:grid"
-          />
-          <MobileWeekdaysSplit
-            trainingDaysData={trainingDaysData!}
-            workoutProgramDetails={workoutProgramDetails!}
-            workoutProgramId={workoutProgramId!}
-            className="grid lg:hidden"
-          />
-          <MobileWorkoutInstructionsCard />
-        </>
+        <WeekDaysSplit
+          trainingDaysData={trainingDaysData!}
+          workoutProgramId={workoutProgramId!}
+          className="hidden lg:grid"
+        />
+        <MobileWeekdaysSplit
+          trainingDaysData={trainingDaysData!}
+          workoutProgramId={workoutProgramId!}
+          className="grid lg:hidden"
+        />
+        <MobileWorkoutInstructionsCard />
       </div>
     </>
   );

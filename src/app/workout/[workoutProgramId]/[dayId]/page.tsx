@@ -1,4 +1,5 @@
 import { db } from "@/db";
+import { StaticImageData } from "next/image";
 import * as exercises from "@/lib/workout/exercises";
 import { differenceInCalendarWeeks } from "date-fns";
 import { WorkoutProgramDetails } from "@prisma/client";
@@ -6,7 +7,7 @@ import WorkoutDay from "@/components/workout/daily-plan/workout-day";
 import ActiveRestDay from "@/components/workout/daily-plan/active-rest-day";
 
 import { Button } from "@/components/ui/button";
-import { MuscularGroupKey } from "@/types/exercise";
+import { EquipmentKey, IntensityKey, MuscularGroupKey } from "@/types/exercise";
 
 interface WorkoutDayPlanPageProps {
   params: {
@@ -75,11 +76,11 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
 
         return {
           ...exerciseDataFromWorkoutDB,
-          exercise_name: exerciseDetails.exerciseName.en,
-          intensity: exerciseDetails.intensity,
-          equipment: exerciseDetails.equipment,
-          imageUrl: exerciseDetails.imageUrl,
-          muscularGroup: muscularGroup,
+          exerciseNameToBeDisplayed: exerciseDetails.exerciseName.en as string,
+          intensity: exerciseDetails.intensity as IntensityKey,
+          equipment: exerciseDetails.equipment as EquipmentKey,
+          imageUrl: exerciseDetails.imageUrl as StaticImageData,
+          muscularGroup: muscularGroup as MuscularGroupKey,
         };
       },
     );

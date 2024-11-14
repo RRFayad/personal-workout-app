@@ -1,20 +1,17 @@
 import Link from "next/link";
 import paths from "@/lib/paths";
 import { ChevronRight } from "lucide-react";
-import { WorkoutProgramDetails } from "@prisma/client";
 
 import { Card } from "@/components/ui/card";
 
 export interface WeekDaysSplitProps {
   trainingDaysData: { dayNumber: number; dayName: string }[];
-  workoutProgramDetails: WorkoutProgramDetails[];
   workoutProgramId: number;
   className?: string;
 }
 
 function WeekDaysSplit({
   trainingDaysData,
-  workoutProgramDetails,
   workoutProgramId,
   className,
 }: WeekDaysSplitProps) {

@@ -18,14 +18,15 @@ export const columns: ColumnDef<any>[] = [
       </div>
     ),
     cell: ({ row }) => {
-      const exerciseName = row.getValue("exercise_name") as string;
+      const exerciseKeyName = row.getValue("exercise_name");
+      const exerciseNameToBeDisplayed = row.original.exerciseNameToBeDisplayed;
       const exerciseEquipment = row.original.equipment;
 
       return (
         <div className="my-2 flex w-24 flex-col items-start justify-between lg:w-64">
           <div className="flex flex-col items-start justify-start">
             <h5 className="text-xs font-bold capitalize lg:text-sm lg:uppercase">
-              {exerciseName}
+              {exerciseNameToBeDisplayed}
             </h5>
             <span className="mt-[2px] text-[0.675rem] capitalize text-project-gray lg:text-xs">
               {exerciseEquipment}
@@ -33,7 +34,7 @@ export const columns: ColumnDef<any>[] = [
           </div>
           <span className="mt-8 whitespace-nowrap text-[0.675rem] font-bold text-project-orange lg:text-xs">
             <Link
-              href={"/workout"}
+              href={`/exercises/${exerciseKeyName}`}
               className="flex items-center justify-center align-middle"
             >
               View Details{" "}

@@ -54,7 +54,7 @@ async function NutritionPage() {
 
   return (
     <>
-      <Card className="mx-auto md:col-span-12 md:w-[600px]">
+      <Card className="mx-auto w-[90vw] md:col-span-12 md:w-[600px]">
         <CardHeader className="">
           <Avatar className="mx-auto mb-2 h-20 w-20 md:h-32 md:w-32">
             <AvatarImage

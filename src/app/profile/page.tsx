@@ -43,7 +43,7 @@ async function ProfilePage() {
   return (
     <>
       {/* mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[480px] */}
-      <Card className="mx-auto md:col-span-12 md:w-[600px]">
+      <Card className="mx-auto w-[90vw] md:col-span-12 md:w-[600px]">
         <CardHeader>
           <Avatar className="mx-auto mb-2 h-20 w-20 md:h-32 md:w-32">
             <AvatarImage
@@ -58,7 +58,7 @@ async function ProfilePage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ul className="text-sm">
+          <ul className="w-full min-w-[240px] text-sm">
             <li className="mt-2">
               <span className="text-project-gray">Name: </span>
               <span className="font-bold">{userData.profile?.full_name}</span>

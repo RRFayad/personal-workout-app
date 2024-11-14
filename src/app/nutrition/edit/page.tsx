@@ -35,7 +35,6 @@ async function EditNutritionPlanPage({
     : null;
 
   return (
-    /*mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[480px]*/
     <Card className="mx-auto my-auto mt-[3vh] h-min w-full md:col-span-12 md:w-[600px]">
       <CardHeader className="flex items-center justify-center pt-3">
         <LogoLightDarkSwitcher

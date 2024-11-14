@@ -9,6 +9,7 @@ import { defineExerciseWeeklyRepRanges } from "@/lib/workout/helpers/define-rep-
 
 import { columns } from "@/components/workout/daily-plan/columns";
 import { DataTable } from "@/components/workout/daily-plan/data-table";
+import BackButton from "@/components/ui/back-button";
 
 interface WorkoutData {
   exercise_name: any;
@@ -107,13 +108,7 @@ function WorkoutDay({
   return (
     <>
       <div className="relative flex items-center justify-center pt-4 md:pt-0">
-        <span
-          className="absolute left-0 top-0 flex cursor-pointer align-middle text-base font-bold dark:text-secondary-foreground lg:top-1"
-          onClick={() => router.back()}
-        >
-          <ChevronLeftIcon />
-          Back
-        </span>
+        <BackButton className="absolute left-0 top-0 lg:top-1" />
         <ChevronLeftIcon
           className="cursor-pointer"
           size={28}

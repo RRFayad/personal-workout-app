@@ -1,21 +1,11 @@
-"use client";
-
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import BackButton from "@/components/ui/back-button";
 import WalkingGif from "@/../public/images/exercises/Walking.gif";
-import { ChevronLeftIcon } from "lucide-react";
 
 function ActiveRestDay() {
-  const router = useRouter();
   return (
     <div className="relative flex flex-col items-center justify-center pt-12">
-      <span
-        className="absolute left-0 top-1 flex cursor-pointer align-middle font-bold text-project-dark-gray"
-        onClick={() => router.back()}
-      >
-        <ChevronLeftIcon />
-        Back
-      </span>
+      <BackButton className="absolute left-0 top-1" />
       <Image
         src={WalkingGif}
         alt={"Active Rest"}

@@ -120,7 +120,10 @@ function CreateWorkoutForm() {
 
           <Button type="submit" disabled={isSubmitting}>
             {isSubmitting ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <span className="flex w-full items-center justify-center text-center">
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <span className="text-xs">Generating your workout...</span>
+              </span>
             ) : (
               "Submit"
             )}

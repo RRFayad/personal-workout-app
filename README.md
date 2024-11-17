@@ -2,6 +2,10 @@
 
 [**Primal Trainer**](https://primal-trainer.vercel.app/)
 
+## Project Overview
+
+[**Overview Video**](https://www.loom.com/share/f4310ee679fc48e793295aaf6a5071e5)
+
 ## About the Product
 
 Primal Trainer is designed to simplify the journey of fitness enthusiasts who seek personalized workout plans and meal plans without relying on generic gym routines or hiring a personal trainer.

@@ -7,7 +7,7 @@ export const fiveDaysSplit: TrainingWeeklySplit = {
     exercisesDescriptions: [
       "Bench Press - 3 Series",
       "An inclined press, randomize between dumbbells or machine - 3 Series",
-      "Randomize a shoulders Exercise with Frontal movement - 3 Series",
+      "Randomize a shoulders Exercise with Frontal movement with moderate or low intensity - 3 Series",
       "A different chest exercise, using machine or cables - 3 series",
       "A Shoulders Exercise with Lateral movement - 3 series",
       "A random Triceps exercise- 3 series",
@@ -147,7 +147,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
     exercisesDescriptions: [
       "Bench Press - 3 Series",
       "An inclined press, randomize between dumbbells or machine - 3 Series",
-      "Randomize a shoulders Exercise with Frontal movement - 3 Series",
+      "Randomize a shoulders Exercise with Frontal movement with moderate or low intensity- 3 Series",
       "A different chest exercise, using machine or cables - 3 series",
       "A Shoulders Exercise with Lateral movement - 3 series",
       "A random Triceps exercise- 3 series",
@@ -189,7 +189,7 @@ export const fourDaysSplit: TrainingWeeklySplit = {
       "Moderate Intensity Chest Exercise - 3 Series",
       "A vertical pull back exercise - 3 Series",
       "A moderate or low intensity chest exercise - 2 series",
-      "Deltoids Exercise - 2 Series",
+      "Deltoids Exercise - 3 Series",
       "Side Deltoid Exercise - 2 series",
       "Biceps Exercise - 2 series",
       "Triceps Exercise (with a different movement angle related to the first exercise of the push day) - 2 series",

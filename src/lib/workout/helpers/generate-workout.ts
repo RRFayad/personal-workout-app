@@ -30,7 +30,7 @@ export const generateWorkout = async (prompt: string, maxRetries = 5) => {
 
     if (workoutIsValid) {
       console.log(`Workout created with ${retries + 1}/${maxRetries} attempts`);
-      // return workoutProgram;
+      return workoutProgram;
     }
 
     retries += 1;

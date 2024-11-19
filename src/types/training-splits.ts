@@ -18,6 +18,7 @@ export type TrainingWeeklySplit = {
   legsA?: SplitDay;
   legsB?: SplitDay;
   legsAndGlutes?: SplitDay;
+  legsAndShoulders?: SplitDay;
   pullAndGlutes?: SplitDay;
 };
 

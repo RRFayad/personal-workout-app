@@ -7,6 +7,8 @@ import dumbbellLateralRaiseImg from "@/../public/images/exercises/shoulders/Dumb
 import dumbbellSeatedBentOverRearDeltRowImg from "@/../public/images/exercises/shoulders/Dumbbell-Seated-Bent-Over-Rear-Delt-Row.gif";
 import dumbbellShoulderPressImg from "@/../public/images/exercises/shoulders/Dumbbell-Shoulder-Press.gif";
 import facePullImg from "@/../public/images/exercises/shoulders/Face-Pull.gif";
+import rearDeltFlyMachineImg from "@/../public/images/exercises/shoulders/Rear-Delt-Machine-Fly.gif";
+import shoulderPressMachineImg from "@/../public/images/exercises/shoulders/Shoulder-Press-Machine.gif";
 
 export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
   overheadPress: {
@@ -51,6 +53,29 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     measurementType: "reps",
     videoTutorialUrl: "",
     imageUrl: dumbbellShoulderPressImg,
+  },
+  shoulderPressMachine: {
+    exerciseName: {
+      en: "shoulder press machine",
+      pt: "desenvolvimento máquina",
+    },
+    mainMuscles: ["deltoids"],
+    auxiliarMuscles: ["triceps"],
+    category: "compound",
+    equipment: "machine",
+    intensity: "moderate",
+    execution: {
+      en: "Sit on the shoulder press machine with your back firmly against the pad and grip the handles. Push the handles upward until your arms are fully extended. Slowly return to the starting position in a controlled manner.",
+      pt: "Sente-se na máquina de desenvolvimento com as costas firmemente apoiadas no encosto e segure as alças. Empurre as alças para cima até que seus braços estejam completamente estendidos. Retorne lentamente à posição inicial de forma controlada.",
+    },
+    movementVariables: {
+      movementType: "press",
+      movementAngle: "front",
+    },
+    alternatives: ["overheadPress", "seatedDumbbellPress"],
+    measurementType: "reps",
+    videoTutorialUrl: "",
+    imageUrl: shoulderPressMachineImg,
   },
   arnoldPress: {
     exerciseName: { en: "arnold press", pt: "desenvolvimento Arnold" },
@@ -174,5 +199,28 @@ export const shouldersExercises: ExerciseDictionary<"shoulders"> = {
     measurementType: "reps",
     videoTutorialUrl: "",
     imageUrl: dumbbellSeatedBentOverRearDeltRowImg,
+  },
+  rearDeltFlyMachine: {
+    exerciseName: {
+      en: "rear delt fly machine",
+      pt: "peck deck inverso",
+    },
+    mainMuscles: ["rearDeltoids"],
+    auxiliarMuscles: ["trapezius", "rhomboids"],
+    category: "isolated",
+    equipment: "machine",
+    intensity: "low",
+    execution: {
+      en: "Sit on the rear delt fly machine with your chest against the pad and grip the handles. With a slight bend in your elbows, push the handles back in a wide arc until your arms are extended to the sides. Return to the starting position under control.",
+      pt: "Sente-se na máquina de fly posterior com o peito apoiado no encosto e segure as alças. Com uma leve dobra nos cotovelos, empurre as alças para trás em um arco amplo até que seus braços estejam estendidos para os lados. Retorne controladamente à posição inicial.",
+    },
+    movementVariables: {
+      movementType: "raise",
+      movementAngle: "rear",
+    },
+    alternatives: ["rearDeltRaise", "facePull"],
+    measurementType: "reps",
+    videoTutorialUrl: "",
+    imageUrl: rearDeltFlyMachineImg,
   },
 };

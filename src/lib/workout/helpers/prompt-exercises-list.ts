@@ -15,6 +15,7 @@ Object.keys(exercises).forEach((muscleGroup) => {
 
     promptExercisesList[muscleGroup][exerciseKey] = {
       // name: exercise.exerciseName.en,
+      equipment: exercise.equipment,
       intensity: exercise.intensity,
       movementVariables: exercise.movementVariables,
     };

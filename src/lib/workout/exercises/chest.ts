@@ -7,6 +7,7 @@ import inclineBarbellBenchPressImg from "@/../public/images/exercises/chest/Incl
 import inclineDumbbellPressImg from "@/../public/images/exercises/chest/Incline-Dumbbell-Press.gif";
 import chestPressMachineImg from "@/../public/images/exercises/chest/Chest-Press-Machine.gif";
 import inclinedChestPressMachineImg from "@/../public/images/exercises/chest/Incline-Chest-Press-Machine.gif";
+import flyMachineImg from "@/../public/images/exercises/chest/Fly-Machine.gif";
 
 export const chestExercises: ExerciseDictionary<"chest"> = {
   benchPress: {
@@ -179,5 +180,25 @@ export const chestExercises: ExerciseDictionary<"chest"> = {
     alternatives: [],
     videoTutorialUrl: "",
     imageUrl: cableCrossoverImg,
+  },
+  flyMachine: {
+    exerciseName: { en: "fly machine", pt: "crucifixo máquina" },
+    mainMuscles: ["chest"],
+    auxiliarMuscles: ["deltoids"],
+    category: "isolated",
+    equipment: "machine",
+    intensity: "low",
+    execution: {
+      en: "Sit on the fly machine with your back against the pad and feet flat on the ground. Hold the handles or pads with your arms slightly bent. Bring your hands together in a controlled motion until they meet in front of your chest. Slowly return to the starting position, maintaining control.",
+      pt: "Sente-se na máquina peck deck com as costas apoiadas no encosto e os pés apoiados no chão. Segure as alças ou apoios com os braços levemente dobrados. Traga as mãos juntas em um movimento controlado até se encontrarem na frente do peito. Retorne lentamente à posição inicial, mantendo o controle.",
+    },
+    movementVariables: {
+      movementType: "fly",
+      movementAngle: "flat",
+    },
+    measurementType: "reps",
+    alternatives: ["crossOver"],
+    videoTutorialUrl: "",
+    imageUrl: flyMachineImg,
   },
 };

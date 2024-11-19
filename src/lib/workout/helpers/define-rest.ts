@@ -7,13 +7,13 @@ export const defineExerciseRestPeriod = (intensity: IntensityKey) => {
       restingPeriodInMinutes = 3.5;
       break;
     case "high":
-      restingPeriodInMinutes = 2.5;
+      restingPeriodInMinutes = 3;
       break;
     case "moderate":
-      restingPeriodInMinutes = 2;
+      restingPeriodInMinutes = 2.5;
       break;
     case "low":
-      restingPeriodInMinutes = 1.5;
+      restingPeriodInMinutes = 2;
       break;
     default:
       restingPeriodInMinutes = 2;

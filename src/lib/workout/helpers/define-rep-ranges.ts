@@ -63,9 +63,9 @@ export const defineExerciseWeeklyRepRanges = (
           { min: 4, max: 6 },
           { min: 4, max: 6 },
           { min: 4, max: 6 },
+          { min: 4, max: 6 },
           { min: 2, max: 4 },
           { min: 2, max: 4 },
-          { min: 1, max: 2 },
           { min: 1, max: 2 },
         ];
         break;

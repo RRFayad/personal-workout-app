@@ -131,7 +131,7 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className="text-[0.825rem] md:text-base">
+                <FormDescription className="text-[0.825rem]">
                   <b>Important:</b> Consider 1 hour per workout day additionally
                   to other activities / sports.
                 </FormDescription>
@@ -198,7 +198,7 @@ function NutritionPlanForm({ updatingUserData }: ProfileFormProps) {
                     })}
                   </SelectContent>
                 </Select>
-                <FormDescription className="text-[0.825rem] md:text-base">
+                <FormDescription className="text-[0.825rem]">
                   <b>Obs:</b> We recommend to start cutting when your body fat
                   is around{" "}
                   <b>

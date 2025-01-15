@@ -102,7 +102,7 @@ function CreateWorkoutForm() {
                     ))}
                   </SelectContent>
                 </Select>
-                <FormDescription className="text-[0.825rem] md:text-base">
+                <FormDescription className="text-[0.825rem]">
                   <b>Important:</b> It&apos;s recommended to have a rest day
                   after 3 days of continuous workouts.
                 </FormDescription>

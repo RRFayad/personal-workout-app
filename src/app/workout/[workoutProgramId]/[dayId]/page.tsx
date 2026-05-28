@@ -6,6 +6,8 @@ import WorkoutDay from "@/components/workout/daily-plan/workout-day";
 import ActiveRestDay from "@/components/workout/daily-plan/active-rest-day";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import paths from "@/lib/paths";
 
 interface WorkoutDayPlanPageProps {
   params: {
@@ -49,9 +51,11 @@ async function WorkoutDayPlanPage({ params }: WorkoutDayPlanPageProps) {
           <h1>Your current workout plan finished!</h1>
           <p>Take a deload week, and create a new workout</p>
         </div>
-        <Button className="mt-20 w-40 bg-project-orange hover:bg-project-orange hover:opacity-80">
-          Create New Workout
-        </Button>
+        <Link href={paths.createWorkout()}>
+          <Button className="mt-20 w-40 bg-project-orange hover:bg-project-orange hover:opacity-80">
+            Create New Workout
+          </Button>
+        </Link>
       </div>
     );
   }

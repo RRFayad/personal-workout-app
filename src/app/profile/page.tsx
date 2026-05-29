@@ -82,7 +82,9 @@ async function ProfilePage() {
             <li className="mt-2">
               <span className="text-project-gray">Date of birth: </span>
               <span className="font-bold">
-                {format(userData.profile?.date_of_birth!, "MMM dd, yyy")}
+                {userData.profile?.date_of_birth
+                  ? format(userData.profile.date_of_birth, "MMM dd, yyyy")
+                  : "N/A"}
               </span>
             </li>
           </ul>
@@ -95,7 +97,7 @@ async function ProfilePage() {
                 fullName: userData.profile?.full_name,
                 height: userData.profile?.height_in_cm,
                 gender: userData.profile?.gender,
-                dateOfBirth: userData.profile?.date_of_birth.toISOString(),
+                dateOfBirth: userData.profile?.date_of_birth?.toISOString(),
               },
             }}
           >
